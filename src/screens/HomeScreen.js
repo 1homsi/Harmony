@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   FlatList,
 } from "react-native";
 import Items from "../components/Items";
@@ -36,7 +37,7 @@ const HomeScreen = () => {
     fetchAll();
     return () => {
       setData();
-    }
+    };
   }, []);
 
   const onRefresh = React.useCallback(() => {
@@ -49,10 +50,55 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.Top}>
-        <View style={{ flex: 1 }}>
+        <View>
           <Text placeholder="Test" style={styles.HeadTitlte}>
-            Quakly
+            Home
           </Text>
+        </View>
+      </View>
+      <View>
+        {/* <Searchbar
+          placeholder="Search"
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+        /> */}
+      </View>
+      <View style={styles.gridTopCards}>
+        <View style={styles.topCard}>
+          <Text>Home</Text>
+        </View>
+        <View style={styles.topCard}>
+          <Text>Home</Text>
+        </View>
+        <View style={styles.topCard}>
+          <Text>Home</Text>
+        </View>
+      </View>
+      <View style={styles.Cat}>
+        <Text>
+          <Text style={styles.CatTitle}>Categories</Text>
+        </Text>
+        <View style={styles.CatContainer}>
+          <View style={styles.CatCard}>
+            <Text>Category</Text>
+          </View>
+          <View style={styles.CatCard}>
+            <Text>Category</Text>
+          </View>
+          <View style={styles.CatCard}>
+            <Text>Category</Text>
+          </View>
+        </View>
+        <View style={styles.CatContainer}>
+          <View style={styles.CatCard}>
+            <Text>Category</Text>
+          </View>
+          <View style={styles.CatCard}>
+            <Text>Category</Text>
+          </View>
+          <View style={styles.CatCard}>
+            <Text>Category</Text>
+          </View>
         </View>
       </View>
       <View style={styles.ListView}>
@@ -67,7 +113,13 @@ const HomeScreen = () => {
           style={styles.list}
           data={data}
           renderItem={({ item }) => (
-            <Items id={item.id} title={item.title} dis={item.Description} img={item.Image} isNotFav={true} />
+            <Items
+              id={item.id}
+              title={item.title}
+              dis={item.Description}
+              img={item.Image}
+              isNotFav={true}
+            />
           )}
           keyExtractor={(item, index) => index.toString()}
         />
@@ -82,7 +134,12 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   HeadTitlte: {
     marginLeft: "5%",
-    fontSize: 40,
+    fontSize: 30,
+    fontWeight: "800",
+    color: "#000",
+  },
+  CatTitle: {
+    fontSize: 20,
     fontWeight: "800",
     color: "#000",
   },
@@ -139,7 +196,61 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     marginBottom: 40,
   },
-  refresh: {
+  topCard: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: "90%",
+    height: "8%",
+    backgroundColor: "#FA7D09",
+    borderRadius: 12,
+    marginTop: 10,
+    marginBottom: 20,
+    marginLeft: "8%",
+    marginRight: "8%",
+    paddingBottom: 35,
+    paddingTop: 35,
+    paddingLeft: 60,
+    paddingRight: 60,
+  },
 
-  }
+  gridTopCards: {
+    width: "50%",
+    justifyContent: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 20,
+    marginBottom: 80,
+  },
+  CatContainer: {
+    // width: "100%",
+    justifyContent: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 0,
+    marginBottom: -50,
+  },
+  CatCard: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: "30%",
+    height: "50%",
+    backgroundColor: "#FA7D09",
+    borderRadius: 12,
+    marginTop: 10,
+    marginBottom: 25,
+    marginLeft: "1%",
+    marginRight: "1%",
+    paddingBottom: 40,
+    paddingTop: 40,
+    paddingLeft: 40,
+    paddingRight: 40,
+  },
+  Cat: {
+    width: "100%",
+    height: "3%",
+    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+
 });

@@ -15,7 +15,7 @@ const BottomNav = () => {
                         style={styles.icon}
                         color={route.name != "Home" ?
                             '#000' :
-                            '#ff7f77'
+                            '#FA7D09'
                         }
                         reverseColor
                         name="home"
@@ -28,7 +28,7 @@ const BottomNav = () => {
                         }}
                     />
                 </TouchableOpacity>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                     onPress={() => navigation.replace("AddProduct")}
                     style={route.name === "AddProduct" ?
                         [styles.SemiRed, styles.bottomNavItemAdd]
@@ -41,6 +41,24 @@ const BottomNav = () => {
                         name="plus"
                         type="font-awesome-5"
                         size={35}
+                    />
+                </TouchableOpacity> */}
+                <TouchableOpacity style={styles.bottomNavItem}>
+                    <Icon
+                        style={styles.icon}
+                        color={route.name != "" ?
+                            '#000' :
+                            '#FA7D09'
+                        }
+                        reverseColor
+                        name="grid"
+                        type="feather"
+                        size={35}
+                        onPress={() => {
+                            if (route.name != "") {
+                                navigation.replace("")
+                            }
+                        }}
                     />
                 </TouchableOpacity>
                 <View>
@@ -61,7 +79,7 @@ const BottomNav = () => {
                                 <Icon
                                     style={styles.icon}
                                     color={route.name === "Option" ?
-                                        '#ff7f77' :
+                                        '#FA7D09' :
                                         '#000'
                                     }
                                     reverseColor
@@ -89,13 +107,18 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     bottomNav: {
+        zIndex: 1,
         flexDirection: "row",
         justifyContent: "space-around",
         alignItems: "center",
-        height: "100%",
+        height: "200%",
         width: "100%",
         position: "absolute",
+        backgroundColor: "white",
         bottom: Platform.OS === 'ios' ? -5 : 0,
+        borderTopRightRadius: 25,
+        borderTopLeftRadius: 25,
+        paddingBottom: 5,
     },
     bottomNavItem: {
         alignItems: "center",
@@ -104,27 +127,29 @@ const styles = StyleSheet.create({
     },
     bottomNavItemAdd: {
         color: "black",
+        color: "white",
         zIndex: 1,
         alignItems: "center",
         justifyContent: "center",
-        borderColor: "white",
-        borderWidth: 8,
-        paddingTop: 17,
-        paddingHorizontal: 20,
-        paddingBottom: 17,
-        borderRadius: 100,
-        marginBottom: 40,
-        height: 100,
-        width: 100,
+        // borderColor: "#FA7D09",
+        // borderWidth: 8,
+        // paddingTop: 5,
+        // paddingHorizontal: 20,
+        // paddingBottom: 10,
+        // borderRadius: 100,
+        // marginBottom: 40,
+        // height: 60,
+        // width: 60,
     },
-    bottomNavItemAddNot: {
-        backgroundColor: "#fc5c65",
-    },
-    SemiRed: {
-        backgroundColor: "#ff7f73",
-    },
+    // bottomNavItemAddNot: {
+    //     backgroundColor: "#FA7D09",
+    // },
+    // SemiRed: {
+    //     backgroundColor: "#FA7D09",
+    // },
     iconPlus: {
         position: "relative",
         color: "black",
+        color: "white",
     }
 })
