@@ -16,8 +16,6 @@ const ResetPassword = () => {
 
   const handleReset = () => {
     auth.sendPasswordResetEmail(email).catch((error) => {
-      // var errorCode = error.code;
-      // var errorMessage = error.message;
       alert("Error please try again later");
     });
     navigation.navigate("Login");
@@ -39,13 +37,13 @@ const ResetPassword = () => {
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={handleReset} style={styles.button}>
-            <Text style={styles.buttonText}>Reset Password</Text>
+            <Text style={styles.buttonText}>Send Email</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => navigation.replace("Login")}
             style={styles.buttonOutline}
           >
-            <Text style={styles.buttonText}>Cancel</Text>
+            <Text style={styles.buttonText}>Back</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -70,22 +68,23 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 25,
+    marginTop: 60,
   },
   input: {
-    borderWidth: 1.5,
+    borderWidth: 2,
+    fontWeight: "bold",
     borderColor: "#003f5c",
     backgroundColor: "white",
     paddingHorizontal: 15,
-    paddingVertical: 10,
-    borderRadius: 15,
-    marginTop: 15,
+    paddingVertical: 15,
+    borderRadius: 10,
+    marginTop: 30,
   },
   button: {
-    backgroundColor: "#fc5c65",
+    backgroundColor: "#89CFF0",
     width: "80%",
     padding: 20,
-    borderRadius: 30,
+    borderRadius: 10,
     alignItems: "center",
   },
   topNav: {
@@ -97,35 +96,23 @@ const styles = StyleSheet.create({
     paddingTop: 5,
   },
   title: {
-    marginLeft: 10,
+    marginTop: 20,
+    marginLeft: "20%",
     fontSize: 30,
-    fontWeight: "800",
-    color: "#000",
+    fontWeight: "bold",
+    color: "#003f5c",
   },
-  //   resetPass:{
-  //     borderWidth: 1.5,
-  //     borderColor: "#89CFF0",
-  //     backgroundColor: "#89CFF0",
-  //     paddingHorizontal: 15,
-  //     paddingVertical: 10,
-  //     borderRadius: 15,
-  //     marginTop: 20,
-  //     color: 'white',
-  //     fontWeight: '700',
-  //     fontSize: 17,
-  //     textAlign: 'center',
-  //   },
   buttonOutline: {
     marginTop: 10,
     backgroundColor: "gray",
     width: "60%",
     padding: 20,
-    borderRadius: 30,
+    borderRadius: 10,
     alignItems: "center",
   },
   buttonText: {
     color: "white",
-    fontWeight: "700",
-    fontSize: 17,
+    fontWeight: "bold",
+    fontSize: 20,
   },
 });

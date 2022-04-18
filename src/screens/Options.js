@@ -49,6 +49,8 @@ export default function Option() {
         },
         {
           text: "OK",
+
+          //TODO: Delete current user from the Users doc? or it could be left for us to sell data ;)
           onPress: () => {
             auth.currentUser
               .delete()
@@ -96,12 +98,6 @@ export default function Option() {
         >
           <Text style={styles.buttonText}>View Favorites</Text>
         </TouchableOpacity>
-        {/* <TouchableOpacity
-          onPress={() => navigation.navigate("Terms")}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Terms and Conditions</Text>
-        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => navigation.navigate("About")}
           style={styles.button}

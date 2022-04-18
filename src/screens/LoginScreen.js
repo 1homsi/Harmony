@@ -10,7 +10,6 @@ import {
   Image,
 } from "react-native";
 import { auth } from "../../firebase";
-import { Icon } from "react-native-elements";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -39,20 +38,11 @@ const LoginScreen = () => {
   return (
     <>
       <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <Icon
-          style={styles.icon}
-          reverseColor
-          name="home"
-          type="font-awesome"
-          size={35}
-          onPress={() => navigation.replace("Home")}
-        />
-
+        <Text style={styles.head}>Login</Text>
         <Image
           style={styles.HeaderImage}
           source={require("../images/Login.png")}
         />
-        <Text style={styles.head}>Welcome Back!</Text>
         <Text style={styles.IntroText}>
           Please Log into your existing account
         </Text>
@@ -73,7 +63,6 @@ const LoginScreen = () => {
             secureTextEntry
           />
         </View>
-
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={handleLogin} style={styles.button}>
             <Text style={styles.buttonText}>Login</Text>
@@ -103,25 +92,21 @@ const LoginScreen = () => {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  icon: {
-    marginBottom: 25,
-  },
-
   HeaderImage: {
     marginBottom: 15,
     width: 200,
     height: 200,
   },
-
   head: {
     color: "#003f5c",
     fontWeight: "bold",
-    fontSize: 25,
+    fontSize: 40,
     marginBottom: 30,
   },
   IntroText: {
     color: "#003f5c",
-    fontSize: 16,
+    fontSize: 17,
+    fontWeight: "500",
     marginBottom: 30,
   },
   container: {
@@ -131,15 +116,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   inputContainer: {
-    width: "80%",
+    width: "85%",
   },
   input: {
-    borderWidth: 1.5,
+    borderWidth: 2,
     borderColor: "#003f5c",
     backgroundColor: "white",
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    borderRadius: 15,
+    paddingHorizontal: 25,
+    paddingVertical: 12,
+    borderRadius: 17,
     marginTop: 10,
   },
   buttonContainer: {
@@ -149,23 +134,25 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   button: {
-    backgroundColor: "#fc5c65",
+    backgroundColor: "#89CFF0",
     width: "100%",
     padding: 20,
-    borderRadius: 30,
+    borderRadius: 10,
     alignItems: "center",
   },
   buttonText: {
     color: "white",
-    fontWeight: "700",
-    fontSize: 17,
+    fontWeight: "bold",
+    fontSize: 20,
   },
   NotAUser: {
+    fontWeight: "bold",
     marginTop: 25,
     color: "#003f5c",
     fontSize: 16,
   },
   ForgotPassword: {
+    fontWeight: "bold",
     color: "#003f5c",
     marginTop: 20,
   },

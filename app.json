@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Quak",
-    "slug": "Quak",
+    "name": "Harmony",
+    "slug": "Harmony",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,7 +24,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.Quak.Quakly",
+      "package": "com.Harm.Harmony",
       "versionCode": 1
     },
     "web": {

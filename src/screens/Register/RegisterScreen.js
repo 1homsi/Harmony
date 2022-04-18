@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { auth, db } from "../../firebase";
+import { auth, db } from "../../../firebase";
 import { Icon } from "react-native-elements";
 
 const RegisterScreen = () => {
@@ -20,51 +20,15 @@ const RegisterScreen = () => {
 
   const navigation = useNavigation();
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        navigation.replace("Home");
-      }
-    });
-    return unsubscribe;
-  }, []);
-
-  const handleSignUp = () => {
-    if (password !== Otherpassword) {
-      alert("Passwords do not match");
-    } else {
-
-      db.collection("Users").doc(email).set({
-        Name: name,
-        Email: email,
-      })
-
-      auth
-        .createUserWithEmailAndPassword(email, password)
-        .then((userCredentials) => {
-          const user = userCredentials.user;
-        })
-        .catch((error) => alert(error.message));
-    }
-  };
-
-
   return (
     <>
       <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <Icon
-          style={styles.icon}
-          reverseColor
-          name="home"
-          type="font-awesome"
-          size={35}
-          onPress={() => navigation.replace("Home")}
-        />
+        <Text style={styles.head}>Register</Text>
         <Image
           style={styles.HeaderImage}
-          source={require("../images/Register.png")}
+          source={require("../../images/Login.png")}
         />
-        <Text style={styles.head}>Create Account</Text>
+
         <View style={styles.inputContainer}>
           <TextInput
             placeholderTextColor="#003f5c"
@@ -99,8 +63,8 @@ const RegisterScreen = () => {
         </View>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={handleSignUp} style={styles.button}>
-            <Text style={styles.buttonText}>Register</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("RegisterTwo")} style={styles.button}>
+            <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
         </View>
         <Text
@@ -109,7 +73,7 @@ const RegisterScreen = () => {
             navigation.replace("Login");
           }}
         >
-          Login
+          Already a user?
         </Text>
       </KeyboardAvoidingView>
     </>
@@ -119,23 +83,22 @@ const RegisterScreen = () => {
 export default RegisterScreen;
 
 const styles = StyleSheet.create({
-  icon: {
-    marginBottom: 25,
-  },
   HeaderImage: {
-    marginBottom: 50,
+    marginBottom: 30,
     width: 200,
     height: 200,
   },
   head: {
     color: "#003f5c",
     fontWeight: "bold",
-    fontSize: 29,
-    marginBottom: 50,
+    fontSize: 40,
+    marginTop: 25,
+    marginBottom: 20,
   },
   IntroText: {
     color: "#003f5c",
-    fontSize: 16,
+    fontSize: 17,
+    fontWeight: "bold",
     marginBottom: 30,
   },
   container: {
@@ -148,13 +111,14 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   input: {
-    borderWidth: 1.5,
+    borderWidth: 2,
     borderColor: "#003f5c",
     backgroundColor: "white",
     paddingHorizontal: 15,
-    paddingVertical: 10,
+    paddingVertical: 15,
     borderRadius: 15,
     marginTop: 10,
+    fontWeight: "bold",
   },
   buttonContainer: {
     width: "80%",
@@ -163,18 +127,19 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   button: {
-    backgroundColor: "#fc5c65",
+    backgroundColor: "#89CFF0",
     width: "100%",
     padding: 20,
-    borderRadius: 30,
+    borderRadius: 10,
     alignItems: "center",
   },
   buttonText: {
     color: "white",
-    fontWeight: "700",
-    fontSize: 17,
+    fontWeight: "bold",
+    fontSize: 20,
   },
   GoToLogin: {
+    fontWeight: "bold",
     marginTop: 25,
     color: "#003f5c",
     fontSize: 18,
