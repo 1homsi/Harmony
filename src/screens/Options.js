@@ -11,7 +11,6 @@ import {
 import { auth, db } from "../../firebase";
 import { useNavigation } from "@react-navigation/native";
 import BottomNav from "../components/BottomNav";
-import LottieView from "lottie-react-native";
 
 
 export default function Option() {
@@ -50,7 +49,6 @@ export default function Option() {
         {
           text: "OK",
 
-          //TODO: Delete current user from the Users doc? or it could be left for us to sell data ;)
           onPress: () => {
             auth.currentUser
               .delete()
@@ -69,16 +67,11 @@ export default function Option() {
     <SafeAreaView style={styles.bigMain}>
       <View style={styles.topNav}>
         <Text style={styles.title}>Settings</Text>
-        <LottieView
-          source={require("../../assets/65035-profile.json")}
-          style={styles.animation}
-          autoPlay
-        />
       </View>
       <View style={styles.container}>
         <View style={styles.UserInfo}>
           <View style={styles.outerImage}>
-            <Image style={styles.Image} source={require("../images/Profile.jpg")} />
+            <Image style={styles.Image} source={require("../images/Profile.png")} />
           </View>
           <View style={styles.Inner}>
             <Text style={styles.nameSec}>{user}</Text>
@@ -194,8 +187,8 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   Image: {
-    width: 80,
-    height: 80,
+    width: 110,
+    height: 110,
   },
   outerImage: {
     justifyContent: "center",
@@ -204,7 +197,7 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 150 / 2,
     overflow: "hidden",
-    borderWidth: 3,
-    borderColor: "red"
+    borderWidth: 0,
+    borderColor: "orange"
   }
 });
