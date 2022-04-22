@@ -4,6 +4,7 @@ import { Icon } from "react-native-elements";
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { auth } from '../../firebase';
 
+
 const BottomNav = () => {
     const navigation = useNavigation();
     const route = useRoute();

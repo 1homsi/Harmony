@@ -12,6 +12,10 @@ import {
 import Items from "../components/Items";
 import { db } from "../../firebase";
 import BottomNav from "../components/BottomNav";
+import { TouchableOpacity } from "react-native-web";
+import { Icon } from "react-native-elements";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -51,11 +55,13 @@ const HomeScreen = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.Top}>
         <View>
+          {/* <TouchableOpacity><FontAwesomeIcon icon="fa-solid fa-bars" /></TouchableOpacity> */}
           <Text placeholder="Test" style={styles.HeadTitlte}>
             Home
           </Text>
         </View>
       </View>
+
       <View>
         {/* <Searchbar
           placeholder="Search"
@@ -75,9 +81,9 @@ const HomeScreen = () => {
         </View>
       </View>
       <View style={styles.Cat}>
-        <Text>
+        {/* <Text>
           <Text style={styles.CatTitle}>Categories</Text>
-        </Text>
+        </Text> */}
         <View style={styles.CatContainer}>
           <View style={styles.CatCard}>
             <Text>Category</Text>
@@ -99,6 +105,17 @@ const HomeScreen = () => {
           <View style={styles.CatCard}>
             <Text>Category</Text>
           </View>
+        </View>
+      </View>
+      <View style={styles.gridBottomCards}>
+        <View style={styles.BottomCard}>
+          <Text>Offer</Text>
+        </View>
+        <View style={styles.BottomCard}>
+          <Text>Offer</Text>
+        </View>
+        <View style={styles.BottomCard}>
+          <Text>Offer</Text>
         </View>
       </View>
       <View style={styles.ListView}>
@@ -199,20 +216,44 @@ const styles = StyleSheet.create({
   topCard: {
     alignItems: "center",
     justifyContent: "center",
-    width: "90%",
+    width: "170%",
     height: "8%",
     backgroundColor: "#FA7D09",
     borderRadius: 12,
     marginTop: 10,
     marginBottom: 20,
-    marginLeft: "8%",
-    marginRight: "8%",
-    paddingBottom: 35,
-    paddingTop: 35,
+    marginLeft: "3%",
+    marginRight: "3%",
+    paddingBottom: 50,
+    paddingTop: 50,
     paddingLeft: 60,
     paddingRight: 60,
   },
-
+  BottomCard: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: "90%",
+    height: "8%",
+    backgroundColor: "#FA7D09",
+    borderRadius: 12,
+    marginTop: -30,
+    marginBottom: -100,
+    marginLeft: "5%",
+    marginRight: "5%",
+    paddingBottom: 50,
+    paddingTop: 50,
+    height: "75%",
+   
+  },
+  gridBottomCards: {
+    width: "40%",
+    justifyContent: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    // marginTop: 20,
+    marginBottom: -230,
+    
+  },
   gridTopCards: {
     width: "50%",
     justifyContent: "center",
@@ -221,6 +262,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 80,
   },
+  
   CatContainer: {
     // width: "100%",
     justifyContent: "center",
@@ -228,29 +270,39 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 0,
     marginBottom: -50,
+
   },
   CatCard: {
     alignItems: "center",
     justifyContent: "center",
-    width: "30%",
+    width: "27%",
     height: "50%",
     backgroundColor: "#FA7D09",
     borderRadius: 12,
-    marginTop: 10,
+    marginTop: 30,
     marginBottom: 25,
-    marginLeft: "1%",
-    marginRight: "1%",
-    paddingBottom: 40,
-    paddingTop: 40,
-    paddingLeft: 40,
-    paddingRight: 40,
+    marginLeft: "2%",
+    marginRight: "2%",
+    paddingBottom: 50,
+    paddingTop: 50,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   Cat: {
     width: "100%",
-    height: "3%",
+    height: "5%",
     justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
+    marginTop: -20,
+    marginBottom: 70,
+  },
+  headIcon: {
+    marginLeft: "5%",
+    fontSize: 30,
+    fontWeight: "800",
+    color: "#000",
+
   },
 
 });

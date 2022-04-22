@@ -216,7 +216,7 @@ export default RegisterScreenPart2
 
 const styles = StyleSheet.create({
     HeaderImage: {
-        marginBottom: 30,
+        marginBottom: 15,
         width: 200,
         height: 200,
     },
@@ -224,8 +224,8 @@ const styles = StyleSheet.create({
         color: "#003f5c",
         fontWeight: "bold",
         fontSize: 40,
-        marginTop: 25,
-        marginBottom: 20,
+        marginTop: 35,
+        marginBottom: 10,
     },
     IntroText: {
         color: "#003f5c",
@@ -246,8 +246,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: "#003f5c",
         backgroundColor: "white",
-        paddingHorizontal: 15,
-        paddingVertical: 15,
+        paddingHorizontal: 7,
+        paddingVertical: 7,
         borderRadius: 15,
         marginTop: 10,
         fontWeight: "bold",
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
         width: "80%",
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 40,
+        marginTop: 20,
     },
     button: {
         backgroundColor: "#89CFF0",
