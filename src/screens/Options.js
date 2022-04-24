@@ -83,20 +83,20 @@ export default function Option() {
           onPress={() => navigation.navigate("MyProducts")}
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Posted Products</Text>
+          <Text style={styles.buttonText}>Edit Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate("Fav")}
           style={styles.button}
         >
-          <Text style={styles.buttonText}>View Favorites</Text>
+          <Text style={styles.buttonText}>Change Password</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => navigation.navigate("About")}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Contact Us</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity onPress={handleSignOut} style={styles.button}>
           <Text style={styles.buttonText}>Sign out</Text>
         </TouchableOpacity>

@@ -51,8 +51,26 @@ const BottomNav = () => {
                             '#89CFF0'
                         }
                         reverseColor
-                        name="grid"
-                        type="feather"
+                        name="history"
+                        type="octicons"
+                        size={35}
+                        onPress={() => {
+                            if (route.name != "") {
+                                navigation.replace("")
+                            }
+                        }}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.bottomNavItem}>
+                    <Icon
+                        style={styles.icon}
+                        color={route.name != "" ?
+                            '#000' :
+                            '#89CFF0'
+                        }
+                        reverseColor
+                        name="notification"
+                        type="entypo"
                         size={35}
                         onPress={() => {
                             if (route.name != "") {
@@ -83,7 +101,7 @@ const BottomNav = () => {
                                         '#000'
                                     }
                                     reverseColor
-                                    name="user"
+                                    name="settings"
                                     type="feather"
                                     size={35}
                                     onPress={() => navigation.replace("Option")}
