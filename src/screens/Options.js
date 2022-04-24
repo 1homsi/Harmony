@@ -19,7 +19,7 @@ export default function Option() {
 
   React.useEffect(() => {
     db.collection("Users").doc(auth.currentUser?.email).get().then((doc) => {
-      setUser(doc.data().Name);
+      setUser(doc.data());
     });
     return () => {
       setUser("")
@@ -74,19 +74,24 @@ export default function Option() {
             <Image style={styles.Image} source={require("../images/Profile.png")} />
           </View>
           <View style={styles.Inner}>
-            <Text style={styles.nameSec}>{user}</Text>
+            <Text style={styles.nameSec}>{user.Name}</Text>
             <Text style={styles.emailSec}>{auth.currentUser?.email}</Text>
-          </View>
+            {user?.Worker ?
+              <Text style={styles.emailSec}>Worker</Text>
+              :
+              <></>
+            }
 
+          </View>
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate("MyProducts")}
+          onPress={() => navigation.navigate("Profile")}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Edit Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate("Fav")}
+          onPress={() => navigation.navigate("ResetPassword", { option: "Option" })}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Change Password</Text>

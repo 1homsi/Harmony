@@ -28,21 +28,6 @@ const BottomNav = () => {
                         }}
                     />
                 </TouchableOpacity>
-                {/* <TouchableOpacity
-                    onPress={() => navigation.replace("AddProduct")}
-                    style={route.name === "AddProduct" ?
-                        [styles.SemiRed, styles.bottomNavItemAdd]
-                        :
-                        [styles.bottomNavItemAdd, styles.bottomNavItemAddNot]
-                    }>
-                    <Icon
-                        style={styles.iconPlus}
-                        reverseColor
-                        name="plus"
-                        type="font-awesome-5"
-                        size={35}
-                    />
-                </TouchableOpacity> */}
                 <TouchableOpacity style={styles.bottomNavItem}>
                     <Icon
                         style={styles.icon}
@@ -55,8 +40,8 @@ const BottomNav = () => {
                         type="octicons"
                         size={35}
                         onPress={() => {
-                            if (route.name != "") {
-                                navigation.replace("")
+                            if (route.name != "Hisoty") {
+                                navigation.replace("History")
                             }
                         }}
                     />
@@ -73,8 +58,8 @@ const BottomNav = () => {
                         type="entypo"
                         size={35}
                         onPress={() => {
-                            if (route.name != "") {
-                                navigation.replace("")
+                            if (route.name != "Notifications") {
+                                navigation.replace("Notifications")
                             }
                         }}
                     />

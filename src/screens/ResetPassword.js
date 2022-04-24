@@ -10,7 +10,8 @@ import { auth } from "../../firebase";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const ResetPassword = () => {
+const ResetPassword = ({ route }) => {
+  const { option } = route.params;
   const [email, setEmail] = React.useState("");
   const navigation = useNavigation();
 
@@ -40,14 +41,14 @@ const ResetPassword = () => {
             <Text style={styles.buttonText}>Send Email</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.replace("Login")}
+            onPress={() => navigation.replace(option)}
             style={styles.buttonOutline}
           >
             <Text style={styles.buttonText}>Back</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView>
+    </SafeAreaView >
   );
 };
 

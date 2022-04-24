@@ -79,7 +79,7 @@ const LoginScreen = () => {
         <Text
           style={styles.ForgotPassword}
           onPress={() => {
-            navigation.replace("ResetPassword");
+            navigation.replace("ResetPassword", { option: "Login" });
           }}
         >
           Forgot Password?
