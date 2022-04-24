@@ -46,6 +46,8 @@ const RegisterScreenPart2 = ({ route }) => {
                         Email: email,
                         Username: username,
                         Location: location,
+                        Credit: 0,
+                        Image: "",
                     })
 
                     auth
@@ -69,6 +71,8 @@ const RegisterScreenPart2 = ({ route }) => {
                             Ocupation: ocupation,
                             Bio: "",
                             Rating: 0,
+                            Busy: false,
+                            Image: "",
                         })
 
                         auth

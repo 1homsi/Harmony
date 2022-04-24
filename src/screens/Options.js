@@ -64,53 +64,60 @@ export default function Option() {
     );
 
   return (
-    <SafeAreaView style={styles.bigMain}>
-      <View style={styles.topNav}>
-        <Text style={styles.title}>Settings</Text>
-      </View>
-      <View style={styles.container}>
-        <View style={styles.UserInfo}>
-          <View style={styles.outerImage}>
-            <Image style={styles.Image} source={require("../images/Profile.png")} />
+    <>
+      {user ?
+        <SafeAreaView style={styles.bigMain} >
+          <View style={styles.topNav}>
+            <Text style={styles.title}>Settings</Text>
           </View>
-          <View style={styles.Inner}>
-            <Text style={styles.nameSec}>{user.Name}</Text>
-            <Text style={styles.emailSec}>{auth.currentUser?.email}</Text>
-            {user?.Worker ?
-              <Text style={styles.emailSec}>Worker</Text>
-              :
-              <></>
-            }
-
+          <View style={styles.container}>
+            <View style={styles.UserInfo}>
+              <View style={styles.outerImage}>
+                {user?.Image != "" ?
+                  <>
+                    <Image source={{ uri: user?.Image }} style={styles.Image} />
+                  </>
+                  :
+                  <Image style={styles.Image} source={require("../images/Profile.png")} />
+                }
+              </View>
+              <View style={styles.Inner}>
+                <Text style={styles.nameSec}>{user.Name}</Text>
+                <Text style={styles.emailSec}>{auth.currentUser?.email}</Text>
+                {user?.Worker ?
+                  <Text style={styles.emailSec}>Worker</Text>
+                  :
+                  <></>
+                }
+              </View>
+            </View>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Profile")}
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}>Edit Profile</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("ResetPassword", { option: "Option" })}
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}>Change Password</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleSignOut} style={styles.button}>
+              <Text style={styles.buttonText}>Sign out</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleDeleteUser} style={styles.buttonOutline}>
+              <Text style={styles.buttonText}>Delete Account</Text>
+            </TouchableOpacity>
           </View>
-        </View>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Profile")}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Edit Profile</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("ResetPassword", { option: "Option" })}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Change Password</Text>
-        </TouchableOpacity>
-        {/* <TouchableOpacity
-          onPress={() => navigation.navigate("About")}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Contact Us</Text>
-        </TouchableOpacity> */}
-        <TouchableOpacity onPress={handleSignOut} style={styles.button}>
-          <Text style={styles.buttonText}>Sign out</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleDeleteUser} style={styles.buttonOutline}>
-          <Text style={styles.buttonText}>Delete Account</Text>
-        </TouchableOpacity>
-      </View>
-      <BottomNav />
-    </SafeAreaView>
+          <BottomNav />
+        </SafeAreaView >
+        :
+        <>
+          <Text>Loading...</Text>
+        </>
+      }
+    </>
   );
 }
 
