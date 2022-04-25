@@ -28,19 +28,10 @@ export default function Option() {
 
   const navigation = useNavigation();
 
-  const handleSignOut = () => {
-    auth
-      .signOut()
-      .then(() => {
-        navigation.replace("Login");
-      })
-      .catch((error) => alert(error.message));
-  };
-
-  const handleDeleteUser = () =>
+  const handleSignOut = () =>
     Alert.alert(
-      "Delete Account",
-      "Are you sure, you want to delete your account?",
+      "Sign Out",
+      "Are you sure, you want Sign Out?",
       [
         {
           text: "Cancel",
@@ -50,19 +41,16 @@ export default function Option() {
           text: "OK",
 
           onPress: () => {
-            auth.currentUser
-              .delete()
+            auth
+              .signOut()
               .then(() => {
-                navigation.replace("Home");
+                navigation.replace("Login");
               })
-              .catch((error) => {
-                alert(error.message);
-              });
-          },
+              .catch((error) => alert(error.message));
+          }
         },
       ]
     );
-
   return (
     <>
       {user ?
@@ -103,11 +91,8 @@ export default function Option() {
             >
               <Text style={styles.buttonText}>Change Password</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={handleSignOut} style={styles.button}>
+            <TouchableOpacity onPress={handleSignOut} style={styles.buttonOutline}>
               <Text style={styles.buttonText}>Sign out</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handleDeleteUser} style={styles.buttonOutline}>
-              <Text style={styles.buttonText}>Delete Account</Text>
             </TouchableOpacity>
           </View>
           <BottomNav />
