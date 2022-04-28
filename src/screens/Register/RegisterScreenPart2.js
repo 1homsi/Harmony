@@ -22,7 +22,7 @@ const RegisterScreenPart2 = ({ route }) => {
     const [username, setUsername] = useState("");
     const [location, setLocation] = useState("");
     const [phone, setPhone] = useState("");
-    const [ocupation, setOcupation] = useState("");
+    const [occupation, setOccupation] = useState("");
     const navigation = useNavigation()
 
 
@@ -68,7 +68,7 @@ const RegisterScreenPart2 = ({ route }) => {
                             Email: email,
                             Location: location,
                             Phone: phone,
-                            Ocupation: ocupation,
+                            Occupation: occupation,
                             Bio: "",
                             Rating: 0,
                             Busy: false,
@@ -205,15 +205,17 @@ const RegisterScreenPart2 = ({ route }) => {
                         </View>
                         <View style={[styles.PickerContainerBottom, styles.input]}>
                             <Picker
-                                selectedValue={ocupation}
+                                selectedValue={occupation}
                                 style={styles.picker}
-                                onValueChange={(itemValue, itemIndex) => setOcupation(itemValue)}
+                                onValueChange={(itemValue, itemIndex) => setOccupation(itemValue)}
                             >
                                 <Picker.Item label="Maintenance" value="Maintenance" />
                                 <Picker.Item label="Home Design" value="Home Design" />
                                 <Picker.Item label="Home Care" value="Home Care" />
                                 <Picker.Item label="Health care" value="Health care" />
                                 <Picker.Item label="Delivery" value="Delivery" />
+                                <Picker.Item label="Cars" value="Cars" />
+                                <Picker.Item label="Tutoring" value="Tutoring" />
                             </Picker>
                         </View>
                     </View>

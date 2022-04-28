@@ -12,7 +12,7 @@ import {
   FlatList,
 } from "react-native";
 import Items from "../components/Items";
-import { db } from "../../firebase";
+import { auth, db } from "../../firebase";
 import BottomNav from "../components/BottomNav";
 
 const wait = (timeout) => {
@@ -20,8 +20,15 @@ const wait = (timeout) => {
 };
 
 const HomeScreen = () => {
+  const navigation = useNavigation()
   const [data, setData] = React.useState([]);
   const [refreshing, setRefreshing] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!auth.currentUser) {
+      navigation.replace("Login");
+    }
+  }, []);
 
   const fetchAll = () => {
     db.collection("Users")
