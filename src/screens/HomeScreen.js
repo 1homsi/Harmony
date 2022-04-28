@@ -8,6 +8,7 @@ import {
   Text,
   View,
   Image,
+  ImageBackground,
   FlatList,
 } from "react-native";
 import Items from "../components/Items";
@@ -70,27 +71,80 @@ const HomeScreen = () => {
         </Text>
         <View style={styles.CatContainer}>
           <TouchableOpacity style={styles.CatCard}>
-            <Text>Category</Text>
+            <ImageBackground
+              source={require("../images/maintenance.png")}
+              resizeMode="cover"
+              style={styles.CatImage}
+            >
+              <Text style={styles.text}>Maintenance</Text>
+            </ImageBackground>
           </TouchableOpacity>
           <TouchableOpacity style={styles.CatCard}>
-            <Text>Category</Text>
+            <ImageBackground
+              source={require("../images/home-care.png")}
+              resizeMode="cover"
+              style={styles.CatImage}
+            >
+              <Text style={styles.text}>Home Care</Text>
+            </ImageBackground>
           </TouchableOpacity>
+
           <TouchableOpacity style={styles.CatCard}>
-            <Text>Category</Text>
+            <ImageBackground
+              source={require("../images/home-design.png")}
+              resizeMode="cover"
+              style={styles.CatImage}
+            >
+              <Text style={styles.text}>Home Design</Text>
+            </ImageBackground>
           </TouchableOpacity>
         </View>
         <View style={styles.CatContainer}>
           <TouchableOpacity style={styles.CatCard}>
-            <Text>Category</Text>
+            <ImageBackground
+              source={require("../images/care-taking.png")}
+              resizeMode="cover"
+              style={styles.CatImage}
+            >
+              <Text style={styles.text}>Care Taking</Text>
+            </ImageBackground>
           </TouchableOpacity>
+
           <TouchableOpacity style={styles.CatCard}>
-            <Text>Category</Text>
+            <ImageBackground
+              source={require("../images/tutor.png")}
+              resizeMode="cover"
+              style={styles.CatImage}
+            >
+              <Text style={styles.text}>Tutoring</Text>
+            </ImageBackground>
           </TouchableOpacity>
-          {/* <View style={styles.CatCard}>
-            <Text>Category</Text>
-          </View> */}
+
+          <TouchableOpacity style={styles.CatCard}>
+            <ImageBackground
+              source={require("../images/delivery.png")}
+              resizeMode="cover"
+              style={styles.CatImage}
+            >
+              <Text style={styles.text}>Delivery</Text>
+            </ImageBackground>
+          </TouchableOpacity>
         </View>
       </View>
+
+      {/* <View style={styles.CatContainer}>
+          <TouchableOpacity style={styles.CatCardOne}>
+            <ImageBackground
+              source={require("../images/car-service.png")}
+              resizeMode="cover"
+              style={styles.CatImage}
+            >
+              <Text style={styles.text}>Car Service</Text>
+            </ImageBackground>
+            <Text>Category</Text>
+          </TouchableOpacity>
+        </View> */}
+
       <View style={styles.ListView}>
         <FlatList
           refreshControl={
@@ -103,11 +157,7 @@ const HomeScreen = () => {
           style={styles.list}
           data={data}
           renderItem={({ item }) => (
-            <Items
-              id={item.id}
-              title={item.Name}
-              img={item.Image}
-            />
+            <Items id={item.id} title={item.Name} img={item.Image} />
           )}
           keyExtractor={(item, index) => index.toString()}
         />
@@ -142,7 +192,7 @@ const styles = StyleSheet.create({
   },
   ListView: {
     width: "100%",
-    marginTop: 100,
+    marginTop: 120,
     alignContent: "center",
     justifyContent: "center",
     flex: 1,
@@ -222,25 +272,49 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "30%",
-    height: "50%",
-    backgroundColor: "#89CFF0",
+    height: "60%",
+    backgroundColor: "white",
     borderRadius: 12,
-    marginTop: 10,
-    marginBottom: 25,
+    marginTop: 40,
+    marginBottom: 50,
     marginLeft: "1%",
     marginRight: "1%",
-    paddingBottom: 40,
-    paddingTop: 40,
-    paddingLeft: 40,
-    paddingRight: 40,
   },
+
+  // CatCardOne: {
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   width: "30%",
+  //   height: "30%",
+  //   backgroundColor: "#89CFF0",
+  //   borderRadius: 12,
+  //   marginTop: 40,
+  //   marginLeft: "1%",
+  //   marginRight: "1%",
+  // },
+
   Cat: {
     marginTop: 100,
     width: "100%",
-    height: "3%",
+    height: "13%",
     justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
   },
 
+  CatImage: {
+    width: "90%",
+    height: "90%",
+    marginTop: 5,
+    borderRadius: 50,
+  },
+
+  text: {
+    color: "black",
+    fontSize: 13,
+    lineHeight: 50,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: "52%",
+  }
 });
