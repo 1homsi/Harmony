@@ -77,82 +77,73 @@ const HomeScreen = () => {
           <Text style={styles.CatTitle}>Categories</Text>
         </Text>
         <View style={styles.CatContainer}>
-          <TouchableOpacity style={styles.CatCard}>
+          <TouchableOpacity
+            style={styles.CatCard}
+            onPress={() => navigation.replace("Maintenance")}
+          >
             <ImageBackground
               source={require("../images/maintenance.png")}
               resizeMode="cover"
               style={styles.CatImage}
-            // onPress={() => {
-            //   if (route.name != "Home") {
-            //     navigation.replace("Home");
-            //   }
-            // }}
             >
               <Text style={styles.text}>Maintenance</Text>
             </ImageBackground>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.CatCard}>
+          <TouchableOpacity
+            style={styles.CatCard}
+            onPress={() => navigation.replace("HomeCare")}
+          >
             <ImageBackground
               source={require("../images/home-care.png")}
               resizeMode="cover"
               style={styles.CatImage}
-            // onPress={() => {
-            //   if (route.name != "Home") {
-            //     navigation.replace("Home");
-            //   }
-            // }}
             >
               <Text style={styles.text}>Home Care</Text>
             </ImageBackground>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.CatCard}>
+          <TouchableOpacity
+            style={styles.CatCard}
+            onPress={() => navigation.replace("HomeDesign")}
+          >
             <ImageBackground
               source={require("../images/home-design.png")}
               resizeMode="cover"
               style={styles.CatImage}
-            // onPress={() => {
-            //   if (route.name != "Home") {
-            //     navigation.replace("Home");
-            //   }
-            // }}
             >
               <Text style={styles.text}>Home Design</Text>
             </ImageBackground>
           </TouchableOpacity>
         </View>
         <View style={styles.CatContainer}>
-          <TouchableOpacity style={styles.CatCard}>
+          <TouchableOpacity
+            style={styles.CatCard}
+            onPress={() => navigation.replace("CareTaking")}
+          >
             <ImageBackground
               source={require("../images/care-taking.png")}
               resizeMode="cover"
               style={styles.CatImage}
-            // onPress={() => {
-            //   if (route.name != "Home") {
-            //     navigation.replace("Home");
-            //   }
-            // }}
             >
               <Text style={styles.text}>Care Taking</Text>
             </ImageBackground>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.CatCard}>
+          <TouchableOpacity
+            style={styles.CatCard}
+            onPress={() => navigation.replace("Delivery")}
+          >
             <ImageBackground
               source={require("../images/tutor.png")}
               resizeMode="cover"
               style={styles.CatImage}
-            // onPress={() => {
-            //   if (route.name != "Home") {
-            //     navigation.replace("Home");
-            //   }
-            // }}
             >
               <Text style={styles.text}>Tutoring</Text>
             </ImageBackground>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.CatCard}
+          <TouchableOpacity
+            style={styles.CatCard}
             onPress={() => navigation.replace("Delivery")}
           >
             <ImageBackground
