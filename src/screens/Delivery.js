@@ -5,7 +5,6 @@ import { db } from "../../firebase";
 
 const Delivery = () => {
   const navigation = useNavigation();
-
   return (
     <View>
       <Text>Delivery</Text>

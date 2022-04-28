@@ -82,11 +82,11 @@ const HomeScreen = () => {
               source={require("../images/maintenance.png")}
               resizeMode="cover"
               style={styles.CatImage}
-              // onPress={() => {
-              //   if (route.name != "Home") {
-              //     navigation.replace("Home");
-              //   }
-              // }}
+            // onPress={() => {
+            //   if (route.name != "Home") {
+            //     navigation.replace("Home");
+            //   }
+            // }}
             >
               <Text style={styles.text}>Maintenance</Text>
             </ImageBackground>
@@ -96,11 +96,11 @@ const HomeScreen = () => {
               source={require("../images/home-care.png")}
               resizeMode="cover"
               style={styles.CatImage}
-              // onPress={() => {
-              //   if (route.name != "Home") {
-              //     navigation.replace("Home");
-              //   }
-              // }}
+            // onPress={() => {
+            //   if (route.name != "Home") {
+            //     navigation.replace("Home");
+            //   }
+            // }}
             >
               <Text style={styles.text}>Home Care</Text>
             </ImageBackground>
@@ -111,11 +111,11 @@ const HomeScreen = () => {
               source={require("../images/home-design.png")}
               resizeMode="cover"
               style={styles.CatImage}
-              // onPress={() => {
-              //   if (route.name != "Home") {
-              //     navigation.replace("Home");
-              //   }
-              // }}
+            // onPress={() => {
+            //   if (route.name != "Home") {
+            //     navigation.replace("Home");
+            //   }
+            // }}
             >
               <Text style={styles.text}>Home Design</Text>
             </ImageBackground>
@@ -127,11 +127,11 @@ const HomeScreen = () => {
               source={require("../images/care-taking.png")}
               resizeMode="cover"
               style={styles.CatImage}
-              // onPress={() => {
-              //   if (route.name != "Home") {
-              //     navigation.replace("Home");
-              //   }
-              // }}
+            // onPress={() => {
+            //   if (route.name != "Home") {
+            //     navigation.replace("Home");
+            //   }
+            // }}
             >
               <Text style={styles.text}>Care Taking</Text>
             </ImageBackground>
@@ -142,22 +142,23 @@ const HomeScreen = () => {
               source={require("../images/tutor.png")}
               resizeMode="cover"
               style={styles.CatImage}
-              // onPress={() => {
-              //   if (route.name != "Home") {
-              //     navigation.replace("Home");
-              //   }
-              // }}
+            // onPress={() => {
+            //   if (route.name != "Home") {
+            //     navigation.replace("Home");
+            //   }
+            // }}
             >
               <Text style={styles.text}>Tutoring</Text>
             </ImageBackground>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.CatCard}>
+          <TouchableOpacity style={styles.CatCard}
+            onPress={() => navigation.replace("Delivery")}
+          >
             <ImageBackground
               source={require("../images/delivery.png")}
               resizeMode="cover"
               style={styles.CatImage}
-              onPress={() => navigation.navigate("Delivery")}
             >
               <Text style={styles.text}>Delivery</Text>
             </ImageBackground>
