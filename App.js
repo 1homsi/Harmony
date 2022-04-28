@@ -15,7 +15,7 @@ import Profile from './src/screens/Profile';
 import History from './src/screens/History';
 import Notifications from './src/screens/Notifications';
 import ViewWorker from './src/screens/ViewWorker';
-
+import Delivery from './src/screens/Delivery';
 import { Provider as PaperProvider } from "react-native-paper"
 
 
@@ -56,6 +56,8 @@ export default function App() {
             <Stack.Screen name="History" component={History} />
             <Stack.Screen name="Notifications" component={Notifications} />
             <Stack.Screen name="Worker" component={ViewWorker} />
+            <Stack.Screen name="Delivery" component={Delivery} />
+
           </Stack.Navigator>
         </NavigationContainer>
         <StatusBar style="auto" />
