@@ -4,19 +4,85 @@ import {
   View,
   SafeAreaView,
   TouchableOpacity,
+  TextInput,
+  FlatList,
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Icon } from "react-native-elements";
+import { Icon, SearchBar } from "react-native-elements";
 import { db } from "../../../firebase";
 import BottomNav from "../../components/BottomNav";
+import {useState, useEffect} from 'react';
 
 const Maintenance = () => {
   const navigation = useNavigation();
+  const [search, setSearch] = useState('');
+  const [filteredDataSource, setFilteredDataSource] = useState([]);
+  const [masterDataSource, setMasterDataSource] = useState([]);
+  const ItemView = ({item}) => {
+    return (
+      // Flat List Item
+      <Text
+        style={styles.itemStyle}
+        onPress={() => getItem(item)}>
+        {item.id}
+        {'.'}
+        {item.title.toUpperCase()}
+      </Text>
+    );
+  };
+  const ItemSeparatorView = () => {
+    return (
+      // Flat List Item Separator
+      <View
+        style={{
+          height: 0.5,
+          width: '100%',
+          backgroundColor: '#C8C8C8',
+        }}
+      />
+    );
+  };
+  // const getItem = (item) => {
+  //   // Function for click on an item
+  //   alert('Id : ' + item.id + ' Title : ' + item.title);
+  // };
   return (
     <SafeAreaView style={styles.bigMain}>
       <View style={styles.topNav}>
         <Text style={styles.title}>Maintenance</Text>
+      </View>
+      <View style={styles.containerSearch}>
+        <TextInput
+          Icon={() => (
+            <Icon
+              name="search"
+              type="font-awesome-5"
+              size={20}
+              color="#000"
+              style={styles.searchIcon}
+            />
+          )}
+          style={styles.textInputStyle}
+          onChangeText={(text) => searchFilterFunction(text)}
+          value={search}
+          underlineColorAndroid="transparent"
+          placeholder="Search Here"
+        />
+         {/* <SearchBar
+          round
+          searchIcon={{ size: 24 }}
+          onChangeText={(text) => searchFilterFunction(text)}
+          onClear={(text) => searchFilterFunction('')}
+          placeholder="Type Here..."
+          value={search}
+        /> */}
+        <FlatList
+          data={filteredDataSource}
+          keyExtractor={(item, index) => index.toString()}
+          ItemSeparatorComponent={ItemSeparatorView}
+          renderItem={ItemView}
+        />
       </View>
       <View style={styles.container}>
         <TouchableOpacity
@@ -79,14 +145,14 @@ const styles = StyleSheet.create({
   topNav: {
     flexDirection: "row",
     textAlign: "center",
-    marginBottom: 10,
+    marginBottom: 0,
     marginTop: 15,
     paddingBottom: 10,
     paddingTop: 10,
   },
   title: {
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 10,
     marginLeft: 10,
     fontSize: 40,
     fontWeight: "800",
@@ -123,4 +189,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  containerSearch: {
+    backgroundColor: 'transparent',
+  },
+  itemStyle: {
+    padding: 10,
+  },
+  textInputStyle: {
+    height: 50,
+    borderWidth: 3,
+    paddingLeft: 20,
+    margin: 3,
+    borderRadius: 10,
+    borderColor: '#89CFF0',
+    backgroundColor: '#fff',
+  },
+  // searchIcon: {
+  //   position: 'absolute',
+  //   top: 10,
+  //   left: 10,
+  //   color: 'black',
+  //   fontSize: 30,
+  //   fontWeight: '700',
+  // },
 });
