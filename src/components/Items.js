@@ -13,17 +13,16 @@ const Items = (props) => {
                     style={styles.image}
                     source={{ uri: `${props.img}` }} /> :
                     <>
-                        {/* TODO:Do something */}
                     </>
             }
             <View style={styles.innerContainer}>
                 <Text style={styles.title}>{
                     props?.title.length > 19 ? props?.title.substring(0, 19) + "..." : props.title
                 }</Text>
-                {/* <Text style={styles.des}>{
-                    props?.dis.length > 75 ?
-                        props?.dis.substring(0, 75) + `... \nPress to read more` : props.dis
-                }</Text> */}
+                <Text style={styles.des}>{
+                    props?.Bio.length > 75 ?
+                        props?.Bio.substring(0, 75) + `... \nPress to read more` : props.Bio
+                }</Text>
             </View>
         </TouchableOpacity >
     )

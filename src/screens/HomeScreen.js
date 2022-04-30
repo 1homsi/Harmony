@@ -66,11 +66,6 @@ const HomeScreen = () => {
         </View>
       </View>
       <View>
-        {/* <Searchbar
-          placeholder="Search"
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-        /> */}
       </View>
       <View style={styles.Cat}>
         <Text>
@@ -156,20 +151,6 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
-
-      {/* <View style={styles.CatContainer}>
-          <TouchableOpacity style={styles.CatCardOne}>
-            <ImageBackground
-              source={require("../images/car-service.png")}
-              resizeMode="cover"
-              style={styles.CatImage}
-            >
-              <Text style={styles.text}>Car Service</Text>
-            </ImageBackground>
-            <Text>Category</Text>
-          </TouchableOpacity>
-        </View> */}
-
       <View style={styles.ListView}>
         <FlatList
           refreshControl={
@@ -182,7 +163,7 @@ const HomeScreen = () => {
           style={styles.list}
           data={data}
           renderItem={({ item }) => (
-            <Items id={item.id} title={item.Name} img={item.Image} />
+            <Items id={item.id} title={item.Name} img={item.Image} Bio={item.Bio} />
           )}
           keyExtractor={(item, index) => index.toString()}
         />

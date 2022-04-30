@@ -48,6 +48,7 @@ const RegisterScreenPart2 = ({ route }) => {
                         Location: location,
                         Credit: 0,
                         Image: "",
+                        status: "free",
                     })
 
                     auth
@@ -73,6 +74,7 @@ const RegisterScreenPart2 = ({ route }) => {
                             Rating: 0,
                             Busy: false,
                             Image: "",
+                            status: "free",
                         })
 
                         auth
