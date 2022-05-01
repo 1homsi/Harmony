@@ -215,7 +215,7 @@ const Profile = () => {
       {
         user?.Worker ?
           <View style={styles.ListView}>
-            <View style={styles.Inner}>
+            <View style={styles.InnerBio}>
               <Text style={styles.title}>Bio </Text>
 
               {editBio ?
@@ -241,7 +241,7 @@ const Profile = () => {
 
             </View>
             <View style={styles.icon} >
-              <Icon name={editBio ? "edit" : "check"} type="FontAwesome5" color="#fff" size={25} onPress={() => {
+              <Icon name={editBio ? "edit" : "check"} type="FontAwesome5" color="gray" size={25} onPress={() => {
                 if (editBio) {
                   setEditBio(false)
                   handleBio()
@@ -294,11 +294,13 @@ const styles = StyleSheet.create({
     marginLeft: "5%",
     padding: 20,
     paddingLeft: 10,
-    backgroundColor: "gray",
+    backgroundColor: "white",
     alignContent: "center",
     justifyContent: "center",
     marginTop: 20,
     borderRadius: 10,
+    elevation: 10,
+    shadowColor: '#52006A',
   },
 
   image: {
@@ -309,32 +311,36 @@ const styles = StyleSheet.create({
   },
   dataName: {
     marginTop: 10,
-    color: "white",
+    color: "black",
     fontSize: 15,
     marginLeft: "8%",
   },
 
   Inner: {
-    marginLeft: -150,
+    marginLeft: -250,
+  },
+  InnerBio:{
+    marginLeft: -165,
   },
   dataEmail: {
     marginTop: 5,
-    color: "white",
+    color: "gray",
     fontSize: 15,
     marginLeft: "8%",
   },
   dataWorker: {
     marginTop: 5,
-    color: "white",
+    color: "gray",
     fontSize: 15,
     marginLeft: "8%",
   },
   title: {
     color: "#89CFF0",
     fontSize: 20,
+    fontWeight: "bold",
   },
   dataAdress: {
-    color: "white",
+    color: "black",
     fontSize: 15,
   },
   buttonOutline: {
@@ -356,7 +362,7 @@ const styles = StyleSheet.create({
     width: "70%",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 20,
+    marginTop: 50,
     height: 60,
   },
   buttonText: {
