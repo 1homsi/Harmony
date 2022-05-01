@@ -41,6 +41,7 @@ const History = () => {
                     </View>
                     
                 </View>
+                
             </View>
             <BottomNav />
 
@@ -62,8 +63,8 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: "#000",
         textAlign: "center",
-        marginTop: "5%",
-        justifyContent: "flex-end",
+        marginTop: "12%",
+       
     },
     HistoryTitle: {
         fontSize: 20,
