@@ -23,25 +23,27 @@ const History = () => {
 
             <View style={styles.Content}>
                 <View style={styles.Card}>
-                    <Icon
-                    name="history"
-                    type="material-community"
-                    style={styles.CardIcon}
-                    />
-                    <Text style={styles.HistoryTitle}>
+                    <View style={styles.CatImage}>
+
+                    </View>
+                    <View>
+                        <Text style={styles.HistoryTitle}>
                         House Cleaning
                     </Text>
                     <Text style={styles.HistoryDetails}>
                         details details details
                     </Text>
-                    <Text style={styles.Status}>
+                    </View>
+                    <View>
+                        <Text style={styles.Status}>
                          Completed
                     </Text>
+                    </View>
+                    
                 </View>
             </View>
-            
+            <BottomNav />
 
-            <BottomNav style={styles.Nav}/>
         </SafeAreaView>
     )
 }
@@ -53,6 +55,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         flex: 1,
+        backgroundColor: "#fff",
         
     },
     HeadTitlte: {
@@ -60,34 +63,54 @@ const styles = StyleSheet.create({
         color: "#000",
         textAlign: "center",
         marginTop: "5%",
+        justifyContent: "flex-end",
     },
     HistoryTitle: {
         fontSize: 20,
         color: "#000",
         marginTop: "5%",
+        marginLeft: "5%",
     },
     HistoryDetails: {
         fontSize: 15,
-        color: "#000",
+        color: "grey",
         marginTop: "5%",
+        marginLeft: "5%",
     },
     Card: {
         width: "90%",
         height: "15%",
         marginTop: "5%",
-        backgroundColor: "#fff",
+        backgroundColor: "#f5f5f5",
         marginLeft: "5%",
         borderRadius: 10,
-    },
-    CardIcon: {
-        color: "#000",
-        marginLeft: "5%",
+        flexDirection: "row",
+        alignItems: "center",
+        shadowColor: "grey",
+        shadowOpacity: 0.5,
         
-    },
-    Nav: {
     },
     Content: {
         width: "100%",
         height: "80%",
+    },
+    CatImage: {
+        width: "20%",
+        height: "70%",
+        borderRadius: 50,
+        justifyContent: "flex-start",
+        backgroundColor: "#89CFF0",
+        borderRadius: 10,
+        marginLeft: "5%",
+    },
+    Status: {
+        fontSize: 15,
+        color: "#000",
+        marginTop: "5%",
+        marginLeft: "5%",
+        backgroundColor: "#32CD32",
+        textAlign: "center",
+        padding: "2%",
+        borderRadius: 5,
     },
 })
