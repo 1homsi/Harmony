@@ -52,8 +52,7 @@ const styles = StyleSheet.create({
     Area: {
         flex: 1,
         alignItems: "center",
-        flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: "#f5f5f5",
         
     },
     HeadTitlte: {
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
         marginLeft: "5%",
     },
     Card: {
-        width: "90%",
+        width: "100%",
         height: "15%",
         marginTop: "5%",
         marginLeft: "5%",
@@ -81,8 +80,9 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
     },
     Content: {
-        width: "100%",
-        height: "80%",
+        flex: 1,
+        alignItems: "center",
+        marginRight: "5%",
     },
     CatImage: {
         width: "20%",
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         width: "20%",
         color: "#89CFF0",
         marginTop: "5%",
-        marginLeft: "70%",
+        marginLeft: "60%",
         fontSize: 20,
         fontWeight: "bold",
     },

@@ -1,9 +1,18 @@
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Image, Alert, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  TouchableOpacity,
+  Image,
+  Alert,
+  TextInput,
+} from "react-native";
 import React from "react";
 import { auth, db } from "../../firebase";
 import { Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from "expo-image-picker";
 
 const Profile = () => {
   const [user, setUser] = React.useState([]);
@@ -19,24 +28,27 @@ const Profile = () => {
 
   const handleStatus = () => {
     db.collection("Users").doc(auth.currentUser?.email).update({
-      status: status
-    })
-  }
+      status: status,
+    });
+  };
   const handleBio = () => {
     db.collection("Users").doc(auth.currentUser?.email).update({
-      Bio: bio
-    })
-  }
-  React.useEffect(() => {
-    db.collection("Users").doc(auth.currentUser?.email).get().then((doc) => {
-      setUser(doc.data());
-      setStatus(doc.data().status);
-      setChanged(doc.data().status);
-      setBio(doc.data().Bio);
+      Bio: bio,
     });
+  };
+  React.useEffect(() => {
+    db.collection("Users")
+      .doc(auth.currentUser?.email)
+      .get()
+      .then((doc) => {
+        setUser(doc.data());
+        setStatus(doc.data().status);
+        setChanged(doc.data().status);
+        setBio(doc.data().Bio);
+      });
     return () => {
-      setUser("")
-    }
+      setUser("");
+    };
   }, []);
   const handleDeleteUser = () =>
     Alert.alert(
@@ -65,9 +77,10 @@ const Profile = () => {
     );
 
   let openImagePickerAsync = async () => {
-    let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    let permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (permissionResult.granted === false) {
-      alert('Permission to access camera roll is required!');
+      alert("Permission to access camera roll is required!");
       return;
     }
     let pickerResult = await ImagePicker.launchImageLibraryAsync({
@@ -81,17 +94,21 @@ const Profile = () => {
     if (fileSize >= 1000000) {
       Alert.alert("Choose a smaller sized image");
     } else {
-      return
+      return;
     }
-    var url = Platform.OS === 'ios' ? pickerResult.uri.replace('file://', '')
-      : pickerResult.uri
-    const filename = pickerResult.uri.substring(pickerResult.uri.lastIndexOf('/') + 1)
+    var url =
+      Platform.OS === "ios"
+        ? pickerResult.uri.replace("file://", "")
+        : pickerResult.uri;
+    const filename = pickerResult.uri.substring(
+      pickerResult.uri.lastIndexOf("/") + 1
+    );
     setSelectedImage({
       uri: url,
       name: filename,
-      type: 'image/jpg',
+      type: "image/jpg",
     });
-    console.log(selectedImage)
+    console.log(selectedImage);
     onUpload();
   };
 
@@ -99,12 +116,12 @@ const Profile = () => {
 
   function Up() {
     if (selectedImage === null) {
-      return
+      return;
     } else {
       if (ImageUrl != "" && uploadLoading === false) {
         db.collection("Users").doc(auth.currentUser?.email).update({
-          ImageUrl: ImageUrl
-        })
+          ImageUrl: ImageUrl,
+        });
         navigation.replace("Option");
         clearInterval(checkToUpload);
       }
@@ -116,40 +133,41 @@ const Profile = () => {
     const response = await fetch(selectedImage.uri);
     const blob = await response.blob();
     var uploadTask = storage.ref().child(selectedImage.name).put(blob, {
-      contentType: 'image/jpg',
+      contentType: "image/jpg",
     });
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+    uploadTask.on(
+      firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) => {
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
+        console.log("Upload is " + progress + "% done");
         switch (snapshot.state) {
           case firebase.storage.TaskState.PAUSED:
-            console.log('Upload is paused');
+            console.log("Upload is paused");
             break;
           case firebase.storage.TaskState.RUNNING:
-            console.log('Upload is running');
+            console.log("Upload is running");
             break;
         }
       },
       (error) => {
         switch (error.code) {
-          case 'storage/unauthorized':
+          case "storage/unauthorized":
             break;
-          case 'storage/canceled':
+          case "storage/canceled":
             break;
-          case 'storage/unknown':
+          case "storage/unknown":
             break;
         }
       },
       () => {
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-          console.log('File available at', downloadURL);
+          console.log("File available at", downloadURL);
           setImageUrl(downloadURL);
           setUploadLoading(false);
         });
       }
     );
-  }
+  };
 
   return (
     <SafeAreaView>
@@ -157,42 +175,55 @@ const Profile = () => {
         <Text style={styles.HeadTitlte}>Profile</Text>
       </View>
       <View style={styles.ListView}>
-        {user.image ?
+        {user.image ? (
           <TouchableOpacity onPress={openImagePickerAsync}>
             <Image
               source={{ uri: user?.image }}
-              style={user?.Worker ? [styles.image, { marginTop: 10 }] : [styles.image]}
+              style={
+                user?.Worker
+                  ? [styles.image, { marginTop: 10 }]
+                  : [styles.image]
+              }
             ></Image>
           </TouchableOpacity>
-          :
+        ) : (
           <TouchableOpacity onPress={openImagePickerAsync}>
-            <Image source={require("../images/Profile.png")}
-              style={user?.Worker ? [styles.image, { marginTop: 10 }] : [styles.image]}
+            <Image
+              source={require("../images/Profile.png")}
+              style={
+                user?.Worker
+                  ? [styles.image, { marginTop: 10 }]
+                  : [styles.image]
+              }
             ></Image>
           </TouchableOpacity>
-        }
+        )}
         <View>
           <Text style={[styles.dataName, styles.title]}>{user?.Name}</Text>
           <Text style={styles.dataEmail}>{auth.currentUser?.email}</Text>
-          {user?.Worker ?
+          {user?.Worker ? (
             <Text style={styles.dataWorker}>Worker - {changed}</Text>
-            :
+          ) : (
             <></>
-          }
+          )}
         </View>
-        <View style={styles.icon} >
-          <Icon name="edit" type="FontAwesome5" color="#fff" size={25} onPress={() => {
-            if (status == "free") {
-              setStatus("busy")
-              setChanged("free")
-            }
-            else {
-              setStatus("free")
-              setChanged("busy")
-            }
-            handleStatus();
-          }
-          } />
+        <View style={styles.icon}>
+          <Icon
+            name="edit"
+            type="FontAwesome5"
+            color="#fff"
+            size={25}
+            onPress={() => {
+              if (status == "free") {
+                setStatus("busy");
+                setChanged("free");
+              } else {
+                setStatus("free");
+                setChanged("busy");
+              }
+              handleStatus();
+            }}
+          />
         </View>
       </View>
       <View style={styles.ListView}>
@@ -201,69 +232,77 @@ const Profile = () => {
           <Text style={styles.dataAdress}>{user?.Location}</Text>
         </View>
       </View>
-      {
-        user?.Worker ?
-          <View style={styles.ListView}>
-            <View style={styles.Inner}>
-              <Text style={styles.title}>Phone</Text>
-              <Text style={styles.dataAdress}>{user?.Phone}</Text>
-            </View>
+      {user?.Worker ? (
+        <View style={styles.ListView}>
+          <View style={styles.Inner}>
+            <Text style={styles.title}>Phone</Text>
+            <Text style={styles.dataAdress}>{user?.Phone}</Text>
           </View>
-          :
-          <></>
-      }
-      {
-        user?.Worker ?
-          <View style={styles.ListView}>
-            <View style={styles.InnerBio}>
-              <Text style={styles.title}>Bio </Text>
+        </View>
+      ) : (
+        <></>
+      )}
+      {user?.Worker ? (
+        <View style={styles.ListView}>
+          <View style={styles.InnerBio}>
+            <Text style={styles.title}>Bio </Text>
 
-              {editBio ?
-                <>
-                  {user?.Bio == "" ?
-                    <Text style={styles.dataAdress}>No Bio</Text>
-                    :
-                    <Text style={styles.dataAdress}>{bio}</Text>
-                  }
-                </>
-                :
-                <>
-                  <TextInput
-                    style={styles.input}
-                    placeholder={user?.Bio == "" ? "EditBio" : bio}
-                    onChangeText={(text) => {
-                      setBio(text)
-                    }}
-                    value={bio}
-                  />
-                </>
-              }
-
-            </View>
-            <View style={styles.icon} >
-              <Icon name={editBio ? "edit" : "check"} type="FontAwesome5" color="gray" size={25} onPress={() => {
+            {editBio ? (
+              <>
+                {user?.Bio == "" ? (
+                  <Text style={styles.dataAdress}>No Bio</Text>
+                ) : (
+                  <Text style={styles.dataAdress}>{bio}</Text>
+                )}
+              </>
+            ) : (
+              <>
+                <TextInput
+                  style={styles.input}
+                  placeholder={user?.Bio == "" ? "EditBio" : bio}
+                  onChangeText={(text) => {
+                    setBio(text);
+                  }}
+                  value={bio}
+                />
+              </>
+            )}
+          </View>
+          <View style={styles.icon}>
+            <Icon
+              name={editBio ? "edit" : "check"}
+              type="FontAwesome5"
+              color="gray"
+              size={25}
+              onPress={() => {
                 if (editBio) {
-                  setEditBio(false)
-                  handleBio()
+                  setEditBio(false);
+                  handleBio();
+                } else {
+                  setEditBio(true);
                 }
-                else {
-                  setEditBio(true)
-                }
-              }} />
-            </View>
+              }}
+            />
           </View>
-          :
-          <></>
-      }
+        </View>
+      ) : (
+        <></>
+      )}
       <View style={styles.DeleteContainer}>
-        <TouchableOpacity onPress={handleDeleteUser} style={styles.buttonOutlineRed}>
+        <TouchableOpacity
+          onPress={handleDeleteUser}
+          style={styles.buttonOutlineRed}
+        >
           <Text style={styles.buttonText}>Delete Account</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.replace("Option")} style={styles.buttonOutline}>
+        <TouchableOpacity
+          onPress={() => navigation.replace("Option")}
+          style={styles.buttonOutline}
+        >
           <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView >
+    </SafeAreaView>
   );
 };
 
@@ -300,7 +339,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 10,
     elevation: 10,
-    shadowColor: '#52006A',
+    shadowColor: "#52006A",
   },
 
   image: {
@@ -319,7 +358,7 @@ const styles = StyleSheet.create({
   Inner: {
     marginLeft: -250,
   },
-  InnerBio:{
+  InnerBio: {
     marginLeft: -165,
   },
   dataEmail: {

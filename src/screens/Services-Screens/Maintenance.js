@@ -52,7 +52,7 @@ const Maintenance = () => {
       <View style={styles.topNav}>
         <Text style={styles.title}>Maintenance</Text>
       </View>
-      <View style={styles.containerSearch}>
+      {/* <View style={styles.containerSearch}>
         <TextInput
           Icon={() => (
             <Icon
@@ -68,7 +68,7 @@ const Maintenance = () => {
           value={search}
           underlineColorAndroid="transparent"
           placeholder="Search Here"
-        />
+        /> */}
          {/* <SearchBar
           round
           searchIcon={{ size: 24 }}
@@ -77,13 +77,13 @@ const Maintenance = () => {
           placeholder="Type Here..."
           value={search}
         /> */}
-        <FlatList
+        {/* <FlatList
           data={filteredDataSource}
           keyExtractor={(item, index) => index.toString()}
           ItemSeparatorComponent={ItemSeparatorView}
           renderItem={ItemView}
         />
-      </View>
+      </View> */}
       <View style={styles.container}>
         <TouchableOpacity
           // onPress={() =>
