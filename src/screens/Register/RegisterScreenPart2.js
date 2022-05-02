@@ -23,7 +23,8 @@ const RegisterScreenPart2 = ({ route }) => {
     const [location, setLocation] = useState("");
     const [phone, setPhone] = useState("");
     const [occupation, setOccupation] = useState("");
-    const navigation = useNavigation()
+    const navigation = useNavigation();
+    const [subService, setSubService] = useState("");
 
 
     useEffect(() => {
@@ -63,13 +64,14 @@ const RegisterScreenPart2 = ({ route }) => {
                         .catch((error) => alert(error.message));
                 }
                 else {
-                    if (phone !== "" && ocupation !== "") {
+                    if (phone !== "" && occupation !== "") {
                         db.collection("Users").doc(email).set({
                             Name: name,
                             Email: email,
                             Location: location,
                             Phone: phone,
                             Occupation: occupation,
+                            SubService: subService,
                             Bio: "",
                             Rating: 0,
                             Busy: false,
@@ -197,6 +199,7 @@ const RegisterScreenPart2 = ({ route }) => {
                         />
                         <View style={[styles.PickerContainer, styles.input]}>
                             <Picker
+                                itemStyle={{ height: 50 }}
                                 selectedValue={location}
                                 style={styles.picker}
                                 onValueChange={(itemValue, itemIndex) => setLocation(itemValue)}
@@ -207,9 +210,26 @@ const RegisterScreenPart2 = ({ route }) => {
                         </View>
                         <View style={[styles.PickerContainerBottom, styles.input]}>
                             <Picker
+                                itemStyle={{ height: 50 }}
                                 selectedValue={occupation}
                                 style={styles.picker}
                                 onValueChange={(itemValue, itemIndex) => setOccupation(itemValue)}
+                            >
+                                <Picker.Item label="Maintenance" value="Maintenance" />
+                                <Picker.Item label="Home Design" value="Home Design" />
+                                <Picker.Item label="Home Care" value="Home Care" />
+                                <Picker.Item label="Health care" value="Health care" />
+                                <Picker.Item label="Delivery" value="Delivery" />
+                                <Picker.Item label="Cars" value="Cars" />
+                                <Picker.Item label="Tutoring" value="Tutoring" />
+                            </Picker>
+                        </View>
+                        <View style={[styles.PickerContainerBottom, styles.input]}>
+                            <Picker
+                                itemStyle={{ height: 50 }}
+                                selectedValue={subService}
+                                style={styles.picker}
+                                onValueChange={(itemValue, itemIndex) => setSubService(itemValue)}
                             >
                                 <Picker.Item label="Maintenance" value="Maintenance" />
                                 <Picker.Item label="Home Design" value="Home Design" />
@@ -307,9 +327,7 @@ const styles = StyleSheet.create({
     },
     picker: {
         width: "100%",
-        height: Platform.OS === "ios" ? 100 : 40,
         position: 'relative',
-        top: Platform.OS === "ios" ? -30 : -5,
     },
     PickerContainerBottom: {
         top: -6,

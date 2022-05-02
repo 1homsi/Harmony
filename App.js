@@ -10,7 +10,6 @@ import RegisterScreenPart2 from './src/screens/Register/RegisterScreenPart2';
 import PorductView from './src/screens/PorductView';
 import ResetPassword from './src/screens/ResetPassword';
 import Options from './src/screens/Options';
-import Choosen from './src/screens/Choosen';
 import Profile from './src/screens/Profile';
 import History from './src/screens/History';
 import Notifications from './src/screens/Notifications';
@@ -22,6 +21,7 @@ import HomeDesign from './src/screens/Services-Screens/HomeDesign';
 import CareTaking from './src/screens/Services-Screens/CareTaking';
 import Tutoring from './src/screens/Services-Screens/Tutoring';
 import { Provider as PaperProvider } from "react-native-paper"
+import Contract from './src/screens/Contract';
 
 
 import * as ImagePicker from "expo-image-picker"
@@ -53,7 +53,6 @@ export default function App() {
             <Stack.Screen name="ViewProduct" component={PorductView} />
             <Stack.Screen name="ResetPassword" component={ResetPassword} />
             <Stack.Screen name="Option" component={Options} />
-            <Stack.Screen name="Fav" component={Choosen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="RegisterTwo" component={RegisterScreenPart2} />
@@ -67,7 +66,7 @@ export default function App() {
             <Stack.Screen name="HomeDesign" component={HomeDesign} />
             <Stack.Screen name="CareTaking" component={CareTaking} />
             <Stack.Screen name="Tutoring" component={Tutoring} />
-
+            <Stack.Screen name="Contract" component={Contract} />
           </Stack.Navigator>
         </NavigationContainer>
         <StatusBar style="auto" />

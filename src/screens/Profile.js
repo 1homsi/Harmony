@@ -176,7 +176,7 @@ const Profile = () => {
       </View>
       <View style={styles.ListView}>
         {user.image ? (
-          <TouchableOpacity onPress={openImagePickerAsync}>
+          <TouchableOpacity nPress={openImagePickerAsync}>
             <Image
               source={{ uri: user?.image }}
               style={
@@ -232,62 +232,66 @@ const Profile = () => {
           <Text style={styles.dataAdress}>{user?.Location}</Text>
         </View>
       </View>
-      {user?.Worker ? (
-        <View style={styles.ListView}>
-          <View style={styles.Inner}>
-            <Text style={styles.title}>Phone</Text>
-            <Text style={styles.dataAdress}>{user?.Phone}</Text>
+      {
+        user?.Worker ? (
+          <View style={styles.ListView}>
+            <View style={styles.Inner}>
+              <Text style={styles.title}>Phone</Text>
+              <Text style={styles.dataAdress}>{user?.Phone}</Text>
+            </View>
           </View>
-        </View>
-      ) : (
-        <></>
-      )}
-      {user?.Worker ? (
-        <View style={styles.ListView}>
-          <View style={styles.InnerBio}>
-            <Text style={styles.title}>Bio </Text>
+        ) : (
+          <></>
+        )
+      }
+      {
+        user?.Worker ? (
+          <View style={styles.ListView}>
+            <View style={styles.InnerBio}>
+              <Text style={styles.title}>Bio </Text>
 
-            {editBio ? (
-              <>
-                {user?.Bio == "" ? (
-                  <Text style={styles.dataAdress}>No Bio</Text>
-                ) : (
-                  <Text style={styles.dataAdress}>{bio}</Text>
-                )}
-              </>
-            ) : (
-              <>
-                <TextInput
-                  style={styles.input}
-                  placeholder={user?.Bio == "" ? "EditBio" : bio}
-                  onChangeText={(text) => {
-                    setBio(text);
-                  }}
-                  value={bio}
-                />
-              </>
-            )}
+              {editBio ? (
+                <>
+                  {user?.Bio == "" ? (
+                    <Text style={styles.dataAdress}>No Bio</Text>
+                  ) : (
+                    <Text style={styles.dataAdress}>{bio}</Text>
+                  )}
+                </>
+              ) : (
+                <>
+                  <TextInput
+                    style={styles.input}
+                    placeholder={user?.Bio == "" ? "EditBio" : bio}
+                    onChangeText={(text) => {
+                      setBio(text);
+                    }}
+                    value={bio}
+                  />
+                </>
+              )}
+            </View>
+            <View style={styles.icon}>
+              <Icon
+                name={editBio ? "edit" : "check"}
+                type="FontAwesome5"
+                color="gray"
+                size={25}
+                onPress={() => {
+                  if (editBio) {
+                    setEditBio(false);
+                    handleBio();
+                  } else {
+                    setEditBio(true);
+                  }
+                }}
+              />
+            </View>
           </View>
-          <View style={styles.icon}>
-            <Icon
-              name={editBio ? "edit" : "check"}
-              type="FontAwesome5"
-              color="gray"
-              size={25}
-              onPress={() => {
-                if (editBio) {
-                  setEditBio(false);
-                  handleBio();
-                } else {
-                  setEditBio(true);
-                }
-              }}
-            />
-          </View>
-        </View>
-      ) : (
-        <></>
-      )}
+        ) : (
+          <></>
+        )
+      }
       <View style={styles.DeleteContainer}>
         <TouchableOpacity
           onPress={handleDeleteUser}
@@ -302,7 +306,7 @@ const Profile = () => {
           <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </SafeAreaView >
   );
 };
 
@@ -343,8 +347,8 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: "20%",
-    height: 65,
+    width: 70,
+    height: 70,
     borderRadius: 50,
     marginLeft: "5%",
   },

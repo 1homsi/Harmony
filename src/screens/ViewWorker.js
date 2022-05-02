@@ -55,80 +55,25 @@ const ViewWorker = ({ route }) => {
       </View>
       <View style={styles.detailsContainer}>
         <Text style={styles.userDetails}>Email: {user?.Email}</Text>
-        <Text style={styles.userDetails}>Location: </Text>
-        <Text style={styles.userDetails}>Specialized in: </Text>
+        <Text style={styles.userDetails}>Location: {user?.Location}</Text>
+        <Text style={styles.userDetails}>Specialized in: {user?.Occupation}</Text>
       </View>
       <View style={styles.review}>
         <View style={styles.reviewContainer}>
           <Text style={styles.title}>Customer reviews</Text>
           <View style={styles.totalWrap}>
-            {/* <View
-              style={{
-                flexDirection: "row",
-              }}
-            >
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-            </View> */}
             <Text>4.7 out of 5</Text>
           </View>
           <Text style={styles.amountText}>40 customer ratings</Text>
 
-          <AirbnbRating />
-
-          {/* <AirbnbRating
-            count={11}
-            reviews={[
-              "Terrible",
-              "Bad",
-              "Meh",
-              "OK",
-              "Good",
-              "Hmm...",
-              "Very Good",
-              "Wow",
-              "Amazing",
-              "Unbelievable",
-              "Jesus",
-            ]}
-            defaultRating={11}
+          <AirbnbRating
+            count={5}
+            defaultRating={user?.Rating}
             size={20}
-          /> */}
 
-          {/* <Rating
-            showRating
-            onFinishRating={this.ratingCompleted}
-            style={{ paddingVertical: 10 }}
-          /> */}
-
-          {/* <Rating
-            type="heart"
-            ratingCount={3}
-            imageSize={60}
-            showRating
-            onFinishRating={this.ratingCompleted}
-          /> */}
-
-          {/* <Rating
-            type="custom"
-            ratingImage={WATER_IMAGE}
-            ratingColor="#3498db"
-            ratingBackgroundColor="#c8c7c8"
-            ratingCount={10}
-            imageSize={30}
-            onFinishRating={this.ratingCompleted}
-            style={{ paddingVertical: 10 }}
-          /> */}
-        </View>
-        {/* <Svg width={24} height={22} viewBox="0 0 33 30" fill="none" {...props}>
-          <Path
-            d="M16.5 0l4.849 9.826 10.843 1.575-7.846 7.648 1.852 10.8-9.698-5.1-9.698 5.1 1.852-10.8-7.846-7.648L11.65 9.826 16.5 0z"
-            fill="#FFCC48"
+            reviews={["Terrible", "Bad", "OK", "Good", "Amazing"]}
           />
-        </Svg> */}
+        </View>
       </View>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
@@ -137,7 +82,7 @@ const ViewWorker = ({ route }) => {
           <Text style={styles.buttonText}>Send Offer</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.replace("Home")}    
+          onPress={() => navigation.replace("Home")}
           style={styles.buttonOutline}
         >
           <Text style={styles.buttonText}>Back</Text>
@@ -179,13 +124,13 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     // justifyContent: "center",
     marginTop: 30,
-    marginLeft: 20,
   },
   usernameText: {
     fontSize: 30,
     fontWeight: "bold",
     color: "#000",
     marginBottom: 20,
+    textAlign: "center",
   },
   //   Image: {
   //     width: 110,

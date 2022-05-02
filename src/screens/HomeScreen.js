@@ -14,6 +14,7 @@ import {
 import Items from "../components/Items";
 import { auth, db } from "../../firebase";
 import BottomNav from "../components/BottomNav";
+import { query, collection, where, getDocs } from "firebase/firestore";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -30,16 +31,18 @@ const HomeScreen = () => {
     }
   }, []);
 
-  const fetchAll = () => {
-    db.collection("Users")
-      .where("Worker", "==", true)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          let Userdata = Object.assign({ id: doc.id }, doc.data());
-          setData((e) => [...e, Userdata]);
-        });
-      });
+  const fetchAll = async () => {
+    const q = query(
+      collection(db, "Users"),
+      where("status", "==", "free"),
+      where("Worker", "==", true)
+    );
+
+    const docSnap = await getDocs(q)
+    docSnap.forEach((doc) => {
+      let Userdata = Object.assign({ id: doc.id }, doc.data());
+      setData((e) => [...e, Userdata]);
+    })
   };
 
   React.useEffect(() => {
