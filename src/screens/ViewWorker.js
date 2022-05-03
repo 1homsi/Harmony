@@ -1,4 +1,11 @@
-import { SafeAreaView, StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { db } from "../../firebase";
@@ -56,7 +63,9 @@ const ViewWorker = ({ route }) => {
       <View style={styles.detailsContainer}>
         <Text style={styles.userDetails}>Email: {user?.Email}</Text>
         <Text style={styles.userDetails}>Location: {user?.Location}</Text>
-        <Text style={styles.userDetails}>Specialized in: {user?.Occupation}</Text>
+        <Text style={styles.userDetails}>
+          Specialized in: {user?.Occupation}
+        </Text>
       </View>
       <View style={styles.review}>
         <View style={styles.reviewContainer}>
@@ -70,13 +79,13 @@ const ViewWorker = ({ route }) => {
             count={5}
             defaultRating={user?.Rating}
             size={20}
-
             reviews={["Terrible", "Bad", "OK", "Good", "Amazing"]}
           />
         </View>
       </View>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
+          onPress={() => navigation.replace("Contract")}
           style={styles.buttonOutlineOffer}
         >
           <Text style={styles.buttonText}>Send Offer</Text>
