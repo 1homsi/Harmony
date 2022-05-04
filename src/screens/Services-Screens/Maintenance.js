@@ -10,85 +10,23 @@ import {
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Icon, SearchBar } from "react-native-elements";
-import { db } from "../../../firebase";
 import BottomNav from "../../components/BottomNav";
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 const Maintenance = () => {
   const navigation = useNavigation();
-  const [search, setSearch] = useState('');
-  const [filteredDataSource, setFilteredDataSource] = useState([]);
-  const [masterDataSource, setMasterDataSource] = useState([]);
-  const ItemView = ({item}) => {
-    return (
-      // Flat List Item
-      <Text
-        style={styles.itemStyle}
-        onPress={() => getItem(item)}>
-        {item.id}
-        {'.'}
-        {item.title.toUpperCase()}
-      </Text>
-    );
-  };
-  const ItemSeparatorView = () => {
-    return (
-      // Flat List Item Separator
-      <View
-        style={{
-          height: 0.5,
-          width: '100%',
-          backgroundColor: '#C8C8C8',
-        }}
-      />
-    );
-  };
-  // const getItem = (item) => {
-  //   // Function for click on an item
-  //   alert('Id : ' + item.id + ' Title : ' + item.title);
-  // };
+
   return (
     <SafeAreaView style={styles.bigMain}>
       <View style={styles.topNav}>
         <Text style={styles.title}>Maintenance</Text>
       </View>
-      {/* <View style={styles.containerSearch}>
-        <TextInput
-          Icon={() => (
-            <Icon
-              name="search"
-              type="font-awesome-5"
-              size={20}
-              color="#000"
-              style={styles.searchIcon}
-            />
-          )}
-          style={styles.textInputStyle}
-          onChangeText={(text) => searchFilterFunction(text)}
-          value={search}
-          underlineColorAndroid="transparent"
-          placeholder="Search Here"
-        /> */}
-         {/* <SearchBar
-          round
-          searchIcon={{ size: 24 }}
-          onChangeText={(text) => searchFilterFunction(text)}
-          onClear={(text) => searchFilterFunction('')}
-          placeholder="Type Here..."
-          value={search}
-        /> */}
-        {/* <FlatList
-          data={filteredDataSource}
-          keyExtractor={(item, index) => index.toString()}
-          ItemSeparatorComponent={ItemSeparatorView}
-          renderItem={ItemView}
-        />
-      </View> */}
+
       <View style={styles.container}>
         <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "electricians" })
+          }
           style={styles.button}
         >
           <Text style={styles.buttonText}>Electrician</Text>
@@ -101,9 +39,9 @@ const Maintenance = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "plumbers" })
+          }
           style={styles.button}
         >
           <Text style={styles.buttonText}>Plumber</Text>
@@ -116,12 +54,27 @@ const Maintenance = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "carpenters" })
+          }
           style={styles.button}
         >
           <Text style={styles.buttonText}>Carpenter</Text>
+          <Icon
+            style={styles.icon}
+            color="gray"
+            name="keyboard-arrow-right"
+            type="materialicons"
+            size={35}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "handymen" })
+          }
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>Handy Men</Text>
           <Icon
             style={styles.icon}
             color="gray"

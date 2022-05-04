@@ -14,12 +14,12 @@ const CareTaking = () => {
       </View>
       <View style={styles.container}>
         <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "elderly caretaker" })
+          }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Sub-Service 1</Text>
+          <Text style={styles.buttonText}>Elderly caretaker</Text>
           <Icon
             style={styles.icon}
             color="gray"
@@ -29,12 +29,12 @@ const CareTaking = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "nurses" })
+          }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Sub-Service 2</Text>
+          <Text style={styles.buttonText}>Nurses</Text>
           <Icon
             style={styles.icon}
             color="gray"
@@ -44,12 +44,12 @@ const CareTaking = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "physiotherapists" })
+          }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Sub-Service 3</Text>
+          <Text style={styles.buttonText}>physiotherapists</Text>
           <Icon
             style={styles.icon}
             color="gray"

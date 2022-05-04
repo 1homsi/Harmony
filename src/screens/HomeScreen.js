@@ -142,7 +142,7 @@ const HomeScreen = () => {
 
           <TouchableOpacity
             style={styles.CatCard}
-            onPress={() => navigation.replace("Delivery")}
+            onPress={() => navigation.navigate("MainServ", { id: "driver" })}
           >
             <ImageBackground
               source={require("../images/delivery.png")}

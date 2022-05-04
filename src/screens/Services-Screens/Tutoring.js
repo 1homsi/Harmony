@@ -14,12 +14,12 @@ const Tutoring = () => {
       </View>
       <View style={styles.container}>
         <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "pre-k tutors" })
+          }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Sub-Service 1</Text>
+          <Text style={styles.buttonText}>pre-k tutors</Text>
           <Icon
             style={styles.icon}
             color="gray"
@@ -29,12 +29,12 @@ const Tutoring = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "elementary tutors" })
+          }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Sub-Service 2</Text>
+          <Text style={styles.buttonText}>elementary tutors</Text>
           <Icon
             style={styles.icon}
             color="gray"
@@ -44,12 +44,42 @@ const Tutoring = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "subject tutors" })
+          }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Sub-Service 3</Text>
+          <Text style={styles.buttonText}>subject tutors</Text>
+          <Icon
+            style={styles.icon}
+            color="gray"
+            name="keyboard-arrow-right"
+            type="materialicons"
+            size={35}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "general tutors" })
+          }
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>general tutors </Text>
+          <Icon
+            style={styles.icon}
+            color="gray"
+            name="keyboard-arrow-right"
+            type="materialicons"
+            size={35}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "homework helpers" })
+          }
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>homework helpers</Text>
           <Icon
             style={styles.icon}
             color="gray"
@@ -60,7 +90,7 @@ const Tutoring = () => {
         </TouchableOpacity>
       </View>
       <BottomNav />
-    </SafeAreaView>
+    </SafeAreaView >
   );
 };
 

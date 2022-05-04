@@ -9,27 +9,12 @@ import {
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { db } from "../../firebase";
-import { Rating, AirbnbRating } from "react-native-ratings";
-// import Svg, { Path } from "react-native-svg";
+import { AirbnbRating } from "react-native-ratings";
 
 const ViewWorker = ({ route }) => {
   const { id } = route.params;
   const [user, setUser] = React.useState([]);
   const navigation = useNavigation();
-  //   const { rating } = this.props;
-
-  //  <Rating
-  //   imageSize={20}
-  //   readonly
-  //   startingValue={rating}
-  // //   style={{ styles.rating }}
-  // />
-
-  //   ratingCompleted(rating); {
-  //     console.log("Rating is: " + rating)
-  //   }
-
-  //   const WATER_IMAGE = require("./water.png");
 
   React.useEffect(() => {
     db.collection("Users")
@@ -71,7 +56,7 @@ const ViewWorker = ({ route }) => {
         <View style={styles.reviewContainer}>
           <Text style={styles.title}>Customer reviews</Text>
           <View style={styles.totalWrap}>
-            <Text>4.7 out of 5</Text>
+            <Text>{user?.Rating} out of 5</Text>
           </View>
           <Text style={styles.amountText}>40 customer ratings</Text>
 
@@ -85,7 +70,7 @@ const ViewWorker = ({ route }) => {
       </View>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
-          onPress={() => navigation.replace("Contract")}
+          onPress={() => navigation.replace("Contract", { id: id })}
           style={styles.buttonOutlineOffer}
         >
           <Text style={styles.buttonText}>Send Offer</Text>

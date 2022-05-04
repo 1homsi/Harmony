@@ -14,7 +14,6 @@ import Profile from './src/screens/Profile';
 import History from './src/screens/History';
 import Notifications from './src/screens/Notifications';
 import ViewWorker from './src/screens/ViewWorker';
-import Delivery from './src/screens/Services-Screens/Delivery';
 import Maintenance from './src/screens/Services-Screens/Maintenance';
 import HomeCare from './src/screens/Services-Screens/HomeCare';
 import HomeDesign from './src/screens/Services-Screens/HomeDesign';
@@ -22,10 +21,9 @@ import CareTaking from './src/screens/Services-Screens/CareTaking';
 import Tutoring from './src/screens/Services-Screens/Tutoring';
 import { Provider as PaperProvider } from "react-native-paper"
 import Contract from './src/screens/Contract';
-
+import MainServ from './src/screens/Services-Screens/MainServ';
 
 import * as ImagePicker from "expo-image-picker"
-
 
 const Stack = createNativeStackNavigator();
 
@@ -60,13 +58,13 @@ export default function App() {
             <Stack.Screen name="History" component={History} />
             <Stack.Screen name="Notifications" component={Notifications} />
             <Stack.Screen name="Worker" component={ViewWorker} />
-            <Stack.Screen name="Delivery" component={Delivery} />
             <Stack.Screen name="Maintenance" component={Maintenance} />
             <Stack.Screen name="HomeCare" component={HomeCare} />
             <Stack.Screen name="HomeDesign" component={HomeDesign} />
             <Stack.Screen name="CareTaking" component={CareTaking} />
             <Stack.Screen name="Tutoring" component={Tutoring} />
             <Stack.Screen name="Contract" component={Contract} />
+            <Stack.Screen name="MainServ" component={MainServ} />
           </Stack.Navigator>
         </NavigationContainer>
         <StatusBar style="auto" />

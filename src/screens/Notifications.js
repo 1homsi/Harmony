@@ -2,38 +2,55 @@ import { StyleSheet, Text, SafeAreaView } from 'react-native'
 import React from 'react'
 import { useNavigation } from "@react-navigation/native";
 import {
-  RefreshControl,
-  TouchableOpacity,
-  View,
-  Image,
-  ImageBackground,
-  FlatList,
+    TouchableOpacity,
+    View,
+    FlatList,
 } from "react-native";
 import Items from "../components/Items";
 import { auth, db } from "../../firebase";
 import BottomNav from "../components/BottomNav";
-import { Icon } from 'react-native-elements';
 
 const Notifications = () => {
+    const [data, setData] = React.useState([]);
+
+    React.useEffect(() => {
+        db.collection("Contracts").doc(auth.currentUser?.email).collection(auth.currentUser?.email)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    let Userdata = Object.assign({ id: doc.id }, doc.data());
+                    setData((e) => [...e, Userdata]);
+                    console.log(doc.data());
+                });
+            }).catch((error) => {
+                console.log("Error getting documents: ", error);
+            });
+        return () => {
+            setData();
+        };
+    }, []);
+
     return (
         <SafeAreaView style={styles.Area}>
             <View>
                 <Text style={styles.HeadTitlte}>Notifications</Text>
             </View>
 
-            <View style={styles.Content}>
-                <View style={styles.Card}>
-                    <View style={styles.CatImage}>
 
-                    </View>
-                    <View>
-                    <Text style={styles.HistoryDetails}>
-                        details details details
-                    </Text>
-                    </View>
-                    
-                </View>
-                
+            <View style={styles.ListView}>
+                <FlatList
+                    style={styles.list}
+                    data={data}
+                    renderItem={({ item }) => (
+                        <Items id={item.id} title={item.Name} img={item.Image} Bio={item.Bio} />
+                    )}
+                    keyExtractor={(item, index) => index.toString()}
+                />
+            </View>
+
+
+
+            <View>
                 <TouchableOpacity >
                     <Text style={styles.ClearBtn}>
                         Clear All
@@ -42,25 +59,37 @@ const Notifications = () => {
             </View>
             <BottomNav />
 
-        </SafeAreaView>
+        </SafeAreaView >
     )
 }
 
 export default Notifications
 
 const styles = StyleSheet.create({
+
+    ListView: {
+        width: "100%",
+        marginTop: 120,
+        alignContent: "center",
+        justifyContent: "center",
+        flex: 1,
+        marginLeft: "15%",
+    },
+    list: {
+        width: "100%",
+    },
     Area: {
         flex: 1,
         alignItems: "center",
         backgroundColor: "#f5f5f5",
-        
+
     },
     HeadTitlte: {
         fontSize: 30,
         color: "#000",
         textAlign: "center",
         marginTop: "12%",
-       
+
     },
     HistoryDetails: {
         fontSize: 20,

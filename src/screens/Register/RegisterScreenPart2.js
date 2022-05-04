@@ -49,7 +49,6 @@ const RegisterScreenPart2 = ({ route }) => {
                         Location: location,
                         Credit: 0,
                         Image: "",
-                        status: "free",
                     })
 
                     auth
@@ -72,6 +71,7 @@ const RegisterScreenPart2 = ({ route }) => {
                             Phone: phone,
                             Occupation: occupation,
                             SubService: subService,
+                            Worker: true,
                             Bio: "",
                             Rating: 0,
                             Busy: false,
@@ -231,13 +231,27 @@ const RegisterScreenPart2 = ({ route }) => {
                                 style={styles.picker}
                                 onValueChange={(itemValue, itemIndex) => setSubService(itemValue)}
                             >
-                                <Picker.Item label="Maintenance" value="Maintenance" />
-                                <Picker.Item label="Home Design" value="Home Design" />
-                                <Picker.Item label="Home Care" value="Home Care" />
-                                <Picker.Item label="Health care" value="Health care" />
-                                <Picker.Item label="Delivery" value="Delivery" />
-                                <Picker.Item label="Cars" value="Cars" />
-                                <Picker.Item label="Tutoring" value="Tutoring" />
+                                <Picker.Item label="electricians" value="electricians" />
+                                <Picker.Item label="plumbers" value="plumbers" />
+                                <Picker.Item label="carpenters" value="carpenters" />
+                                <Picker.Item label="handymen" value="handymen" />
+                                <Picker.Item label="elderly caretaker" value="elderly caretaker" />
+                                <Picker.Item label="Nurse" value="Nurse" />
+                                <Picker.Item label="physiotherapists" value="physiotherapists" />
+                                <Picker.Item label="Painter" value="Painter" />
+                                <Picker.Item label="tile workers" value="tile workers" />
+                                <Picker.Item label="interiors designers" value="interiors designers" />
+                                <Picker.Item label="gardeners" value="gardeners" />
+                                <Picker.Item label="cleaners" value="cleaners" />
+                                <Picker.Item label="housekeepers" value="housekeepers" />
+                                <Picker.Item label="pre-k tutors" value="pre-k tutors" />
+                                <Picker.Item label="elementary tutors" value="elementary tutors" />
+                                <Picker.Item label="subject tutors" value="subject tutors" />
+                                <Picker.Item label="general tutors" value="general tutors" />
+                                <Picker.Item label="homework helpers" value="homework helpers" />
+                                <Picker.Item label="car washers" value="car washers" />
+                                <Picker.Item label="mechanics" value="mechanics" />
+                                <Picker.Item label="Driver" value="Driver" />
                             </Picker>
                         </View>
                     </View>

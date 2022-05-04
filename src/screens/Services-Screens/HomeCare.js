@@ -14,12 +14,12 @@ const HomeCare = () => {
       </View>
       <View style={styles.container}>
         <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "cleaners" })
+          }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Sub-Service 1</Text>
+          <Text style={styles.buttonText}>Cleaner</Text>
           <Icon
             style={styles.icon}
             color="gray"
@@ -29,27 +29,12 @@ const HomeCare = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "housekeepers" })
+          }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Sub-Service 2</Text>
-          <Icon
-            style={styles.icon}
-            color="gray"
-            name="keyboard-arrow-right"
-            type="materialicons"
-            size={35}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Sub-Service 3</Text>
+          <Text style={styles.buttonText}>House Keeper</Text>
           <Icon
             style={styles.icon}
             color="gray"

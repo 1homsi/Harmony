@@ -5,163 +5,104 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-// import { TextInput } from "react-native-paper";
-import DatePicker from "react-native-datepicker";
-import TimePicker from "react-native-simple-time-picker";
-// import { FlatList } from "react-native-web";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { auth, db } from "../../firebase";
 
-const Contract = () => {
-  // const [time, setTime] = useState("");
-  // const [showDatePicker, setShowDatePicker] = useState(false);
-
-  // const openDatePicker = () => {
-  //   setShowDatePicker(true);
-  // };
-
-  // const onCancel = () => {
-  //   // You should close the modal in here
-  //   setShowDatePicker(false);
-  // };
-
-  // const onConfirm = (date) => {
-  //   // You should close the modal in here
-  //   setShowDatePicker(false);
-
-  //   // The parameter 'date' is a Date object so that you can use any Date prototype method.
-  //   console.log(date.getDate());
-  // };
-  
+const Contract = ({ route }) => {
+  const { id } = route.params;
+  const [data, setData] = React.useState()
   const navigation = useNavigation();
-  const [date, setDate] = useState("09-10-2021");
-  const [selectedHours, setSelectedHours] = useState(0);
-  const [selectedMinutes, setSelectedMinutes] = useState(0);
+
+  const [details, setDetails] = useState("");
+  const [price, setPrice] = useState("");
+  const [notes, setNotes] = useState("");
+
+
+
+  React.useEffect(() => {
+    db.collection("Users")
+      .doc(auth.currentUser?.email)
+      .get()
+      .then((doc) => {
+        setData(doc.data());
+      });
+    return () => {
+      setData("");
+    };
+  }, []);
+
+  const handleContract = () => {
+    db.collection("Contracts").doc(id).collection(auth.currentUser?.email).doc().set({
+      //TODO: Fix name email and location
+      Name: "",
+      Email: "",
+      Location: "",
+      Notes: notes,
+      Price: price,
+      Details: details,
+    })
+    navigation.replace("Home")
+  };
+
 
   return (
-    <SafeAreaView style={styles.bigMain}>
+    <SafeAreaView style={styles.bigMain} >
       <View style={styles.topNav}>
         <Text style={styles.title}>Service Form</Text>
       </View>
-      <View style={styles.form}>
-        <View style={styles.input}>
-          <Text style={styles.text}>Service Details</Text>
-          <TextInput
-            style={{ height: 40 }}
-            placeholder="Enter service details"
-            // onChangeText={(newText) => setText(newText)}
-            //   defaultValue={text}
-          />
-        </View>
-        <View style={styles.input}>
-          <Text style={styles.text}>Price</Text>
-          <TextInput
-            style={{ height: 40 }}
-            placeholder="Enter service details"
-            // onChangeText={(newText) => setText(newText)}
-            //   defaultValue={text}
-          />
-        </View>
-        <View style={styles.input}>
-          <Text style={styles.text}>Date</Text>
-          {/* <DatePicker
-          options={{
-            backgroundColor: "#090C08",
-            textHeaderColor: "#FFA25B",
-            textDefaultColor: "#F6E7C1",
-            selectedTextColor: "#fff",
-            mainColor: "#F4722B",
-            textSecondaryColor: "#D6C7A1",
-            borderColor: "rgba(122, 146, 165, 0.1)",
-          }}
-          current="2020-07-13"
-          selected="2020-07-23"
-          mode="calendar"
-          minuteInterval={30}
-          style={styles.datePicker}
-        /> */}
-          <View style={styles.container}>
-            <DatePicker
-              style={styles.datePickerStyle}
-              date={date}
-              mode="date"
-              placeholder="select date"
-              format="DD/MM/YYYY"
-              minDate="01-01-1900"
-              maxDate="01-01-2000"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              customStyles={{
-                dateIcon: {
-                  position: "absolute",
-                  right: -5,
-                  top: 4,
-                  marginLeft: 0,
-                },
-                dateInput: {
-                  borderColor: "gray",
-                  alignItems: "flex-start",
-                  borderWidth: 0,
-                  borderBottomWidth: 1,
-                },
-                placeholderText: {
-                  fontSize: 17,
-                  color: "gray",
-                },
-                dateText: {
-                  fontSize: 17,
-                },
-              }}
-              onDateChange={(date) => {
-                setDate(date);
-              }}
+      <ScrollView>
+        <View style={styles.form}>
+          <View style={styles.input}>
+            <Text style={styles.text}>Service Details</Text>
+            <TextInput
+              style={{ height: 40 }}
+              placeholder="Enter service details"
+              value={details}
+              onChangeText={(text) => setDetails(text)}
+            />
+          </View>
+          <View style={styles.input}>
+            <Text style={styles.text}>Price</Text>
+            <TextInput
+              style={{ height: 40 }}
+              placeholder="Enter suggested price"
+              value={price}
+              onChangeText={(text) => setPrice(text)}
+            />
+          </View>
+          <View style={styles.input}>
+            <Text style={styles.text}>Notes</Text>
+            <TextInput
+              style={{ height: 40 }}
+              placeholder="Enter Extra Notes"
+              value={notes}
+              onChangeText={(text) => setNotes(text)}
             />
           </View>
         </View>
-        <View style={styles.input}>
-          <Text style={styles.text}>Time</Text>
-          <Text>
-            Selected Time: {selectedHours}:{selectedMinutes}
-          </Text>
-          {/* <TimePicker
-          selectedHours={selectedHours}
-          //initial Hourse value
-          selectedMinutes={selectedMinutes}
-          //initial Minutes value
-          onChange={(hours, minutes) => {
-            setSelectedHours(hours);
-            setSelectedMinutes(minutes);
-          }}
-        /> */}
-        </View>
-        <View style={styles.input}>
-          <Text style={styles.text}>Worthy Notes</Text>
-          <TextInput
-            style={{ height: 40 }}
-            placeholder="Enter your notes"
-            // onChangeText={(newText) => setText(newText)}
-            //   defaultValue={text}
-          />
-        </View>
+      </ScrollView>
+      <View>
         <View style={styles.buttonsContainer}>
-        <TouchableOpacity
-          onPress={() => navigation.replace("Home")}
-          style={styles.buttonOutline}
-        >
-          <Text style={styles.buttonText}>Back</Text>
-        </TouchableOpacity>
           <TouchableOpacity
-            // onPress={() => navigation.replace("Contract")}
+            onPress={() => navigation.replace("Home")}
+            style={styles.buttonOutline}
+          >
+            <Text style={styles.buttonText}>Back</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={styles.buttonOutlineOffer}
+            onPress={handleContract}
           >
             <Text style={styles.buttonText}>Send</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView>
+    </SafeAreaView >
   );
 };
 
@@ -237,7 +178,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     backgroundColor: "white",
-    height: "15%",
+    height: "30%",
     width: "90%",
     marginTop: 10,
     borderBottomColor: "gray",

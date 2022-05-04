@@ -17,7 +17,7 @@ import * as ImagePicker from "expo-image-picker";
 const Profile = () => {
   const [user, setUser] = React.useState([]);
   const [status, setStatus] = React.useState("");
-  const [editBio, setEditBio] = React.useState(true);
+  const [editBio, setEditBio] = React.useState(false);
   const [changed, setChanged] = React.useState("");
   const [bio, setBio] = React.useState("");
   const [ImageUrl, setImageUrl] = React.useState("");
@@ -211,7 +211,7 @@ const Profile = () => {
           <Icon
             name="edit"
             type="FontAwesome5"
-            color="#fff"
+            color="#000"
             size={25}
             onPress={() => {
               if (status == "free") {
@@ -262,7 +262,7 @@ const Profile = () => {
                 <>
                   <TextInput
                     style={styles.input}
-                    placeholder={user?.Bio == "" ? "EditBio" : bio}
+                    placeholder={user?.Bio == "" ? "EditBio" : user?.bio}
                     onChangeText={(text) => {
                       setBio(text);
                     }}
@@ -280,8 +280,8 @@ const Profile = () => {
                 onPress={() => {
                   if (editBio) {
                     setEditBio(false);
-                    handleBio();
                   } else {
+                    handleBio();
                     setEditBio(true);
                   }
                 }}
@@ -419,7 +419,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
     borderRadius: 10,
-    color: "white",
+    color: "black",
     fontWeight: "700",
   },
 });

@@ -2,11 +2,19 @@ import { StyleSheet, View, TouchableOpacity, Platform } from 'react-native'
 import React from 'react'
 import { Icon } from "react-native-elements";
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { auth } from '../../firebase';
+import { auth, db } from '../../firebase';
 
 const BottomNav = () => {
     const navigation = useNavigation();
     const route = useRoute();
+    const [data, setData] = React.useState([]);
+
+    React.useEffect(() => {
+        db.collection("Users").doc(auth.currentUser?.email).get().then(doc => {
+            setData(doc.data());
+        });
+    }, []);
+
     return (
         <View style={styles.container}>
             <View style={styles.bottomNav}>
@@ -28,7 +36,7 @@ const BottomNav = () => {
                         }}
                     />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.bottomNavItem}>
+                {/* <TouchableOpacity style={styles.bottomNavItem}>
                     <Icon
                         style={styles.icon}
                         color={route.name != "" ?
@@ -45,25 +53,30 @@ const BottomNav = () => {
                             }
                         }}
                     />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.bottomNavItem}>
-                    <Icon
-                        style={styles.icon}
-                        color={route.name != "" ?
-                            '#000' :
-                            '#89CFF0'
-                        }
-                        reverseColor
-                        name="notification"
-                        type="entypo"
-                        size={35}
-                        onPress={() => {
-                            if (route.name != "Notifications") {
-                                navigation.replace("Notifications")
+                </TouchableOpacity> */}
+                {data.Worker ?
+                    <TouchableOpacity style={styles.bottomNavItem}>
+                        <Icon
+                            style={styles.icon}
+                            color={route.name != "" ?
+                                '#000' :
+                                '#89CFF0'
                             }
-                        }}
-                    />
-                </TouchableOpacity>
+                            reverseColor
+                            name="home-repair-service"
+                            type="MaterialIcons"
+                            size={35}
+                            onPress={() => {
+                                if (route.name != "Notifications") {
+                                    navigation.replace("Notifications")
+                                }
+                            }}
+                        />
+                    </TouchableOpacity>
+                    :
+                    <></>
+                }
+
                 <View>
                     {!auth.currentUser ? (
                         <>

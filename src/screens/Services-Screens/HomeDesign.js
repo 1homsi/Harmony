@@ -14,12 +14,12 @@ const HomeDesign = () => {
       </View>
       <View style={styles.container}>
         <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "painters" })
+          }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Sub-Service 1</Text>
+          <Text style={styles.buttonText}>Painter</Text>
           <Icon
             style={styles.icon}
             color="gray"
@@ -29,12 +29,12 @@ const HomeDesign = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "tile workers" })
+          }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Sub-Service 2</Text>
+          <Text style={styles.buttonText}>tile workers</Text>
           <Icon
             style={styles.icon}
             color="gray"
@@ -44,12 +44,27 @@ const HomeDesign = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("ResetPassword", { option: "Option" })
-          // }
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "interiors designers" })
+          }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Sub-Service 3</Text>
+          <Text style={styles.buttonText}>interiors designers</Text>
+          <Icon
+            style={styles.icon}
+            color="gray"
+            name="keyboard-arrow-right"
+            type="materialicons"
+            size={35}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("MainServ", { id: "gardeners" })
+          }
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>gardeners</Text>
           <Icon
             style={styles.icon}
             color="gray"
