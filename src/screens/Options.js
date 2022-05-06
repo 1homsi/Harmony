@@ -167,6 +167,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
+    elevation: 10,
+    shadowColor: "#000",
   },
   buttonOutline: {
     backgroundColor: "gray",
@@ -177,6 +179,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
+    elevation: 10,
+    shadowColor: "#000",
   },
   buttonText: {
     color: "white",

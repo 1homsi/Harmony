@@ -206,6 +206,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1,
     marginLeft: "15%",
+    
   },
   list: {
     width: "100%",
@@ -243,6 +244,7 @@ const styles = StyleSheet.create({
     paddingBottom: 35,
     borderRadius: 100,
     marginBottom: 40,
+
   },
   topCard: {
     alignItems: "center",
@@ -276,8 +278,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
     marginBottom: -50,
+    
   },
   CatCard: {
+    elevation: 10,
+    shadowColor: "#52006A",
     alignItems: "center",
     justifyContent: "center",
     width: "30%",
