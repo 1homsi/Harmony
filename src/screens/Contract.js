@@ -15,7 +15,7 @@ import { auth, db } from "../../firebase";
 
 const Contract = ({ route }) => {
   const { id } = route.params;
-  const [data, setData] = React.useState()
+  const [data, setData] = React.useState([]);
   const navigation = useNavigation();
 
   const [details, setDetails] = useState("");
@@ -37,16 +37,15 @@ const Contract = ({ route }) => {
   }, []);
 
   const handleContract = () => {
-    db.collection("Contracts").doc(id).collection(auth.currentUser?.email).doc().set({
-      //TODO: Fix name email and location
+    db.collection("Contracts").doc(auth.currentUser?.email).collection(auth.currentUser?.email).doc(id).set({
       Name: "",
       Email: "",
       Location: "",
       Notes: notes,
       Price: price,
       Details: details,
-    })
-    navigation.replace("Home")
+    });
+    navigation.replace("Home");
   };
 
 

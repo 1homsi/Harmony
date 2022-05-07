@@ -16,9 +16,6 @@ import { Icon } from "react-native-elements";
 
 const History = () => {
   return (
-    
-
-    
     <SafeAreaView style={styles.Area}>
       <View style={styles.Top}>
         <View>
@@ -41,7 +38,7 @@ const History = () => {
         </View>
       </View>
       {/* <View style={styles.Nav}> */}
-        <BottomNav />
+      <BottomNav />
       {/* </View> */}
     </SafeAreaView>
   );
@@ -98,7 +95,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     marginRight: "5%",
-    },
+  },
   CatImage: {
     width: "20%",
     height: "70%",

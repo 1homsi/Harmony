@@ -11,7 +11,6 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Icon, SearchBar } from "react-native-elements";
 import BottomNav from "../../components/BottomNav";
-import { useState, useEffect } from 'react';
 
 const Maintenance = () => {
   const navigation = useNavigation();

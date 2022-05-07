@@ -1,5 +1,5 @@
-import { StyleSheet, Text, SafeAreaView } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import React from 'react';
 import { useNavigation } from "@react-navigation/native";
 import {
     TouchableOpacity,
@@ -12,19 +12,25 @@ import BottomNav from "../components/BottomNav";
 
 const Notifications = () => {
     const [data, setData] = React.useState([]);
+    const navigation = useNavigation();
 
     React.useEffect(() => {
-        db.collection("Contracts").doc(auth.currentUser?.email).collection(auth.currentUser?.email)
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    let Userdata = Object.assign({ id: doc.id }, doc.data());
-                    setData((e) => [...e, Userdata]);
-                    console.log(doc.data());
-                });
-            }).catch((error) => {
-                console.log("Error getting documents: ", error);
+        db.collection("Users").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                db.collection("Contracts").doc(auth.currentUser?.email).collection(doc.id)
+                    .get()
+                    .then((querySnapshot) => {
+                        querySnapshot.forEach((doc) => {
+                            let Userdata = Object.assign({ id: doc.id }, doc.data());
+                            setData((e) => [...e, Userdata]);
+                            console.log(doc.data());
+                            console.log(doc.id);
+                        });
+                    }).catch((error) => {
+                        console.log("Error getting documents: ", error);
+                    });
             });
+        });
         return () => {
             setData();
         };
@@ -35,21 +41,30 @@ const Notifications = () => {
             <View>
                 <Text style={styles.HeadTitlte}>Notifications</Text>
             </View>
-
-
             <View style={styles.ListView}>
                 <FlatList
                     style={styles.list}
                     data={data}
                     renderItem={({ item }) => (
-                        <Items id={item.id} title={item.Name} img={item.Image} Bio={item.Bio} />
+                        <View style={styles.containerItem} onPress={() => {
+                            console.log(item.id);
+                        }}>
+                            <View style={styles.innerContainer}>
+                                <Text style={styles.title}>{
+                                    item?.Name.length > 19 ? item?.Name.substring(0, 19) + "..." : item.Name
+                                }</Text>
+                                <Text style={styles.des}>{
+                                    item.Email
+                                }</Text>
+                                <Text style={styles.des}>{
+                                    item.Price
+                                }</Text>
+                            </View>
+                        </View>
                     )}
                     keyExtractor={(item, index) => index.toString()}
                 />
             </View>
-
-
-
             <View>
                 <TouchableOpacity >
                     <Text style={styles.ClearBtn}>
@@ -60,10 +75,10 @@ const Notifications = () => {
             <BottomNav />
 
         </SafeAreaView >
-    )
-}
+    );
+};
 
-export default Notifications
+export default Notifications;
 
 const styles = StyleSheet.create({
 
@@ -140,4 +155,29 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
     },
-})
+    des: {
+        width: 230
+    },
+    image: {
+        borderRadius: 10,
+        width: 85,
+        height: 85
+    },
+    containerItem: {
+        backgroundColor: '#89CFF0',
+        width: '85%',
+        height: 115,
+        padding: 15,
+        borderRadius: 10,
+        marginTop: 25,
+        flex: 1,
+        flexDirection: 'row',
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 20,
+    },
+    innerContainer: {
+        marginLeft: 15,
+    }
+});

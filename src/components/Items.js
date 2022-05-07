@@ -1,12 +1,16 @@
-import { Text, StyleSheet, TouchableOpacity, View, Image } from 'react-native'
-import React from 'react'
+import { Text, StyleSheet, TouchableOpacity, View, Image } from 'react-native';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 const Items = (props) => {
     const navigation = useNavigation();
     return (
         <TouchableOpacity style={styles.container} onPress={() => {
-            navigation.navigate("Worker", { id: props.id })
+            if (props.isNewPage) {
+                navigation.navigate("Worker", { id: props.id });
+            } else {
+                console.log(props.id);
+            }
         }}>
             {
                 props.img ? <Image
@@ -25,10 +29,10 @@ const Items = (props) => {
                 }</Text>
             </View>
         </TouchableOpacity >
-    )
-}
+    );
+};
 
-export default Items
+export default Items;
 
 const styles = StyleSheet.create({
     des: {
@@ -56,4 +60,4 @@ const styles = StyleSheet.create({
     innerContainer: {
         marginLeft: 15,
     }
-})  
+});  

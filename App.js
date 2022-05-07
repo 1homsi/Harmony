@@ -19,11 +19,12 @@ import HomeCare from './src/screens/Services-Screens/HomeCare';
 import HomeDesign from './src/screens/Services-Screens/HomeDesign';
 import CareTaking from './src/screens/Services-Screens/CareTaking';
 import Tutoring from './src/screens/Services-Screens/Tutoring';
-import { Provider as PaperProvider } from "react-native-paper"
+import { Provider as PaperProvider } from "react-native-paper";
 import Contract from './src/screens/Contract';
 import MainServ from './src/screens/Services-Screens/MainServ';
+import AdminMain from './src/screens/Admin/AdminMain';
 
-import * as ImagePicker from "expo-image-picker"
+import * as ImagePicker from "expo-image-picker";
 
 const Stack = createNativeStackNavigator();
 
@@ -65,6 +66,10 @@ export default function App() {
             <Stack.Screen name="Tutoring" component={Tutoring} />
             <Stack.Screen name="Contract" component={Contract} />
             <Stack.Screen name="MainServ" component={MainServ} />
+            <Stack.Screen name="AdminMain" component={AdminMain} options={{
+              headerShown: true,
+              headerTitle: "Admin",
+            }} />
           </Stack.Navigator>
         </NavigationContainer>
         <StatusBar style="auto" />

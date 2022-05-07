@@ -38,11 +38,11 @@ const HomeScreen = () => {
       where("Worker", "==", true)
     );
 
-    const docSnap = await getDocs(q)
+    const docSnap = await getDocs(q);
     docSnap.forEach((doc) => {
       let Userdata = Object.assign({ id: doc.id }, doc.data());
       setData((e) => [...e, Userdata]);
-    })
+    });
   };
 
   React.useEffect(() => {
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1,
     marginLeft: "15%",
-    
+
   },
   list: {
     width: "100%",
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
     marginBottom: -50,
-    
+
   },
   CatCard: {
     elevation: 10,

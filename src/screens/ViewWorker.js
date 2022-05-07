@@ -64,6 +64,7 @@ const ViewWorker = ({ route }) => {
             count={5}
             defaultRating={user?.Rating}
             size={20}
+            isDisabled
             reviews={["Terrible", "Bad", "OK", "Good", "Amazing"]}
           />
         </View>

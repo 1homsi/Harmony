@@ -22,8 +22,8 @@ export default function Option() {
       setUser(doc.data());
     });
     return () => {
-      setUser("")
-    }
+      setUser("");
+    };
   }, []);
 
   const navigation = useNavigation();
@@ -91,6 +91,15 @@ export default function Option() {
             >
               <Text style={styles.buttonText}>Change Password</Text>
             </TouchableOpacity>
+            {user.Admin ?
+              <TouchableOpacity
+                onPress={() => navigation.navigate("AdminMain")}
+                style={styles.button}
+              >
+                <Text style={styles.buttonText}>Admin Panel</Text>
+              </TouchableOpacity>
+              : <></>
+            }
             <TouchableOpacity onPress={handleSignOut} style={styles.buttonOutline}>
               <Text style={styles.buttonText}>Sign out</Text>
             </TouchableOpacity>

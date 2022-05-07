@@ -26,7 +26,6 @@ const RegisterScreenPart2 = ({ route }) => {
     const navigation = useNavigation();
     const [subService, setSubService] = useState("");
 
-
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
@@ -49,6 +48,7 @@ const RegisterScreenPart2 = ({ route }) => {
                         Location: location,
                         Credit: 0,
                         Image: "",
+                        Worker: false,
                     })
 
                     auth
