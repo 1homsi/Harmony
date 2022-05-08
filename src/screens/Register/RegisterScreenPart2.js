@@ -7,11 +7,11 @@ import {
     TextInput,
     TouchableOpacity,
     Platform
-} from 'react-native'
-import { Picker } from '@react-native-picker/picker'
-import { useNavigation } from '@react-navigation/native'
-import React, { useEffect, useState } from 'react'
-import { auth, db } from '../../../firebase'
+} from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { auth, db } from '../../../firebase';
 
 const RegisterScreenPart2 = ({ route }) => {
     const { option } = route.params;
@@ -49,7 +49,7 @@ const RegisterScreenPart2 = ({ route }) => {
                         Credit: 0,
                         Image: "",
                         Worker: false,
-                    })
+                    });
 
                     auth
                         .createUserWithEmailAndPassword(email, password)
@@ -58,7 +58,7 @@ const RegisterScreenPart2 = ({ route }) => {
                             auth.signOut()
                                 .then(() => {
                                     navigation.replace("Login");
-                                })
+                                });
                         })
                         .catch((error) => alert(error.message));
                 }
@@ -77,7 +77,7 @@ const RegisterScreenPart2 = ({ route }) => {
                             Busy: false,
                             Image: "",
                             status: "free",
-                        })
+                        });
 
                         auth
                             .createUserWithEmailAndPassword(email, password)
@@ -86,7 +86,7 @@ const RegisterScreenPart2 = ({ route }) => {
                                 auth.signOut()
                                     .then(() => {
                                         navigation.replace("Login");
-                                    })
+                                    });
                             })
                             .catch((error) => alert(error.message));
                     }
@@ -231,27 +231,64 @@ const RegisterScreenPart2 = ({ route }) => {
                                 style={styles.picker}
                                 onValueChange={(itemValue, itemIndex) => setSubService(itemValue)}
                             >
-                                <Picker.Item label="electricians" value="electricians" />
-                                <Picker.Item label="plumbers" value="plumbers" />
-                                <Picker.Item label="carpenters" value="carpenters" />
-                                <Picker.Item label="handymen" value="handymen" />
-                                <Picker.Item label="elderly caretaker" value="elderly caretaker" />
-                                <Picker.Item label="Nurse" value="Nurse" />
-                                <Picker.Item label="physiotherapists" value="physiotherapists" />
-                                <Picker.Item label="Painter" value="Painter" />
-                                <Picker.Item label="tile workers" value="tile workers" />
-                                <Picker.Item label="interiors designers" value="interiors designers" />
-                                <Picker.Item label="gardeners" value="gardeners" />
-                                <Picker.Item label="cleaners" value="cleaners" />
-                                <Picker.Item label="housekeepers" value="housekeepers" />
-                                <Picker.Item label="pre-k tutors" value="pre-k tutors" />
-                                <Picker.Item label="elementary tutors" value="elementary tutors" />
-                                <Picker.Item label="subject tutors" value="subject tutors" />
-                                <Picker.Item label="general tutors" value="general tutors" />
-                                <Picker.Item label="homework helpers" value="homework helpers" />
-                                <Picker.Item label="car washers" value="car washers" />
-                                <Picker.Item label="mechanics" value="mechanics" />
-                                <Picker.Item label="Driver" value="Driver" />
+                                {
+                                    occupation === "Maintenance" ?
+                                        <>
+                                            <Picker.Item label="electricians" value="electricians" />
+                                            <Picker.Item label="plumbers" value="plumbers" />
+                                            <Picker.Item label="carpenters" value="carpenters" />
+                                            <Picker.Item label="handymen" value="handymen" />
+                                        </>
+                                        : <></>
+                                }
+                                {
+                                    occupation === "Home Design" ?
+                                        <>
+                                            <Picker.Item label="Painter" value="Painter" />
+                                            <Picker.Item label="tile workers" value="tile workers" />
+                                            <Picker.Item label="interiors designers" value="interiors designers" />
+                                            <Picker.Item label="gardeners" value="gardeners" />
+                                        </> : <></>
+                                }
+                                {
+                                    occupation === "Home Care" ?
+                                        <>
+                                            <Picker.Item label="cleaners" value="cleaners" />
+                                            <Picker.Item label="housekeepers" value="housekeepers" />
+                                        </> : <></>
+                                }
+                                {
+                                    occupation === "Health care" ?
+                                        <>
+                                            <Picker.Item label="elderly caretaker" value="elderly caretaker" />
+                                            <Picker.Item label="Nurse" value="Nurse" />
+                                            <Picker.Item label="physiotherapists" value="physiotherapists" />
+                                        </> : <></>
+                                }
+                                {
+                                    occupation === "Delivery" ?
+                                        <>
+                                            <Picker.Item label="Driver" value="Driver" />
+                                        </>
+                                        : <></>
+                                }
+                                {
+                                    occupation === "Cars" ?
+                                        <>
+                                            <Picker.Item label="car washers" value="car washers" />
+                                            <Picker.Item label="mechanics" value="mechanics" />
+                                        </> : <></>
+                                }
+                                {
+                                    occupation === "Tutoring" ?
+                                        <>
+                                            <Picker.Item label="pre-k tutors" value="pre-k tutors" />
+                                            <Picker.Item label="elementary tutors" value="elementary tutors" />
+                                            <Picker.Item label="subject tutors" value="subject tutors" />
+                                            <Picker.Item label="general tutors" value="general tutors" />
+                                            <Picker.Item label="homework helpers" value="homework helpers" />
+                                        </> : <></>
+                                }
                             </Picker>
                         </View>
                     </View>
@@ -271,10 +308,10 @@ const RegisterScreenPart2 = ({ route }) => {
                 Already a user?
             </Text>
         </KeyboardAvoidingView >
-    )
-}
+    );
+};
 
-export default RegisterScreenPart2
+export default RegisterScreenPart2;
 
 const styles = StyleSheet.create({
     HeaderImage: {
@@ -346,4 +383,4 @@ const styles = StyleSheet.create({
     PickerContainerBottom: {
         top: -6,
     },
-})
+});

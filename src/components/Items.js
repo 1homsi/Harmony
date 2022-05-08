@@ -7,7 +7,7 @@ const Items = (props) => {
     return (
         <TouchableOpacity style={styles.container} onPress={() => {
             if (props.isNewPage) {
-                navigation.navigate("Worker", { id: props.id });
+                navigation.replace("Worker", { id: props.id });
             } else {
                 console.log(props.id);
             }

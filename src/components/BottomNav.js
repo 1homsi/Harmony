@@ -1,7 +1,7 @@
-import { StyleSheet, View, TouchableOpacity, Platform } from 'react-native'
-import React from 'react'
+import { StyleSheet, View, TouchableOpacity, Platform } from 'react-native';
+import React from 'react';
 import { Icon } from "react-native-elements";
-import { useNavigation, useRoute } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { auth, db } from '../../firebase';
 
 const BottomNav = () => {
@@ -31,29 +31,11 @@ const BottomNav = () => {
                         size={35}
                         onPress={() => {
                             if (route.name != "Home") {
-                                navigation.replace("Home")
+                                navigation.replace("Home");
                             }
                         }}
                     />
                 </TouchableOpacity>
-                {/* <TouchableOpacity style={styles.bottomNavItem}>
-                    <Icon
-                        style={styles.icon}
-                        color={route.name != "" ?
-                            '#000' :
-                            '#89CFF0'
-                        }
-                        reverseColor
-                        name="history"
-                        type="octicons"
-                        size={35}
-                        onPress={() => {
-                            if (route.name != "Hisoty") {
-                                navigation.replace("History")
-                            }
-                        }}
-                    />
-                </TouchableOpacity> */}
                 {data.Worker ?
                     <TouchableOpacity style={styles.bottomNavItem}>
                         <Icon
@@ -68,15 +50,31 @@ const BottomNav = () => {
                             size={35}
                             onPress={() => {
                                 if (route.name != "Notifications") {
-                                    navigation.replace("Notifications")
+                                    navigation.replace("Notifications");
                                 }
                             }}
                         />
                     </TouchableOpacity>
                     :
-                    <></>
+                    <>
+                        <TouchableOpacity style={styles.bottomNavItem}>
+                            <Icon
+                                style={styles.icon}
+                                color={route.name != "" ?
+                                    '#000' :
+                                    '#89CFF0'
+                                }
+                                reverseColor
+                                name="notifications"
+                                type="Ionicons"
+                                size={35}
+                                onPress={() => {
+                                    navigation.replace("Accepted");
+                                }}
+                            />
+                        </TouchableOpacity>
+                    </>
                 }
-
                 <View>
                     {!auth.currentUser ? (
                         <>
@@ -111,10 +109,10 @@ const BottomNav = () => {
             </View>
             { }
         </View >
-    )
-}
+    );
+};
 
-export default BottomNav
+export default BottomNav;
 
 const styles = StyleSheet.create({
     container: {
@@ -168,4 +166,4 @@ const styles = StyleSheet.create({
         color: "black",
         color: "white",
     }
-})
+});

@@ -10,68 +10,30 @@ import Items from "../components/Items";
 import { auth, db } from "../../firebase";
 import BottomNav from "../components/BottomNav";
 import { Icon } from 'react-native-elements';
-import { query, collection, where, getDocs } from "firebase/firestore";
 
-
-const Notifications = () => {
+const DisplayAccepted = () => {
     const [data, setData] = React.useState([]);
     const navigation = useNavigation();
 
-
-
-    const fetchAll = async () => {
-        const Collection = db.collection("Contracts").doc(auth.currentUser?.email);
+    React.useEffect(() => {
         db.collection("Users").get().then((querySnapshot) => {
-            querySnapshot.forEach(async (document) => {
-                const q = query(
-                    collection(Collection, document.id),
-                    where("Done", "==", false),
-                );
-                const docSnap = await getDocs(q);
-                docSnap.forEach((document) => {
-                    let Userdata = Object.assign({ id: document.id }, document.data());
-                    setData((e) => [...e, Userdata]);
-                    console.log(Userdata);
-                });
+            querySnapshot.forEach((doc) => {
+                db.collection("Contracts").doc(auth.currentUser?.email).collection(doc.id)
+                    .get()
+                    .then((querySnapshot) => {
+                        querySnapshot.forEach((doc) => {
+                            let Userdata = Object.assign({ id: doc.id }, doc.data());
+                            setData((e) => [...e, Userdata]);
+                        });
+                    }).catch((error) => {
+                        console.log("Error getting documents: ", error);
+                    });
             });
         });
-    };
-
-    React.useEffect(() => {
-        fetchAll();
-
         return () => {
             setData();
         };
     }, []);
-
-
-    const handleAccepted = async (id) => {
-        db.collection("Users").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                db.collection("Contracts").doc(auth.currentUser?.email).collection(doc.id).doc(id).update({
-                    Accepted: true
-                }).then(() => {
-                    setData([]);
-                    fetchAll();
-                }
-                );
-            });
-        });
-    };
-
-    const handleRejected = async (id) => {
-        db.collection("Users").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                db.collection("Contracts").doc(auth.currentUser?.email).collection(doc.id).doc(id).delete().then(() => {
-                    setData([]);
-                    fetchAll();
-                }
-                );
-            });
-        });
-    };
-
 
     return (
         <SafeAreaView style={styles.Area}>
@@ -97,30 +59,13 @@ const Notifications = () => {
                                     item.Price
                                 }</Text>
                             </View>
-                            {
-                                !item.Accepted ?
-                                    <TouchableOpacity onPress={handleAccepted(item.id)}>
-                                        <Icon
-                                            name="check"
-                                            type="font-awesome"
-                                            size={20}
-                                            color="#000"
-                                            style={styles.icon}
-                                        />
-                                    </TouchableOpacity>
-                                    : <></>
-                            }
-                            <TouchableOpacity onPress={handleRejected(item.id)}>
-                                <Icon
-                                    name="cancel"
-                                    type="MaterialIcons"
-                                    size={20}
-                                    color="#000"
-                                    style={styles.icon}
-                                />
-                            </TouchableOpacity>
-
-
+                            <Icon
+                                name="check"
+                                type="font-awesome"
+                                size={20}
+                                color="#000"
+                                style={styles.icon}
+                            />
                         </View>
                     )}
                     keyExtractor={(item, index) => index.toString()}
@@ -139,7 +84,7 @@ const Notifications = () => {
     );
 };
 
-export default Notifications;
+export default DisplayAccepted;
 
 const styles = StyleSheet.create({
 

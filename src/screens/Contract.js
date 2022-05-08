@@ -38,12 +38,13 @@ const Contract = ({ route }) => {
 
   const handleContract = () => {
     db.collection("Contracts").doc(auth.currentUser?.email).collection(auth.currentUser?.email).doc(id).set({
-      Name: "",
-      Email: "",
-      Location: "",
+      Name: data.Name,
+      Email: auth.currentUser.email,
       Notes: notes,
       Price: price,
       Details: details,
+      Accepted: false,
+      Done: false,
     });
     navigation.replace("Home");
   };

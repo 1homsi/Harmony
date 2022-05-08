@@ -23,6 +23,7 @@ import { Provider as PaperProvider } from "react-native-paper";
 import Contract from './src/screens/Contract';
 import MainServ from './src/screens/Services-Screens/MainServ';
 import AdminMain from './src/screens/Admin/AdminMain';
+import DisplayAccepted from './src/screens/DisplayAccepted';
 
 import * as ImagePicker from "expo-image-picker";
 
@@ -66,6 +67,7 @@ export default function App() {
             <Stack.Screen name="Tutoring" component={Tutoring} />
             <Stack.Screen name="Contract" component={Contract} />
             <Stack.Screen name="MainServ" component={MainServ} />
+            <Stack.Screen name="Accepted" component={DisplayAccepted} />
             <Stack.Screen name="AdminMain" component={AdminMain} options={{
               headerShown: true,
               headerTitle: "Admin",
