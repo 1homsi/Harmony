@@ -20,9 +20,9 @@ const Notifications = () => {
 
 
     const fetchAll = async () => {
-        const Collection = db.collection("Contracts").doc(auth.currentUser?.email);
         db.collection("Users").get().then((querySnapshot) => {
             querySnapshot.forEach(async (document) => {
+                const Collection = db.collection("Contracts").doc(document.id);
                 const q = query(
                     collection(Collection, document.id),
                     where("Done", "==", false),
@@ -49,7 +49,7 @@ const Notifications = () => {
     const handleAccepted = async (id) => {
         db.collection("Users").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                db.collection("Contracts").doc(auth.currentUser?.email).collection(doc.id).doc(id).update({
+                db.collection("Contracts").doc(doc.id).collection(doc.id).doc(id).update({
                     Accepted: true
                 }).then(() => {
                     setData([]);
@@ -63,7 +63,7 @@ const Notifications = () => {
     const handleRejected = async (id) => {
         db.collection("Users").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                db.collection("Contracts").doc(auth.currentUser?.email).collection(doc.id).doc(id).delete().then(() => {
+                db.collection("Contracts").doc(doc.id).collection(doc.id).doc(id).delete().then(() => {
                     setData([]);
                     fetchAll();
                 }
@@ -110,7 +110,7 @@ const Notifications = () => {
                                     </TouchableOpacity>
                                     : <></>
                             }
-                            <TouchableOpacity onPress={handleRejected(item.id)}>
+                            {/* <TouchableOpacity onPress={handleRejected(item.id)}>
                                 <Icon
                                     name="cancel"
                                     type="MaterialIcons"
@@ -118,7 +118,7 @@ const Notifications = () => {
                                     color="#000"
                                     style={styles.icon}
                                 />
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
 
 
                         </View>

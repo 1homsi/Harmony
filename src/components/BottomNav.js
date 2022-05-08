@@ -36,7 +36,7 @@ const BottomNav = () => {
                         }}
                     />
                 </TouchableOpacity>
-                {data.Worker ?
+                {data?.Worker ?
                     <TouchableOpacity style={styles.bottomNavItem}>
                         <Icon
                             style={styles.icon}

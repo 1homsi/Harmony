@@ -17,12 +17,9 @@ const Contract = ({ route }) => {
   const { id } = route.params;
   const [data, setData] = React.useState([]);
   const navigation = useNavigation();
-
   const [details, setDetails] = useState("");
   const [price, setPrice] = useState("");
   const [notes, setNotes] = useState("");
-
-
 
   React.useEffect(() => {
     db.collection("Users")
@@ -38,7 +35,7 @@ const Contract = ({ route }) => {
 
   const handleContract = () => {
     db.collection("Contracts").doc(auth.currentUser?.email).collection(auth.currentUser?.email).doc(id).set({
-      Name: data.Name,
+      Name: data?.Name || "",
       Email: auth.currentUser.email,
       Notes: notes,
       Price: price,
@@ -48,7 +45,6 @@ const Contract = ({ route }) => {
     });
     navigation.replace("Home");
   };
-
 
   return (
     <SafeAreaView style={styles.bigMain} >
