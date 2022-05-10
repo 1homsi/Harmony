@@ -154,7 +154,7 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.ListView}>
+      {/* <View style={styles.ListView}>
         <FlatList
           refreshControl={
             <RefreshControl
@@ -170,7 +170,7 @@ const HomeScreen = () => {
           )}
           keyExtractor={(item, index) => index.toString()}
         />
-      </View>
+      </View> */}
       <BottomNav />
     </SafeAreaView>
   );
