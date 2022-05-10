@@ -49,7 +49,7 @@ const CareTaking = () => {
           }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>physiotherapists</Text>
+          <Text style={styles.buttonText}>Physiotherapists</Text>
           <Icon
             style={styles.icon}
             color="gray"

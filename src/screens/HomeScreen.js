@@ -70,7 +70,7 @@ const HomeScreen = () => {
       </View>
       <View style={styles.Cat}>
         <Text>
-          <Text style={styles.CatTitle}>Categories</Text>
+          <Text style={styles.CatTitle}>Services</Text>
         </Text>
         <View style={styles.CatContainer}>
           <TouchableOpacity
@@ -111,7 +111,7 @@ const HomeScreen = () => {
               <Text style={styles.text}>Home Design</Text>
             </ImageBackground>
           </TouchableOpacity>
-       
+
           <TouchableOpacity
             style={styles.CatCard}
             onPress={() => navigation.replace("CareTaking")}
@@ -123,7 +123,7 @@ const HomeScreen = () => {
             >
               <Text style={styles.text}>Care Taking</Text>
             </ImageBackground>
-          </TouchableOpacity> 
+          </TouchableOpacity>
         </View>
         <View style={styles.CatContainer}>
           <TouchableOpacity
@@ -155,6 +155,7 @@ const HomeScreen = () => {
         <View style={styles.CatContainer}>
           <TouchableOpacity
             style={styles.CatCard}
+            onPress={() => navigation.replace("CarService")}
             resizeMode="cover"
           >
             <ImageBackground
@@ -162,7 +163,7 @@ const HomeScreen = () => {
               resizeMode="cover"
               style={styles.CatImage}
             >
-              <Text style={styles.text}>Delivery</Text>
+              <Text style={styles.text}>Car Service</Text>
             </ImageBackground>
           </TouchableOpacity>
         </View>
@@ -184,7 +185,9 @@ const HomeScreen = () => {
           keyExtractor={(item, index) => index.toString()}
         />
       </View> */}
-      <BottomNav />
+      <View style={styles.bottomNav}>
+        <BottomNav />
+      </View>
     </SafeAreaView>
   );
 };
@@ -202,11 +205,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "800",
     color: "#000",
+    // marginTop: 100,
   },
   Top: {
     flexDirection: "row",
     textAlign: "center",
-    marginBottom: 0,
+    marginBottom: 20,
     marginTop: 30,
     paddingBottom: 10,
     paddingTop: 10,
@@ -218,7 +222,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1,
     marginLeft: "15%",
-
   },
   list: {
     width: "100%",
@@ -255,7 +258,6 @@ const styles = StyleSheet.create({
     paddingBottom: 35,
     borderRadius: 100,
     marginBottom: 40,
-
   },
   topCard: {
     alignItems: "center",
@@ -290,7 +292,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: -70,
     marginLeft: -50,
-
   },
   CatCard: {
     elevation: 10,
@@ -304,7 +305,6 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginBottom: 40,
     marginLeft: "10%",
-   
   },
 
   // CatCardOne: {
@@ -326,7 +326,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
-    marginBottom: 270,
+    marginBottom: 500,
   },
 
   CatImage: {
@@ -342,6 +342,13 @@ const styles = StyleSheet.create({
     lineHeight: 50,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: "52%",
+    marginTop: "55%",
+  },
+  bottomNav: {
+    justifyContent: "space-around",
+    height: 600,
+    width: "100%",
+    position: "absolute",
+    marginTop: "120%",
   },
 });

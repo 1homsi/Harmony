@@ -5,21 +5,21 @@ import { Icon } from "react-native-elements";
 import { db } from "../../../firebase";
 import BottomNav from "../../components/BottomNav";
 
-const HomeDesign = () => {
+const CarService = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.bigMain}>
       <View style={styles.topNav}>
-        <Text style={styles.title}>Home Design</Text>
+        <Text style={styles.title}>Car Service</Text>
       </View>
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("MainServ", { id: "painters" })
+            navigation.navigate("MainServ", { id: "car washers" })
           }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Painter</Text>
+          <Text style={styles.buttonText}>Car Washers</Text>
           <Icon
             style={styles.icon}
             color="gray"
@@ -30,41 +30,11 @@ const HomeDesign = () => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("MainServ", { id: "tile workers" })
+            navigation.navigate("MainServ", { id: "mechanics" })
           }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Tile Workers</Text>
-          <Icon
-            style={styles.icon}
-            color="gray"
-            name="keyboard-arrow-right"
-            type="materialicons"
-            size={35}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("MainServ", { id: "interiors designers" })
-          }
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Interiors Designers</Text>
-          <Icon
-            style={styles.icon}
-            color="gray"
-            name="keyboard-arrow-right"
-            type="materialicons"
-            size={35}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("MainServ", { id: "gardeners" })
-          }
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Gardeners</Text>
+          <Text style={styles.buttonText}>Mechanics</Text>
           <Icon
             style={styles.icon}
             color="gray"
@@ -75,11 +45,11 @@ const HomeDesign = () => {
         </TouchableOpacity>
       </View>
       <BottomNav />
-    </SafeAreaView>
+    </SafeAreaView >
   );
 };
 
-export default HomeDesign;
+export default CarService;
 
 const styles = StyleSheet.create({
   bigMain: {
@@ -133,5 +103,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
 

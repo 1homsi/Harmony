@@ -11,7 +11,7 @@ const RegisterScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.Title}>Choose Job</Text>
+      <Text style={styles.Title}>Sign Up As:</Text>
       <TouchableOpacity
         style={styles.box}
         onPress={() => HandleOption("Worker")}

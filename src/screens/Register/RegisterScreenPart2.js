@@ -204,8 +204,16 @@ const RegisterScreenPart2 = ({ route }) => {
                                 style={styles.picker}
                                 onValueChange={(itemValue, itemIndex) => setLocation(itemValue)}
                             >
-                                <Picker.Item label="Lebanon south" value="Lebanon south" />
-                                <Picker.Item label="Lebanon north" value="Lebanon north" />
+                                <Picker.Item label="Beirut" value="Beirut" />
+                                <Picker.Item label="North Lebanon" value="North Lebanon" />
+                                <Picker.Item label="South Lebanon" value="South Lebanon" />
+                                <Picker.Item label="Mount Lebanon" value="Mount Lebanon" />
+                                <Picker.Item label="Akkar" value="Akkar" />
+                                <Picker.Item label="Baalbeck" value="Baalbeck" />
+                                <Picker.Item label="Hermel" value="Hermel" />
+                                <Picker.Item label="Bekaa" value="Bekaa" />
+                                <Picker.Item label="Nabatiyeh" value="Nabatiyeh" />
+
                             </Picker>
                         </View>
                         <View style={[styles.PickerContainerBottom, styles.input]}>

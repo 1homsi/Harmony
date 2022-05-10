@@ -19,7 +19,7 @@ const Tutoring = () => {
           }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>pre-k tutors</Text>
+          <Text style={styles.buttonText}>Pre-k Tutors</Text>
           <Icon
             style={styles.icon}
             color="gray"
@@ -34,7 +34,7 @@ const Tutoring = () => {
           }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>elementary tutors</Text>
+          <Text style={styles.buttonText}>Elementary Tutors</Text>
           <Icon
             style={styles.icon}
             color="gray"
@@ -49,7 +49,7 @@ const Tutoring = () => {
           }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>subject tutors</Text>
+          <Text style={styles.buttonText}>Subject Tutors</Text>
           <Icon
             style={styles.icon}
             color="gray"
@@ -64,7 +64,7 @@ const Tutoring = () => {
           }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>general tutors </Text>
+          <Text style={styles.buttonText}>General Tutors </Text>
           <Icon
             style={styles.icon}
             color="gray"
@@ -79,7 +79,7 @@ const Tutoring = () => {
           }
           style={styles.button}
         >
-          <Text style={styles.buttonText}>homework helpers</Text>
+          <Text style={styles.buttonText}>Homework Helpers</Text>
           <Icon
             style={styles.icon}
             color="gray"

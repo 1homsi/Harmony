@@ -19,6 +19,7 @@ import HomeCare from './src/screens/Services-Screens/HomeCare';
 import HomeDesign from './src/screens/Services-Screens/HomeDesign';
 import CareTaking from './src/screens/Services-Screens/CareTaking';
 import Tutoring from './src/screens/Services-Screens/Tutoring';
+import CarService from './src/screens/Services-Screens/CarService';
 import { Provider as PaperProvider } from "react-native-paper";
 import Contract from './src/screens/Contract';
 import MainServ from './src/screens/Services-Screens/MainServ';
@@ -65,6 +66,7 @@ export default function App() {
             <Stack.Screen name="HomeDesign" component={HomeDesign} />
             <Stack.Screen name="CareTaking" component={CareTaking} />
             <Stack.Screen name="Tutoring" component={Tutoring} />
+            <Stack.Screen name="CarService" component={CarService} />
             <Stack.Screen name="Contract" component={Contract} />
             <Stack.Screen name="MainServ" component={MainServ} />
             <Stack.Screen name="Accepted" component={DisplayAccepted} />

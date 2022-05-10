@@ -121,6 +121,7 @@ export default BottomNav;
 const styles = StyleSheet.create({
     container: {
         flex: Platform.OS === 'ios' ? 0.08 : 0.1,
+        // flex: 1,
         justifyContent: "center",
         alignItems: "center",
     },
