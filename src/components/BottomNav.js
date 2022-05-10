@@ -13,6 +13,10 @@ const BottomNav = () => {
         db.collection("Users").doc(auth.currentUser?.email).get().then(doc => {
             setData(doc.data());
         });
+
+        return () => {
+            setData();
+        };
     }, []);
 
     return (

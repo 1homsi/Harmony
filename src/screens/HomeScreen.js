@@ -166,7 +166,7 @@ const HomeScreen = () => {
           style={styles.list}
           data={data}
           renderItem={({ item }) => (
-            <Items id={item.Email} title={item.Name} img={item.Image} Bio={item.Bio} isNewPage={true} />
+            <Items id={item.Email} title={`${item.Name}-${item.SubService}`} img={item.Image} Bio={item.Bio} isNewPage={true} />
           )}
           keyExtractor={(item, index) => index.toString()}
         />

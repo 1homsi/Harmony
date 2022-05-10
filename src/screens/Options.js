@@ -20,9 +20,11 @@ export default function Option() {
   React.useEffect(() => {
     db.collection("Users").doc(auth.currentUser?.email).get().then((doc) => {
       setUser(doc.data());
+    }).catch((error) => {
+      console.log(error);
     });
     return () => {
-      setUser("");
+      setUser([]);
     };
   }, []);
 
@@ -53,7 +55,7 @@ export default function Option() {
     );
   return (
     <>
-      {user ?
+      {auth.currentUser ?
         <SafeAreaView style={styles.bigMain} >
           <View style={styles.topNav}>
             <Text style={styles.title}>Settings</Text>

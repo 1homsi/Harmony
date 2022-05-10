@@ -1,37 +1,34 @@
 import { StyleSheet, Text, SafeAreaView } from "react-native";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity, View, FlatList } from "react-native";
-import Items from "../components/Items";
 import { auth, db } from "../../firebase";
 import BottomNav from "../components/BottomNav";
-import { Icon } from "react-native-elements";
 import { TextInput } from "react-native-paper";
+import { query, collection, where, getDocs } from "firebase/firestore";
 
 const DisplayAccepted = () => {
   const [data, setData] = React.useState([]);
-  const navigation = useNavigation();
 
-  React.useEffect(() => {
-    db.collection("Users")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          db.collection("Contracts")
-            .doc(auth.currentUser?.email)
-            .collection(doc.id)
-            .get()
-            .then((querySnapshot) => {
-              querySnapshot.forEach((doc) => {
-                let Userdata = Object.assign({ id: doc.id }, doc.data());
-                setData((e) => [...e, Userdata]);
-              });
-            })
-            .catch((error) => {
-              console.log("Error getting documents: ", error);
-            });
+  const fetchAll = async () => {
+    db.collection("Users").get().then((querySnapshot) => {
+      querySnapshot.forEach(async (document) => {
+        const Collection = db.collection("Contracts").doc(document.id);
+        const q = query(
+          collection(Collection, auth.currentUser?.email),
+          where("Done", "==", false),
+        );
+        const docSnap = await getDocs(q);
+        docSnap.forEach((document) => {
+          let Userdata = Object.assign({ id: document.id }, document.data());
+          setData((e) => [...e, Userdata]);
+          console.log(Userdata);
         });
       });
+    });
+  };
+
+  React.useEffect(() => {
+    fetchAll();
     return () => {
       setData();
     };
@@ -40,7 +37,7 @@ const DisplayAccepted = () => {
   return (
     <SafeAreaView style={styles.Area}>
       <View>
-        <Text style={styles.HeadTitlte}>Notifications</Text>
+        <Text style={styles.HeadTitlte}>Accepted</Text>
       </View>
       <View style={styles.ListView}>
         <FlatList
@@ -61,18 +58,11 @@ const DisplayAccepted = () => {
                 </Text>
                 <Text style={styles.des}>{item.Email}</Text>
                 <Text style={styles.des}>{item.Price}</Text>
-              <View style={styles.rating}>
-                <Text style={styles.rateText}>Rate from 0 to 5</Text>
-                <TextInput style={styles.rateInput}></TextInput>
+                <View style={styles.rating}>
+                  <Text style={styles.rateText}>Rate from 0 to 5</Text>
+                  <TextInput keyboardType="numeric" style={styles.rateInput}></TextInput>
+                </View>
               </View>
-              </View>
-              <Icon
-                name="check"
-                type="font-awesome"
-                size={20}
-                color="#000"
-                style={styles.icon}
-              />
             </View>
           )}
           keyExtractor={(item, index) => index.toString()}
@@ -196,25 +186,24 @@ const styles = StyleSheet.create({
     marginTop: "5%",
     marginLeft: "5%",
   },
-    rateInput: {
-        width: "40%",
-        height: "15%",
-        borderRadius: 10,
-        // marginBottom: "8%",
-        marginLeft: "5%",
-        borderWidth: 1,
-        borderColor: "white",
-        padding: "2%",
-        fontSize: 15,
-        // fontWeight: "bold",
-        textAlign: "center",
-        backgroundColor: "white",
-    },
-    rateText: {
-        fontSize: 15,
-        fontWeight: "bold",
-        marginLeft: "6%",
-        marginTop: "5%",
-        color: "#000",
-    }
+  rateInput: {
+    width: "40%",
+    borderRadius: 10,
+    // marginBottom: "8%",
+    marginLeft: "5%",
+    borderWidth: 1,
+    borderColor: "white",
+    padding: "2%",
+    fontSize: 15,
+    // fontWeight: "bold",
+    textAlign: "center",
+    backgroundColor: "white",
+  },
+  rateText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    marginLeft: "6%",
+    marginTop: "5%",
+    color: "#000",
+  }
 });

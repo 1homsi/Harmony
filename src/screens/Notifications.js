@@ -1,6 +1,5 @@
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import React from 'react';
-import { useNavigation } from "@react-navigation/native";
 import {
     TouchableOpacity,
     View,
@@ -13,11 +12,8 @@ import { Icon } from 'react-native-elements';
 import { query, collection, where, getDocs } from "firebase/firestore";
 
 
-const Notifications = () => {
+const Notifications = ({ navigation }) => {
     const [data, setData] = React.useState([]);
-    const navigation = useNavigation();
-
-
 
     const fetchAll = async () => {
         db.collection("Users").get().then((querySnapshot) => {
@@ -48,14 +44,20 @@ const Notifications = () => {
 
     const handleAccepted = async (id) => {
         db.collection("Users").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                db.collection("Contracts").doc(doc.id).collection(doc.id).doc(id).update({
-                    Accepted: true
-                }).then(() => {
-                    setData([]);
-                    fetchAll();
-                }
+            querySnapshot.forEach(async (document) => {
+                const Collection = db.collection("Contracts").doc(document.id);
+                const q = query(
+                    collection(Collection, document.id),
+                    where("Done", "==", false),
                 );
+                const docSnap = await getDocs(q);
+                docSnap.forEach((document) => {
+                    if (document.id === id) {
+                        Collection.update({
+                            Accepted: true,
+                        });
+                    }
+                });
             });
         });
     };
@@ -97,7 +99,7 @@ const Notifications = () => {
                                     item.Price
                                 }</Text>
                             </View>
-                            {
+                            {/* {
                                 !item.Accepted ?
                                     <TouchableOpacity onPress={handleAccepted(item.id)}>
                                         <Icon
@@ -109,7 +111,7 @@ const Notifications = () => {
                                         />
                                     </TouchableOpacity>
                                     : <></>
-                            }
+                            } */}
                             {/* <TouchableOpacity onPress={handleRejected(item.id)}>
                                 <Icon
                                     name="cancel"

@@ -21,7 +21,7 @@ const Items = (props) => {
             }
             <View style={styles.innerContainer}>
                 <Text style={styles.title}>{
-                    props?.title.length > 19 ? props?.title.substring(0, 19) + "..." : props.title
+                    props.title
                 }</Text>
                 <Text style={styles.des}>{
                     props?.Bio.length > 75 ?
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#89CFF0',
         width: '85%',
-        height: 115,
+        height: 130,
         padding: 15,
         borderRadius: 10,
         marginTop: 25,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 16,
     },
     innerContainer: {
         marginLeft: 15,
