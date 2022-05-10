@@ -68,8 +68,6 @@ const HomeScreen = () => {
           </Text>
         </View>
       </View>
-      <View>
-      </View>
       <View style={styles.Cat}>
         <Text>
           <Text style={styles.CatTitle}>Categories</Text>
@@ -99,7 +97,8 @@ const HomeScreen = () => {
               <Text style={styles.text}>Home Care</Text>
             </ImageBackground>
           </TouchableOpacity>
-
+        </View>
+        <View style={styles.CatContainer}>
           <TouchableOpacity
             style={styles.CatCard}
             onPress={() => navigation.replace("HomeDesign")}
@@ -112,8 +111,7 @@ const HomeScreen = () => {
               <Text style={styles.text}>Home Design</Text>
             </ImageBackground>
           </TouchableOpacity>
-        </View>
-        <View style={styles.CatContainer}>
+       
           <TouchableOpacity
             style={styles.CatCard}
             onPress={() => navigation.replace("CareTaking")}
@@ -125,8 +123,9 @@ const HomeScreen = () => {
             >
               <Text style={styles.text}>Care Taking</Text>
             </ImageBackground>
-          </TouchableOpacity>
-
+          </TouchableOpacity> 
+        </View>
+        <View style={styles.CatContainer}>
           <TouchableOpacity
             style={styles.CatCard}
             onPress={() => navigation.replace("Delivery")}
@@ -143,6 +142,20 @@ const HomeScreen = () => {
           <TouchableOpacity
             style={styles.CatCard}
             onPress={() => navigation.navigate("MainServ", { id: "driver" })}
+          >
+            <ImageBackground
+              source={require("../images/delivery.png")}
+              resizeMode="cover"
+              style={styles.CatImage}
+            >
+              <Text style={styles.text}>Delivery</Text>
+            </ImageBackground>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.CatContainer}>
+          <TouchableOpacity
+            style={styles.CatCard}
+            resizeMode="cover"
           >
             <ImageBackground
               source={require("../images/delivery.png")}
@@ -191,11 +204,10 @@ const styles = StyleSheet.create({
     color: "#000",
   },
   Top: {
-    marginTop: 20,
     flexDirection: "row",
     textAlign: "center",
-    marginBottom: 12,
-    marginTop: 40,
+    marginBottom: 0,
+    marginTop: 30,
     paddingBottom: 10,
     paddingTop: 10,
   },
@@ -275,8 +287,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 20,
-    marginBottom: -50,
+    marginTop: 10,
+    marginBottom: -70,
+    marginLeft: -50,
 
   },
   CatCard: {
@@ -289,9 +302,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 12,
     marginTop: 40,
-    marginBottom: 50,
-    marginLeft: "1%",
-    marginRight: "1%",
+    marginBottom: 40,
+    marginLeft: "10%",
+   
   },
 
   // CatCardOne: {
@@ -307,13 +320,13 @@ const styles = StyleSheet.create({
   // },
 
   Cat: {
-    marginTop: 100,
+    marginTop: 180,
     width: "100%",
     height: "13%",
     justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
-    marginBottom: 330,
+    marginBottom: 270,
   },
 
   CatImage: {
