@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     marginLeft: "5%",
   },
   rateInput: {
-    width: "40%",
+    width: "25%",
     borderRadius: 10,
     // marginBottom: "8%",
     marginLeft: "5%",
@@ -198,11 +198,13 @@ const styles = StyleSheet.create({
     // fontWeight: "bold",
     textAlign: "center",
     backgroundColor: "white",
+    height: 20,
+    marginTop: "4%",
   },
   rateText: {
     fontSize: 15,
     fontWeight: "bold",
-    marginLeft: "6%",
+    // marginLeft: "1%",
     marginTop: "5%",
     color: "#000",
   }
