@@ -213,7 +213,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
   },
   bottomNav: {
@@ -272,7 +271,7 @@ const styles = StyleSheet.create({
     marginBottom: 80,
   },
   CatContainer: {
-    // width: "100%",
+    width: "100%",
     justifyContent: "center",
     flexDirection: "row",
     alignItems: "center",
@@ -314,6 +313,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
+    marginBottom: 330,
   },
 
   CatImage: {
