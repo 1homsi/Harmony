@@ -47,7 +47,7 @@ const MainServ = ({ route }) => {
 
     return (
         <View style={styles.Container}>
-            <Text>{id}</Text>
+            <Text style={styles.title}>{id}</Text>
             <View style={styles.ListView}>
                 <FlatList
                     refreshControl={
@@ -79,9 +79,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
 
     },
+    title: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        marginTop: 50,
+        marginBottom: 5,
+        color: '#000',
+    },
     ListView: {
         width: "100%",
-        marginTop: 120,
+        marginTop: 30,
         alignContent: "center",
         justifyContent: "center",
         flex: 1,
