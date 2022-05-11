@@ -11,7 +11,6 @@ import PorductView from './src/screens/PorductView';
 import ResetPassword from './src/screens/ResetPassword';
 import Options from './src/screens/Options';
 import Profile from './src/screens/Profile';
-import History from './src/screens/History';
 import Notifications from './src/screens/Notifications';
 import ViewWorker from './src/screens/ViewWorker';
 import Maintenance from './src/screens/Services-Screens/Maintenance';
@@ -58,7 +57,6 @@ export default function App() {
             <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="RegisterTwo" component={RegisterScreenPart2} />
             <Stack.Screen name="Profile" component={Profile} />
-            <Stack.Screen name="History" component={History} />
             <Stack.Screen name="Notifications" component={Notifications} />
             <Stack.Screen name="Worker" component={ViewWorker} />
             <Stack.Screen name="Maintenance" component={Maintenance} />

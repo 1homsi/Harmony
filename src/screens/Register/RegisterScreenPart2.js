@@ -49,6 +49,7 @@ const RegisterScreenPart2 = ({ route }) => {
                         Credit: 0,
                         Image: "",
                         Worker: false,
+                        Credit: 0,
                     });
 
                     auth
@@ -125,13 +126,24 @@ const RegisterScreenPart2 = ({ route }) => {
                             onChangeText={(text) => setEmail(text)}
                             style={styles.input}
                         />
-                        <TextInput
-                            placeholderTextColor="#003f5c"
-                            placeholder={option === "Customer" ? "Address" : "Location"}
-                            value={location}
-                            onChangeText={(text) => setLocation(text)}
-                            style={styles.input}
-                        />
+                        <View style={[styles.PickerContainer, styles.input]}>
+                            <Picker
+                                itemStyle={{ height: 50 }}
+                                selectedValue={location}
+                                style={styles.picker}
+                                onValueChange={(itemValue, itemIndex) => setLocation(itemValue)}
+                            >
+                                <Picker.Item label="Beirut" value="Beirut" />
+                                <Picker.Item label="Nabatiyeh" value="Nabatiyeh" />
+                                <Picker.Item label="Bekaa" value="Bekaa" />
+                                <Picker.Item label="Bekaa" value="Bekaa" />
+                                <Picker.Item label="Baalbeck-Hermel" value="Baalbeck-Hermel" />
+                                <Picker.Item label="Akkar" value="Akkar" />
+                                <Picker.Item label=" Mount Lebanon," value=" Mount Lebanon," />
+                                <Picker.Item label="Lebanon south" value="Lebanon south" />
+                                <Picker.Item label="Lebanon north" value="Lebanon north" />
+                            </Picker>
+                        </View>
                         <TextInput
                             placeholderTextColor="#003f5c"
                             placeholder="Password"
@@ -213,9 +225,8 @@ const RegisterScreenPart2 = ({ route }) => {
                                 <Picker.Item label="Hermel" value="Hermel" />
                                 <Picker.Item label="Bekaa" value="Bekaa" />
                                 <Picker.Item label="Nabatiyeh" value="Nabatiyeh" />
-
-                            </Picker>
-                        </View>
+                            </Picker >
+                        </View >
                         <View style={[styles.PickerContainerBottom, styles.input]}>
                             <Picker
                                 itemStyle={{ height: 50 }}
@@ -262,10 +273,12 @@ const RegisterScreenPart2 = ({ route }) => {
                                 <Picker.Item label="homework helpers" value="homework helpers" />
                             </Picker>
                         </View>
-                    </View>
+                    </View >
                 </>
             }
-            <View style={styles.buttonContainer}>
+            <View style={option === "Customer" ? [styles.buttonContainer] : [styles.buttonContainer, {
+                marginTop: 20
+            }]}>
                 <TouchableOpacity onPress={handleSignUp} style={styles.button}>
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
@@ -332,7 +345,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#89CFF0",
         width: "100%",
         padding: 20,
-        top: -22,
         borderRadius: 10,
         alignItems: "center",
     },

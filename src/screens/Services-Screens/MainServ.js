@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, FlatList, RefreshControl } from 'react-native'
-import React from 'react'
-import { useNavigation } from '@react-navigation/native'
-import { auth, db } from '../../../firebase'
+import { StyleSheet, Text, View, FlatList, RefreshControl } from 'react-native';
+import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { auth, db } from '../../../firebase';
 import { query, collection, where, getDocs } from "firebase/firestore";
 import Items from '../../components/Items';
 
@@ -10,28 +10,33 @@ const wait = (timeout) => {
 };
 
 const MainServ = ({ route }) => {
-    const navigation = useNavigation()
+    const navigation = useNavigation();
     const { id } = route.params;
     const [data, setData] = React.useState([]);
     const [refreshing, setRefreshing] = React.useState(false);
 
-    const fetchAll = async () => {
+    const fetchAll = async (Location) => {
         const q = query(
             collection(db, "Users"),
             where("status", "==", "free"),
             where("Worker", "==", true),
+            where("Location", "==", Location),
             where("SubService", "==", id)
         );
 
-        const docSnap = await getDocs(q)
+        const docSnap = await getDocs(q);
         docSnap.forEach((doc) => {
             let Userdata = Object.assign({ id: doc.id }, doc.data());
             setData((e) => [...e, Userdata]);
-        })
+        });
     };
 
     React.useEffect(() => {
-        fetchAll();
+
+        db.collection("Users").doc(auth.currentUser.email).get().then((doc) => {
+            fetchAll(doc.data().Location);
+        });
+
         return () => {
             setData();
         };
@@ -66,10 +71,10 @@ const MainServ = ({ route }) => {
                 />
             </View>
         </View>
-    )
-}
+    );
+};
 
-export default MainServ
+export default MainServ;
 
 const styles = StyleSheet.create({
     Container: {
@@ -97,4 +102,4 @@ const styles = StyleSheet.create({
     list: {
         width: "100%",
     },
-})
+});
