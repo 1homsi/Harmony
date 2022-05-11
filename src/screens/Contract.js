@@ -22,6 +22,12 @@ const Contract = ({ route }) => {
   const [price, setPrice] = useState("");
   const [notes, setNotes] = useState("");
 
+
+  //Date
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+
   React.useEffect(() => {
     db.collection("Users")
       .doc(auth.currentUser?.email)
@@ -43,12 +49,12 @@ const Contract = ({ route }) => {
       Details: details,
       Accepted: false,
       Done: false,
+      Date: `${year} - ${month} - ${day}`,
     });
 
     db.collection("Users").doc(auth.currentUser?.email).update({
       Credit: data?.Credit + 1,
     });
-
     navigation.replace("Home");
   };
 

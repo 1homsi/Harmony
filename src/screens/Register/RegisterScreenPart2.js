@@ -20,7 +20,7 @@ const RegisterScreenPart2 = ({ route }) => {
     const [Otherpassword, setOtherPassword] = useState("");
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
-    const [location, setLocation] = useState("");
+    const [location, setLocation] = useState("Beirut");
     const [phone, setPhone] = useState("");
     const [occupation, setOccupation] = useState("Maintenance");
     const navigation = useNavigation();
@@ -240,7 +240,12 @@ const RegisterScreenPart2 = ({ route }) => {
                                             itemStyle={{ height: 50 }}
                                             selectedValue={subService}
                                             style={styles.picker}
-                                            onValueChange={(itemValue, itemIndex) => setSubService(itemValue)}
+                                            onValueChange={(itemValue, itemIndex) => {
+                                                setSubService("");
+                                                setSubService(itemValue);
+                                                console.log(subService);
+                                                console.log(itemValue);
+                                            }}
                                         >
                                             <Picker.Item label="electricians" value="electricians" />
                                             <Picker.Item label="plumbers" value="plumbers" />
