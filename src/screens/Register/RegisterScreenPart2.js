@@ -233,34 +233,117 @@ const RegisterScreenPart2 = ({ route }) => {
                             </Picker>
                         </View>
                         <View style={[styles.PickerContainerBottom, styles.input]}>
-                            <Picker
-                                itemStyle={{ height: 50 }}
-                                selectedValue={subService}
-                                style={styles.picker}
-                                onValueChange={(itemValue, itemIndex) => setSubService(itemValue)}
-                            >
-                                <Picker.Item label="electricians" value="electricians" />
-                                <Picker.Item label="plumbers" value="plumbers" />
-                                <Picker.Item label="carpenters" value="carpenters" />
-                                <Picker.Item label="handymen" value="handymen" />
-                                <Picker.Item label="Painter" value="Painter" />
-                                <Picker.Item label="tile workers" value="tile workers" />
-                                <Picker.Item label="interiors designers" value="interiors designers" />
-                                <Picker.Item label="gardeners" value="gardeners" />
-                                <Picker.Item label="cleaners" value="cleaners" />
-                                <Picker.Item label="housekeepers" value="housekeepers" />
-                                <Picker.Item label="elderly caretaker" value="elderly caretaker" />
-                                <Picker.Item label="Nurse" value="Nurse" />
-                                <Picker.Item label="physiotherapists" value="physiotherapists" />
-                                <Picker.Item label="Driver" value="Driver" />
-                                <Picker.Item label="car washers" value="car washers" />
-                                <Picker.Item label="mechanics" value="mechanics" />
-                                <Picker.Item label="pre-k tutors" value="pre-k tutors" />
-                                <Picker.Item label="elementary tutors" value="elementary tutors" />
-                                <Picker.Item label="subject tutors" value="subject tutors" />
-                                <Picker.Item label="general tutors" value="general tutors" />
-                                <Picker.Item label="homework helpers" value="homework helpers" />
-                            </Picker>
+                            {
+                                occupation === "Maintenance" ?
+                                    <>
+                                        <Picker
+                                            itemStyle={{ height: 50 }}
+                                            selectedValue={subService}
+                                            style={styles.picker}
+                                            onValueChange={(itemValue, itemIndex) => setSubService(itemValue)}
+                                        >
+                                            <Picker.Item label="electricians" value="electricians" />
+                                            <Picker.Item label="plumbers" value="plumbers" />
+                                            <Picker.Item label="carpenters" value="carpenters" />
+                                            <Picker.Item label="handymen" value="handymen" />
+                                        </Picker>
+
+                                    </>
+                                    : <></>
+                            }
+                            {
+                                occupation === "Home Design" ?
+                                    <>
+                                        <Picker
+                                            itemStyle={{ height: 50 }}
+                                            selectedValue={subService}
+                                            style={styles.picker}
+                                            onValueChange={(itemValue, itemIndex) => setSubService(itemValue)}
+                                        >
+                                            <Picker.Item label="Painter" value="Painter" />
+                                            <Picker.Item label="tile workers" value="tile workers" />
+                                            <Picker.Item label="interiors designers" value="interiors designers" />
+                                            <Picker.Item label="gardeners" value="gardeners" />
+                                        </Picker>
+                                    </> : <></>
+                            }
+                            {
+                                occupation === "Home Care" ?
+                                    <>
+                                        <Picker
+                                            itemStyle={{ height: 50 }}
+                                            selectedValue={subService}
+                                            style={styles.picker}
+                                            onValueChange={(itemValue, itemIndex) => setSubService(itemValue)}
+                                        >
+                                            <Picker.Item label="cleaners" value="cleaners" />
+                                            <Picker.Item label="housekeepers" value="housekeepers" />
+                                        </Picker>
+                                    </> : <></>
+                            }
+                            {
+                                occupation === "Health care" ?
+                                    <>
+                                        <Picker
+                                            itemStyle={{ height: 50 }}
+                                            selectedValue={subService}
+                                            style={styles.picker}
+                                            onValueChange={(itemValue, itemIndex) => setSubService(itemValue)}
+                                        >
+                                            <Picker.Item label="elderly caretaker" value="elderly caretaker" />
+                                            <Picker.Item label="Nurse" value="Nurse" />
+                                            <Picker.Item label="physiotherapists" value="physiotherapists" />
+                                        </Picker>
+
+                                    </> : <></>
+                            }
+                            {
+                                occupation === "Delivery" ?
+                                    <>
+                                        <Picker
+                                            itemStyle={{ height: 50 }}
+                                            selectedValue={subService}
+                                            style={styles.picker}
+                                            onValueChange={(itemValue, itemIndex) => setSubService(itemValue)}
+                                        >
+                                            <Picker.Item label="Driver" value="Driver" />
+                                        </Picker>
+                                    </>
+                                    : <></>
+                            }
+                            {
+                                occupation === "Cars" ?
+                                    <>
+                                        <Picker
+                                            itemStyle={{ height: 50 }}
+                                            selectedValue={subService}
+                                            style={styles.picker}
+                                            onValueChange={(itemValue, itemIndex) => setSubService(itemValue)}
+                                        >
+                                            <Picker.Item label="car washers" value="car washers" />
+                                            <Picker.Item label="mechanics" value="mechanics" />
+                                        </Picker>
+
+                                    </> : <></>
+                            }
+                            {
+                                occupation === "Tutoring" ?
+                                    <>
+                                        <Picker
+                                            itemStyle={{ height: 50 }}
+                                            selectedValue={subService}
+                                            style={styles.picker}
+                                            onValueChange={(itemValue, itemIndex) => setSubService(itemValue)}
+                                        >
+                                            <Picker.Item label="pre-k tutors" value="pre-k tutors" />
+                                            <Picker.Item label="elementary tutors" value="elementary tutors" />
+                                            <Picker.Item label="subject tutors" value="subject tutors" />
+                                            <Picker.Item label="general tutors" value="general tutors" />
+                                            <Picker.Item label="homework helpers" value="homework helpers" />
+                                        </Picker>
+
+                                    </> : <></>
+                            }
                         </View>
                     </View>
                 </>
@@ -355,4 +438,4 @@ const styles = StyleSheet.create({
     PickerContainerBottom: {
         top: -6,
     },
-});
+});;;

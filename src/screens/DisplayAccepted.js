@@ -30,7 +30,7 @@ const DisplayAccepted = () => {
   React.useEffect(() => {
     fetchAll();
     return () => {
-      setData();
+      setData({});
     };
   }, []);
 

@@ -31,7 +31,7 @@ const ViewWorker = ({ route }) => {
   return (
     <SafeAreaView style={styles.Container}>
       <View style={styles.username}>
-        <Text style={styles.usernameText}>{user?.Name}</Text>
+        <Text style={styles.usernameText}>{user?.Name} {user?.Busy}</Text>
       </View>
       <View style={styles.profilePicture}>
         {user?.Image != "" ? (

@@ -9,7 +9,7 @@ import {
   View,
   Image,
 } from "react-native";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -28,7 +28,9 @@ const LoginScreen = () => {
       .signInWithEmailAndPassword(email, password)
       .then((userCredentials) => {
         const user = userCredentials.user;
-        navigation.replace("Home");
+        db.collection("Users").doc(user.email).get().then((doc) => {
+          doc.data().Worker ? navigation.replace("WorkerProfile") : navigation.replace("Home");
+        });
       })
       .catch((error) => alert(error.message));
   };

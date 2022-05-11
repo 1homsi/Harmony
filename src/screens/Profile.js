@@ -16,7 +16,7 @@ import * as ImagePicker from "expo-image-picker";
 
 const Profile = () => {
   const [user, setUser] = React.useState([]);
-  const [status, setStatus] = React.useState("");
+  const [status, setStatus] = React.useState();
   const [editBio, setEditBio] = React.useState(false);
   const [changed, setChanged] = React.useState("");
   const [bio, setBio] = React.useState("");
@@ -28,7 +28,9 @@ const Profile = () => {
 
   const handleStatus = () => {
     db.collection("Users").doc(auth.currentUser?.email).update({
-      status: status,
+      Busy: !status,
+    }).then(() => {
+      setStatus(!status);
     });
   };
   const handleBio = () => {
@@ -42,8 +44,8 @@ const Profile = () => {
       .get()
       .then((doc) => {
         setUser(doc.data());
-        setStatus(doc.data().status);
-        setChanged(doc.data().status);
+        setStatus(doc.data().Busy);
+        setChanged(doc.data().Busy ? "Busy" : "Free");
         setBio(doc.data().Bio);
       });
     return () => {
@@ -66,7 +68,7 @@ const Profile = () => {
             auth.currentUser
               .delete()
               .then(() => {
-                navigation.replace("Home");
+                navigation.replace("Login");
               })
               .catch((error) => {
                 alert(error.message);

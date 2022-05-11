@@ -18,6 +18,10 @@ const AdminMain = () => {
                     setData((e) => [...e, Userdata]);
                 });
             });
+
+        return () => {
+            setData({});
+        };
     }, []);
 
 

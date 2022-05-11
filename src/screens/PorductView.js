@@ -17,6 +17,11 @@ const PorductView = ({ route }) => {
       .then((doc) => {
         setData(doc.data());
       });
+
+
+    return () => {
+      setData({});
+    };
   }, []);
 
   const handleAdd = () => {
@@ -27,10 +32,10 @@ const PorductView = ({ route }) => {
       db.collection("Product").doc(id).update({
         "FavoritedBy": auth.currentUser?.email,
         "ProductTaken": true,
-      })
-      navigation.replace("Home")
+      });
+      navigation.replace("Home");
     }
-  }
+  };
 
   const openMaps = (lat, lng) => {
     const scheme = Platform.select({

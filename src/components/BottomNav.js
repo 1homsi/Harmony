@@ -4,14 +4,16 @@ import { Icon } from "react-native-elements";
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { auth, db } from '../../firebase';
 
-const BottomNav = () => {
+const BottomNav = (parm) => {
     const navigation = useNavigation();
     const route = useRoute();
+    const [loading, setLoading] = React.useState(true);
     const [data, setData] = React.useState([]);
 
     React.useEffect(() => {
         db.collection("Users").doc(auth.currentUser?.email).get().then(doc => {
             setData(doc.data());
+            setLoading(false);
         });
 
         return () => {
@@ -20,99 +22,129 @@ const BottomNav = () => {
     }, []);
 
     return (
-        <View style={styles.container}>
-            <View style={styles.bottomNav}>
-                <TouchableOpacity style={styles.bottomNavItem}>
-                    <Icon
-                        style={styles.icon}
-                        color={route.name != "Home" ?
-                            '#000' :
-                            '#89CFF0'
-                        }
-                        reverseColor
-                        name="home"
-                        type="font-awesome-5"
-                        size={35}
-                        onPress={() => {
-                            if (route.name != "Home") {
-                                navigation.replace("Home");
-                            }
-                        }}
-                    />
-                </TouchableOpacity>
-                {data?.Worker ?
-                    <TouchableOpacity style={styles.bottomNavItem}>
-                        <Icon
-                            style={styles.icon}
-                            color={route.name != "" ?
-                                '#000' :
-                                '#89CFF0'
-                            }
-                            reverseColor
-                            name="home-repair-service"
-                            type="MaterialIcons"
-                            size={35}
-                            onPress={() => {
-                                if (route.name != "Notifications") {
-                                    navigation.replace("Notifications");
-                                }
-                            }}
-                        />
-                    </TouchableOpacity>
-                    :
-                    <>
+        <>
+            {!loading ?
+
+                <View style={styles.container}>
+                    <View style={styles.bottomNav}>
                         <TouchableOpacity style={styles.bottomNavItem}>
                             <Icon
                                 style={styles.icon}
-                                color={route.name != "" ?
+                                color={route.name != "Home" ?
                                     '#000' :
                                     '#89CFF0'
                                 }
                                 reverseColor
-                                name="notifications"
-                                type="Ionicons"
+                                name="home"
+                                type="font-awesome-5"
                                 size={35}
                                 onPress={() => {
-                                    navigation.replace("Accepted");
+                                    data?.Worker ?
+                                        navigation.replace("WorkerProfile")
+                                        :
+                                        navigation.replace("Home");
                                 }}
                             />
                         </TouchableOpacity>
-                    </>
-                }
-                <View>
-                    {!auth.currentUser ? (
-                        <>
-                            <Icon
-                                style={styles.icon}
-                                reverseColor
-                                name="login"
-                                type="Entypo"
-                                size={35}
-                                onPress={() => navigation.replace("Login")}
-                            />
-                        </>
-                    ) : (
-                        <>
+                        {data?.Worker ?
                             <TouchableOpacity style={styles.bottomNavItem}>
                                 <Icon
                                     style={styles.icon}
-                                    color={route.name === "Option" ?
-                                        '#89CFF0' :
-                                        '#000'
+                                    color={route.name != "" ?
+                                        '#000' :
+                                        '#89CFF0'
                                     }
                                     reverseColor
-                                    name="settings"
-                                    type="feather"
+                                    name="home-repair-service"
+                                    type="MaterialIcons"
                                     size={35}
-                                    onPress={() => navigation.replace("Option")}
+                                    onPress={() => {
+                                        if (route.name != "Notifications") {
+                                            navigation.replace("Notifications");
+                                        }
+                                    }}
                                 />
                             </TouchableOpacity>
-                        </>
-                    )}
-                </View>
-            </View>
-            { }
-        </View >
+                            :
+                            <>
+                                <TouchableOpacity style={styles.bottomNavItem}>
+                                    <Icon
+                                        style={styles.icon}
+                                        color={route.name != "" ?
+                                            '#000' :
+                                            '#89CFF0'
+                                        }
+                                        reverseColor
+                                        name="notifications"
+                                        type="Ionicons"
+                                        size={35}
+                                        onPress={() => {
+                                            navigation.replace("Accepted");
+                                        }}
+                                    />
+                                </TouchableOpacity>
+                            </>
+                        }
+
+                        {data?.Worker ?
+                            <TouchableOpacity style={styles.bottomNavItem}>
+                                <Icon
+                                    style={styles.icon}
+                                    color={route.name != "" ?
+                                        '#000' :
+                                        '#89CFF0'
+                                    }
+                                    reverseColor
+                                    name="home"
+                                    type="MaterialIcons"
+                                    size={35}
+                                    onPress={() => {
+                                        if (route.name != "Home") {
+                                            navigation.replace("Home");
+                                        }
+                                    }}
+                                />
+                            </TouchableOpacity>
+                            :
+                            <>
+                            </>
+                        }
+                        <View>
+                            {!auth.currentUser ? (
+                                <>
+                                    <Icon
+                                        style={styles.icon}
+                                        reverseColor
+                                        name="login"
+                                        type="Entypo"
+                                        size={35}
+                                        onPress={() => navigation.replace("Login")}
+                                    />
+                                </>
+                            ) : (
+                                <>
+                                    <TouchableOpacity style={styles.bottomNavItem}>
+                                        <Icon
+                                            style={styles.icon}
+                                            color={route.name === "Option" ?
+                                                '#89CFF0' :
+                                                '#000'
+                                            }
+                                            reverseColor
+                                            name="settings"
+                                            type="feather"
+                                            size={35}
+                                            onPress={() => navigation.replace("Option")}
+                                        />
+                                    </TouchableOpacity>
+                                </>
+                            )}
+                        </View>
+                    </View>
+                </View >
+                : <></>}
+        </>
+
     );
 };
 

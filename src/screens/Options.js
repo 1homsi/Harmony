@@ -61,26 +61,31 @@ export default function Option() {
             <Text style={styles.title}>Settings</Text>
           </View>
           <View style={styles.container}>
-            <View style={styles.UserInfo}>
-              <View style={styles.outerImage}>
-                {user?.Image != "" ?
-                  <>
-                    <Image source={{ uri: user?.Image }} style={styles.Image} />
-                  </>
-                  :
-                  <Image style={styles.Image} source={require("../images/Profile.png")} />
-                }
+            {!user?.Worker ?
+              <View style={styles.UserInfo}>
+                <View style={styles.outerImage}>
+                  {user?.Image != "" ?
+                    <>
+                      <Image source={{ uri: user?.Image }} style={styles.Image} />
+                    </>
+                    :
+                    <Image style={styles.Image} source={require("../images/Profile.png")} />
+                  }
+                </View>
+                <View style={styles.Inner}>
+                  <Text style={styles.nameSec}>{user.Name}</Text>
+                  <Text style={styles.emailSec}>{auth.currentUser?.email}</Text>
+                  {user?.Worker ?
+                    <Text style={styles.emailSec}>Worker</Text>
+                    :
+                    <></>
+                  }
+                </View>
               </View>
-              <View style={styles.Inner}>
-                <Text style={styles.nameSec}>{user.Name}</Text>
-                <Text style={styles.emailSec}>{auth.currentUser?.email}</Text>
-                {user?.Worker ?
-                  <Text style={styles.emailSec}>Worker</Text>
-                  :
-                  <></>
-                }
-              </View>
-            </View>
+              :
+              <></>
+            }
+
             <TouchableOpacity
               onPress={() => navigation.navigate("Profile")}
               style={styles.button}

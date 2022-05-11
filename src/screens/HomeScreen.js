@@ -48,7 +48,7 @@ const HomeScreen = () => {
   React.useEffect(() => {
     fetchAll();
     return () => {
-      setData();
+      setData({});
     };
   }, []);
 

@@ -37,7 +37,7 @@ const Notifications = ({ navigation }) => {
         fetchAll();
 
         return () => {
-            setData();
+            setData({});
         };
     }, []);
 
@@ -128,15 +128,7 @@ const Notifications = ({ navigation }) => {
                     keyExtractor={(item, index) => index.toString()}
                 />
             </View>
-            <View>
-                <TouchableOpacity >
-                    <Text style={styles.ClearBtn}>
-                        Clear All
-                    </Text>
-                </TouchableOpacity>
-            </View>
             <BottomNav />
-
         </SafeAreaView >
     );
 };
