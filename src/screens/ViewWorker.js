@@ -10,6 +10,7 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { auth, db } from "../../firebase";
 import { AirbnbRating } from "react-native-ratings";
+import { TextInput } from "react-native-paper";
 
 const ViewWorker = ({ route }) => {
   const { id } = route.params;
@@ -61,12 +62,31 @@ const ViewWorker = ({ route }) => {
       </View>
       <View style={styles.review}>
         <View style={styles.reviewContainer}>
-          <Text style={styles.title}>Customer reviews</Text>
-          <View style={styles.totalWrap}>
-            <Text>{user?.Rating} out of 5</Text>
-          </View>
-          <Text style={styles.amountText}>40 customer ratings</Text>
+          {/* <Text style={styles.title1}>Customer reviews</Text> */}
+          <Text style={styles.title}>Add your Review:</Text>
+          <TextInput style={styles.textInput} 
+          placeholder="Write your review here"
+          multiline={true}
+          numberOfLines={1}
 
+          />
+          <TextInput style={styles.textInput} 
+          keyboardType="numeric"
+          placeholder="Rate your worker"
+          multiline={true}
+          numberOfLines={1}
+          />
+          <TouchableOpacity
+            style={styles.reviewButton}
+            // onPress={() => navigation.navigate("Profile")}
+          >
+            <Text style={styles.ButtonText}>Submit</Text>
+          </TouchableOpacity>
+          {/* <View style={styles.totalWrap}>
+            <Text>{user?.Rating} out of 5</Text>
+          </View> */}
+          {/* <Text style={styles.amountText}>40 customer ratings</Text> */}
+          <View style={styles.ratingWrap}>
           <AirbnbRating
             count={5}
             defaultRating={user?.Rating}
@@ -74,6 +94,7 @@ const ViewWorker = ({ route }) => {
             isDisabled
             reviews={["Terrible", "Bad", "OK", "Good", "Amazing"]}
           />
+          </View>
         </View>
       </View>
 
@@ -115,7 +136,7 @@ const styles = StyleSheet.create({
   },
   profilePicture: {
     width: "100%",
-    height: 250,
+    height: 200,
     // borderRadius: 100,
     overflow: "hidden",
     marginTop: -5,
@@ -165,18 +186,28 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 40,
     minWidth: "100%",
-    marginTop: -35,
+    marginTop: 60,
+    alignItems: "center",
+    justifyContent: "center",
     // shadowOffset: { width: 0, height: 5 },
     // shadowOpacity: 1.0,
     // shadowRadius: 2,
     // shadowColor: "rgba(193, 211, 251, 0.5)",
     // elevation: 5,
   },
+  // title1: {
+  //   fontWeight: "bold",
+  //   fontSize: 20,
+  //   color: "#323357",
+  //   textAlign: "center",
+  //   marginBottom: 20,
+  // },
   title: {
     fontWeight: "bold",
     fontSize: 20,
     color: "#323357",
     textAlign: "center",
+    marginBottom: 10,
   },
   totalWrap: {
     marginTop: 15,
@@ -239,4 +270,41 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 17,
   },
+  textInput: {
+    borderWidth: 1,
+    borderColor: "#E6E6E6",
+    borderRadius: 10,
+    // paddingHorizontal: 5,
+    // paddingVertical: 5,
+    marginBottom: 5,
+    width: "100%",
+    height: 50,
+    fontSize: 16,
+    color: "#595B71",
+    textAlign: "center",
+  },
+  ratingWrap: {
+    marginTop: -50,
+    marginBottom: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  reviewButton: {
+    backgroundColor: "#89CFF0",
+    padding: 17,
+    borderRadius: 10,
+    alignItems: "center",
+    width: "70%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+    // height: 60,
+  },
+  reviewButtonText: {
+    color: "white",
+    fontWeight: "700",
+    fontSize: 17,
+  },
+
+
 });

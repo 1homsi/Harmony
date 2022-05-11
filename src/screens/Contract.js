@@ -35,25 +35,31 @@ const Contract = ({ route }) => {
   }, []);
 
   const handleContract = () => {
-    db.collection("Contracts").doc(auth.currentUser?.email).collection(auth.currentUser?.email).doc(id).set({
-      Name: data?.Name || "",
-      Email: auth.currentUser.email,
-      Notes: notes,
-      Price: price,
-      Details: details,
-      Accepted: false,
-      Done: false,
-    });
+    db.collection("Contracts")
+      .doc(auth.currentUser?.email)
+      .collection(auth.currentUser?.email)
+      .doc(id)
+      .set({
+        Name: data?.Name || "",
+        Email: auth.currentUser.email,
+        Notes: notes,
+        Price: price,
+        Details: details,
+        Accepted: false,
+        Done: false,
+      });
 
-    db.collection("Users").doc(auth.currentUser?.email).update({
-      Credit: data?.Credit + 1,
-    });
+    db.collection("Users")
+      .doc(auth.currentUser?.email)
+      .update({
+        Credit: data?.Credit + 1,
+      });
 
     navigation.replace("Home");
   };
 
   return (
-    <SafeAreaView style={styles.bigMain} >
+    <SafeAreaView style={styles.bigMain}>
       <View style={styles.topNav}>
         <Text style={styles.title}>Service Form</Text>
       </View>
@@ -86,17 +92,19 @@ const Contract = ({ route }) => {
               onChangeText={(text) => setNotes(text)}
             />
           </View>
-        </View>
-        <View style={styles.DateContainer} >
-          <BirthdayPicker
-            selectedYear={2022}
-            selectedMonth={0}
-            selectedDay={27}
-            yearsBack={50}
-            onYearValueChange={(year, i) => setYear(year)}
-            onMonthValueChange={(month, i) => setMonth(month)}
-            onDayValueChange={(day, i) => setDay(day)}
-          />
+          <View style={styles.DateContainer}>
+          <Text style={styles.text}>Date</Text>
+            <BirthdayPicker
+              style={styles.DatePicker}
+              selectedYear={2022}
+              selectedMonth={0}
+              selectedDay={27}
+              yearsBack={50}
+              onYearValueChange={(year, i) => setYear(year)}
+              onMonthValueChange={(month, i) => setMonth(month)}
+              onDayValueChange={(day, i) => setDay(day)}
+            />
+          </View>
         </View>
       </View>
       <View>
@@ -115,7 +123,7 @@ const Contract = ({ route }) => {
           </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView >
+    </SafeAreaView>
   );
 };
 
@@ -124,7 +132,23 @@ export default Contract;
 const styles = StyleSheet.create({
   DateContainer: {
     width: "100%",
-    marginBottom: "5%",
+    // marginBottom: "5%",
+    marginTop: 10,
+    marginBottom: 30,
+    marginLeft: 20,
+    marginRight: 10,
+    // alignContent: "center",
+    // alignItems: "center",
+    // justifyContent: "center",
+    borderColor: "gray",
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 20,
+    backgroundColor: "white",
+    height: "30%",
+    width: "90%",
+    borderBottomColor: "gray",
+    borderBottomWidth: 1.5,
   },
   bigMain: {
     flex: 1,
@@ -132,7 +156,7 @@ const styles = StyleSheet.create({
   topNav: {
     flexDirection: "row",
     textAlign: "center",
-    marginBottom: 0,
+    marginBottom: 30,
     marginTop: 5,
     paddingBottom: 10,
     paddingTop: 10,
@@ -148,7 +172,7 @@ const styles = StyleSheet.create({
   form: {
     flex: 1,
   },
-  // datePicker: {
+  // DatePicker: {
   //   marginTop: 20,
   //   marginBottom: 10,
   //   marginLeft: 10,
@@ -164,6 +188,7 @@ const styles = StyleSheet.create({
   //   borderBottomWidth: 1.5,
   //   backgroundColor: "#090C08",
   //   height: "10%",
+    
   // },
   datePickerStyle: {
     width: 250,
@@ -184,7 +209,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 30,
     marginLeft: 20,
     marginRight: 10,
     // alignContent: "center",
@@ -193,28 +218,27 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 1,
     borderRadius: 10,
-    padding: 10,
+    padding: 20,
     backgroundColor: "white",
     height: "30%",
     width: "90%",
-    marginTop: 10,
     borderBottomColor: "gray",
     borderBottomWidth: 1.5,
   },
   text: {
-    fontSize: 18,
-    fontWeight: "900",
+    fontSize: 20,
+    fontWeight: "700",
     color: "#89CFF0",
-    marginLeft: 0,
-    marginTop: 3,
+    marginLeft: -15,
+    marginTop: -47,
     marginBottom: 0,
-    marginRight: 10,
+    marginRight: 0,
   },
   buttonsContainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    bottom: 20,
+    bottom: -320,
   },
   buttonOutlineOffer: {
     backgroundColor: "#89CFF0",
