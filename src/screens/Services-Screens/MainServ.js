@@ -63,9 +63,8 @@ const MainServ = ({ route }) => {
                     style={styles.list}
                     data={data}
                     renderItem={({ item }) => (
-                        <Items id={item.id} title={item.Name} img={item.Image} Bio={item.Bio}>
-                            <Image source={{ uri: `${item.Image}` }} style={styles.image} />
-                        </Items>
+                        <Items id={item.id} title={item.Name} img={item.Image} Bio={item.Bio} isNewPage={true} />
+
                     )}
                     keyExtractor={(item, index) => index.toString()}
                 />

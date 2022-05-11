@@ -8,12 +8,13 @@ import {
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { db } from "../../firebase";
+import { auth, db } from "../../firebase";
 import { AirbnbRating } from "react-native-ratings";
 
 const ViewWorker = ({ route }) => {
   const { id } = route.params;
   const [user, setUser] = React.useState([]);
+  const [myuserdata, setMyuserdata] = React.useState([]);
   const navigation = useNavigation();
 
   React.useEffect(() => {
@@ -23,8 +24,14 @@ const ViewWorker = ({ route }) => {
       .then((doc) => {
         setUser(doc.data());
       });
+
+    db.collection("Users").doc(auth.currentUser?.email).get().then((doc) => {
+      setMyuserdata(doc.data());
+    });
+
     return () => {
       setUser("");
+      setMyuserdata({});
     };
   }, []);
 
@@ -69,9 +76,15 @@ const ViewWorker = ({ route }) => {
           />
         </View>
       </View>
+
+      <Text style={styles.credit}>My Credit: {myuserdata?.Credit}</Text>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
-          onPress={() => navigation.replace("Contract", { id: id })}
+          onPress={() => {
+            myuserdata?.Credit == 0 ?
+              alert("You don't have enough credit to hire this worker") :
+              navigation.replace("Contract", { id: id });
+          }}
           style={styles.buttonOutlineOffer}
         >
           <Text style={styles.buttonText}>Send Offer</Text>
@@ -90,6 +103,11 @@ const ViewWorker = ({ route }) => {
 export default ViewWorker;
 
 const styles = StyleSheet.create({
+
+  credit: {
+    marginBottom: 20,
+    textAlign: "center",
+  },
   Container: {
     flex: 1,
     // justifyContent: "center",

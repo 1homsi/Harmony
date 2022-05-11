@@ -37,7 +37,7 @@ const DisplayAccepted = () => {
   return (
     <SafeAreaView style={styles.Area}>
       <View>
-        <Text style={styles.HeadTitlte}>Accepted</Text>
+        <Text style={styles.HeadTitlte}>Sent Contracts</Text>
       </View>
       <View style={styles.ListView}>
         <FlatList

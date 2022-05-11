@@ -46,7 +46,7 @@ const RegisterScreenPart2 = ({ route }) => {
                         Email: email,
                         Username: username,
                         Location: location,
-                        Credit: 0,
+                        Credit: 10,
                         Image: "",
                         Worker: false,
                     });

@@ -12,6 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { auth, db } from "../../firebase";
+import BirthdayPicker from "../components/BirthdayPicker";
 
 const Contract = ({ route }) => {
   const { id } = route.params;
@@ -43,6 +44,11 @@ const Contract = ({ route }) => {
       Accepted: false,
       Done: false,
     });
+
+    db.collection("Users").doc(auth.currentUser?.email).update({
+      Credit: data?.Credit + 1,
+    });
+
     navigation.replace("Home");
   };
 
@@ -51,7 +57,7 @@ const Contract = ({ route }) => {
       <View style={styles.topNav}>
         <Text style={styles.title}>Service Form</Text>
       </View>
-      <ScrollView>
+      <View>
         <View style={styles.form}>
           <View style={styles.input}>
             <Text style={styles.text}>Service Details</Text>
@@ -81,7 +87,18 @@ const Contract = ({ route }) => {
             />
           </View>
         </View>
-      </ScrollView>
+        <View style={styles.DateContainer} >
+          <BirthdayPicker
+            selectedYear={2022}
+            selectedMonth={0}
+            selectedDay={27}
+            yearsBack={50}
+            onYearValueChange={(year, i) => setYear(year)}
+            onMonthValueChange={(month, i) => setMonth(month)}
+            onDayValueChange={(day, i) => setDay(day)}
+          />
+        </View>
+      </View>
       <View>
         <View style={styles.buttonsContainer}>
           <TouchableOpacity
@@ -105,6 +122,10 @@ const Contract = ({ route }) => {
 export default Contract;
 
 const styles = StyleSheet.create({
+  DateContainer: {
+    width: "100%",
+    marginBottom: "5%",
+  },
   bigMain: {
     flex: 1,
   },

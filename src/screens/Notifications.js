@@ -78,7 +78,7 @@ const Notifications = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.Area}>
             <View>
-                <Text style={styles.HeadTitlte}>Notifications</Text>
+                <Text style={styles.HeadTitlte}>My Contracts</Text>
             </View>
             <View style={styles.ListView}>
                 <FlatList
