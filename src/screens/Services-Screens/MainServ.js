@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, RefreshControl } from 'react-native'
+import { StyleSheet, Text, View, FlatList, RefreshControl, Image } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { auth, db } from '../../../firebase'
@@ -60,7 +60,9 @@ const MainServ = ({ route }) => {
                     style={styles.list}
                     data={data}
                     renderItem={({ item }) => (
-                        <Items id={item.id} title={item.Name} img={item.Image} Bio={item.Bio} />
+                        <Items id={item.id} title={item.Name} img={item.Image} Bio={item.Bio}>
+                        <Image source={{ uri: `${item.Image}` }} style={styles.image} />
+                        </Items>
                     )}
                     keyExtractor={(item, index) => index.toString()}
                 />
