@@ -16,6 +16,9 @@ const ViewWorker = ({ route }) => {
   const { id } = route.params;
   const [user, setUser] = React.useState([]);
   const [myuserdata, setMyuserdata] = React.useState([]);
+  const [rating, setRating] = React.useState(0);
+  const [comment, setComment] = React.useState("");
+  const [isReady, setIsReady] = React.useState(true);
   const navigation = useNavigation();
 
   React.useEffect(() => {
@@ -35,6 +38,20 @@ const ViewWorker = ({ route }) => {
       setMyuserdata({});
     };
   }, []);
+
+
+  const handleReview = () => {
+    db.collection("Reviews").doc().set({
+      Rating: parseInt(rating),
+      Comment: comment,
+      WorkerR: id,
+      User: myuserdata.Name,
+      Userid: myuserdata.Email,
+    }).catch((error) => {
+      console.log(error);
+    });
+    setIsReady(false);
+  };
 
   return (
     <SafeAreaView style={styles.Container}>
@@ -62,38 +79,44 @@ const ViewWorker = ({ route }) => {
       </View>
       <View style={styles.review}>
         <View style={styles.reviewContainer}>
-          {/* <Text style={styles.title1}>Customer reviews</Text> */}
-          <Text style={styles.title}>Add your Review:</Text>
-          <TextInput style={styles.textInput} 
-          placeholder="Write your review here"
-          multiline={true}
-          numberOfLines={1}
+          {
+            isReady ?
+              <>
+                <Text style={styles.title}>Add your Review:</Text>
+                <TextInput style={styles.textInput}
+                  placeholder="Write your review here"
+                  value={comment}
+                  onChangeText={(text) => setComment(text)}
+                  numberOfLines={1}
+                />
+                <TextInput style={styles.textInput}
+                  keyboardType="numeric"
+                  placeholder="Rate your worker"
+                  onChangeText={(text) => setRating(text)}
+                  numberOfLines={1}
+                />
+                <TouchableOpacity
+                  style={styles.reviewButton}
+                  onPress={handleReview}
+                >
+                  <Text>Submit</Text>
+                </TouchableOpacity>
+              </>
+              :
+              <>
+                <Text style={styles.title}>Thank you for your review</Text>
+              </>
+          }
 
-          />
-          <TextInput style={styles.textInput} 
-          keyboardType="numeric"
-          placeholder="Rate your worker"
-          multiline={true}
-          numberOfLines={1}
-          />
-          <TouchableOpacity
-            style={styles.reviewButton}
-            // onPress={() => navigation.navigate("Profile")}
-          >
-            <Text style={styles.ButtonText}>Submit</Text>
-          </TouchableOpacity>
-          {/* <View style={styles.totalWrap}>
-            <Text>{user?.Rating} out of 5</Text>
-          </View> */}
-          {/* <Text style={styles.amountText}>40 customer ratings</Text> */}
+
           <View style={styles.ratingWrap}>
-          <AirbnbRating
-            count={5}
-            defaultRating={user?.Rating}
-            size={20}
-            isDisabled
-            reviews={["Terrible", "Bad", "OK", "Good", "Amazing"]}
-          />
+            <AirbnbRating
+              count={5}
+              defaultRating={user?.Rating}
+              size={20}
+              isDisabled
+              reviews={["Terrible", "Bad", "OK", "Good", "Amazing"]}
+            />
           </View>
         </View>
       </View>
@@ -179,6 +202,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 20,
   },
   reviewContainer: {
     backgroundColor: "transparent",
@@ -298,6 +322,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 10,
+    marginBottom: 20,
     // height: 60,
   },
   reviewButtonText: {

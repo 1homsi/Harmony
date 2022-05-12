@@ -98,6 +98,7 @@ const Contract = ({ route }) => {
             <Text style={styles.text}>Price</Text>
             <TextInput
               style={{ height: 40 }}
+              keyboardType="numeric"
               placeholder="Enter suggested price"
               value={price}
               onChangeText={(text) => setPrice(text)}
@@ -113,7 +114,7 @@ const Contract = ({ route }) => {
             />
           </View>
           <View style={styles.DateContainer}>
-          <Text style={styles.text}>Date</Text>
+            <Text style={styles.text}>Date</Text>
             <BirthdayPicker
               style={styles.DatePicker}
               selectedYear={2022}
@@ -208,7 +209,7 @@ const styles = StyleSheet.create({
   //   borderBottomWidth: 1.5,
   //   backgroundColor: "#090C08",
   //   height: "10%",
-    
+
   // },
   datePickerStyle: {
     width: 250,

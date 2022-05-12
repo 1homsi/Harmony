@@ -24,7 +24,7 @@ const RegisterScreenPart2 = ({ route }) => {
     const [phone, setPhone] = useState("");
     const [occupation, setOccupation] = useState("Maintenance");
     const navigation = useNavigation();
-    const [subService, setSubService] = useState("");
+    const [subService, setSubService] = useState("electricians");
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -43,7 +43,7 @@ const RegisterScreenPart2 = ({ route }) => {
                 if (option === "Customer") {
                     db.collection("Users").doc(email).set({
                         Name: name,
-                        Email: email,
+                        Email: email.toLowerCase(),
                         Username: username,
                         Location: location,
                         Credit: 10,
@@ -66,7 +66,7 @@ const RegisterScreenPart2 = ({ route }) => {
                     if (phone !== "" && occupation !== "") {
                         db.collection("Users").doc(email).set({
                             Name: name,
-                            Email: email,
+                            Email: email.toLowerCase(),
                             Location: location,
                             Phone: phone,
                             Occupation: occupation,
@@ -125,13 +125,25 @@ const RegisterScreenPart2 = ({ route }) => {
                             onChangeText={(text) => setEmail(text)}
                             style={styles.input}
                         />
-                        <TextInput
-                            placeholderTextColor="#003f5c"
-                            placeholder={option === "Customer" ? "Address" : "Location"}
-                            value={location}
-                            onChangeText={(text) => setLocation(text)}
-                            style={styles.input}
-                        />
+                        <View style={[styles.PickerContainer, styles.input]}>
+                            <Picker
+                                itemStyle={{ height: 50 }}
+                                selectedValue={location}
+                                style={styles.picker}
+                                onValueChange={(itemValue, itemIndex) => setLocation(itemValue)}
+                            >
+                                <Picker.Item label="Beirut" value="Beirut" />
+                                <Picker.Item label="North Lebanon" value="North Lebanon" />
+                                <Picker.Item label="South Lebanon" value="South Lebanon" />
+                                <Picker.Item label="Mount Lebanon" value="Mount Lebanon" />
+                                <Picker.Item label="Akkar" value="Akkar" />
+                                <Picker.Item label="Baalbeck" value="Baalbeck" />
+                                <Picker.Item label="Hermel" value="Hermel" />
+                                <Picker.Item label="Bekaa" value="Bekaa" />
+                                <Picker.Item label="Nabatiyeh" value="Nabatiyeh" />
+
+                            </Picker>
+                        </View>
                         <TextInput
                             placeholderTextColor="#003f5c"
                             placeholder="Password"
@@ -353,8 +365,10 @@ const RegisterScreenPart2 = ({ route }) => {
                     </View>
                 </>
             }
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={handleSignUp} style={styles.button}>
+            <View style={option === "Customer" ? [styles.buttonContainer] : [styles.buttonContainer]}>
+                <TouchableOpacity onPress={handleSignUp} style={option === "Customer" ? [styles.button, {
+                    top: -5,
+                }] : [styles.button]}>
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
             </View>

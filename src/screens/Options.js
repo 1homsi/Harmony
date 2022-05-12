@@ -20,6 +20,7 @@ export default function Option() {
   React.useEffect(() => {
     db.collection("Users").doc(auth.currentUser?.email).get().then((doc) => {
       setUser(doc.data());
+      console.log(doc.data());
     }).catch((error) => {
       console.log(error);
     });
@@ -73,7 +74,7 @@ export default function Option() {
                   }
                 </View>
                 <View style={styles.Inner}>
-                  <Text style={styles.nameSec}>{user.Name}</Text>
+                  <Text style={styles.nameSec}>{user?.Name}</Text>
                   <Text style={styles.emailSec}>{auth.currentUser?.email}</Text>
                   {user?.Worker ?
                     <Text style={styles.emailSec}>Worker</Text>
@@ -98,7 +99,7 @@ export default function Option() {
             >
               <Text style={styles.buttonText}>Change Password</Text>
             </TouchableOpacity>
-            {user.Admin ?
+            {user?.Admin ?
               <TouchableOpacity
                 onPress={() => navigation.navigate("AdminMain")}
                 style={styles.button}

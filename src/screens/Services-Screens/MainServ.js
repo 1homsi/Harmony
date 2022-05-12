@@ -5,28 +5,24 @@ import { auth, db } from '../../../firebase';
 import { query, collection, where, getDocs } from "firebase/firestore";
 import Items from '../../components/Items';
 
-const wait = (timeout) => {
-    return new Promise((resolve) => setTimeout(resolve, timeout));
-};
-
 const MainServ = ({ route }) => {
     const navigation = useNavigation();
     const { id } = route.params;
     const [data, setData] = React.useState([]);
-    const [refreshing, setRefreshing] = React.useState(false);
 
     const fetchAll = async (Locaiton) => {
         const q = query(
             collection(db, "Users"),
             where("Location", "==", Locaiton),
             where("Worker", "==", true),
-            where("SubService", "==", id)
+            where("SubService", "==", id),
         );
 
         const docSnap = await getDocs(q);
         docSnap.forEach((doc) => {
             let Userdata = Object.assign({ id: doc.id }, doc.data());
             setData((e) => [...e, Userdata]);
+            console.log(Userdata);
         });
     };
 
@@ -40,26 +36,12 @@ const MainServ = ({ route }) => {
         };
     }, []);
 
-    const onRefresh = React.useCallback(() => {
-        setRefreshing(true);
-        setData([]);
-        fetchAll();
-        wait(1000).then(() => setRefreshing(false));
-    }, []);
-
 
     return (
         <View style={styles.Container}>
             <Text style={styles.title}>{id}</Text>
             <View style={styles.ListView}>
                 <FlatList
-                    refreshControl={
-                        <RefreshControl
-                            style={styles.refresh}
-                            refreshing={refreshing}
-                            onRefresh={onRefresh}
-                        />
-                    }
                     style={styles.list}
                     data={data}
                     renderItem={({ item }) => (

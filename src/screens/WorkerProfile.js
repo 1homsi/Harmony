@@ -15,6 +15,8 @@ import Review from "../components/Review";
 
 const WorkerProfile = ({ navigation, route }) => {
   const [user, setUser] = React.useState({});
+  const [Reviews, setReviews] = React.useState([]);
+  const [sum, setSum] = React.useState(0);
 
   React.useEffect(() => {
     db.collection("Users")
@@ -23,6 +25,19 @@ const WorkerProfile = ({ navigation, route }) => {
       .then((user) => {
         setUser(user.data());
       });
+
+    db.collection("Reviews")
+      .where("WorkerR", "==", auth.currentUser?.email)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          setReviews((e) => [...e, doc.data()]);
+          setSum((e) => e + doc.data().Rating);
+          setLen((e) => e + 1);
+        });
+      });
+
+
     return () => {
       setUser({});
     };
@@ -50,7 +65,7 @@ const WorkerProfile = ({ navigation, route }) => {
         </Text>
         <Text style={styles.userBio}>{user?.Location}</Text>
         <View style={styles.followersAndFollowing}>
-          <Text style={styles.Finner}>Rate: {user?.Rating}</Text>
+          <Text style={styles.Finner}>Rate: {sum / 5}</Text>
         </View>
         <View style={styles.Controlls}>
           <TouchableOpacity
@@ -68,44 +83,31 @@ const WorkerProfile = ({ navigation, route }) => {
           }}
         >
           <View style={{ flex: 1, height: 1, backgroundColor: "black" }} />
-          <View>
-            <Icon
-              style={{ width: 50, textAlign: "center" }}
-              name="navicon"
-              type="font-awesome"
-            />
-          </View>
-          <View style={{ flex: 1, height: 1, backgroundColor: "black" }} />
         </View>
         <View style={styles.UserPosts}>
-          {/* <FlatList
-                        style={styles.list}
-                        showsVerticalScrollIndicator={false}
-                        data={posts}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity onPress={() => navigation.navigate("ImageInfo", { id: item.id })}>
-                                <View style={styles.postContainer}>
-                                    <View style={styles.postImageContainer}>
-                                        <Image source={{ uri: item.Image }} style={styles.postImage} />
-                                    </View>
-                                    <View style={styles.postInfo}>
-                                        <Text style={styles.postDescription}>{item.UpVote}</Text>
-                                        <Text style={styles.postDescription}>↑</Text>
-                                        <Text style={styles.postDescription}>{item.DownVote}</Text>
-                                        <Text style={styles.postDescription}>↓</Text>
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
+          <FlatList
+            style={styles.list}
+            showsVerticalScrollIndicator={false}
+            data={Reviews}
+            renderItem={({ item }) => (
+              <View>
+                <View style={styles.postContainer}>
+                  <View style={styles.postInfo}>
+                    <Text style={styles.postDescription}>{item.Rating}</Text>
+                    <Text style={styles.postDescription}>{item.Comment}</Text>
+                  </View>
+                </View>
+              </View>
 
-                        )}
-                        keyExtractor={(item, index) => index.toString()}
-                    /> */}
+            )}
+            keyExtractor={(item, index) => index.toString()}
+          />
         </View>
       </View>
       <View style={styles.bottomNav}>
         <BottomNav />
       </View>
-    </View>
+    </View >
   );
 };
 
@@ -127,8 +129,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   image: {
-    width: 150,
-    height: 150,
+    width: 180,
+    height: 180,
     borderRadius: 100,
   },
   userName: {
@@ -160,7 +162,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Platform.OS === "ios" ? "5%" : "8%",
   },
   Button: {
-    backgroundColor: "#000",
+    backgroundColor: "#89CFF0",
     padding: 10,
     paddingHorizontal: 60,
     borderRadius: 10,
@@ -203,7 +205,7 @@ const styles = StyleSheet.create({
   },
   postInfo: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: "column",
     paddingHorizontal: "5%",
     justifyContent: "flex-start",
     alignItems: "center",
@@ -224,5 +226,5 @@ const styles = StyleSheet.create({
     position: "absolute",
     marginTop: "120%",
   },
-  
+
 });
