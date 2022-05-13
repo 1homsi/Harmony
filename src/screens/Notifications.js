@@ -38,43 +38,16 @@ const Notifications = ({ navigation }) => {
   }, []);
 
   const handleAccepted = async (id) => {
-    db.collection("Users")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach(async (document) => {
-          const Collection = db.collection("Contracts").doc(document.id);
-          const q = query(
-            collection(Collection, document.id),
-            where("Done", "==", false)
-          );
-          const docSnap = await getDocs(q);
-          docSnap.forEach((document) => {
-            if (document.id === id) {
-              Collection.update({
-                Accepted: true,
-              });
-            }
-          });
-        });
-      });
+    db.collection("Contracts").doc(id).collection(id).doc(id).update({
+      Accepted: true,
+    });
   };
 
   const handleRejected = async (id) => {
-    db.collection("Users")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          db.collection("Contracts")
-            .doc(doc.id)
-            .collection(doc.id)
-            .doc(id)
-            .delete()
-            .then(() => {
-              setData([]);
-              fetchAll();
-            });
-        });
-      });
+    db.collection("Contracts").doc(id).collection(id).doc(id).update({
+      Done: true,
+    });
+    setData((e) => e.filter((item) => item.id !== id));
   };
 
   return (
@@ -97,43 +70,26 @@ const Notifications = ({ navigation }) => {
                 <Text style={styles.des}>{item.Email}</Text>
                 <Text style={styles.des}>{item.Price}</Text>
               </View>
+
               <View style={styles.buttons}>
+                {
+                  !item?.Accepted ?
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => handleAccepted(item.Email)}
+                    >
+                      <Icon name="check" type="font-awesome" color="green" />
+                    </TouchableOpacity>
+                    :
+                    <></>
+                }
                 <TouchableOpacity
                   style={styles.button}
-                  onPress={() => handleAccepted(item.id)}
-                >
-                  <Icon name="check" type="font-awesome" color="green" />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => handleRejected(item.id)}
+                  onPress={() => handleRejected(item.Email)}
                 >
                   <Icon name="close" type="font-awesome" color="red" />
                 </TouchableOpacity>
               </View>
-
-              {/* {
-                                !item.Accepted ?
-                                    <TouchableOpacity onPress={handleAccepted(item.id)}>
-                                        <Icon
-                                            name="check"
-                                            type="font-awesome"
-                                            size={20}
-                                            color="#000"
-                                            style={styles.icon}
-                                        />
-                                    </TouchableOpacity>
-                                    : <></>
-                            }
-                            <TouchableOpacity onPress={handleRejected(item.id)}>
-                                <Icon
-                                    name="cancel"
-                                    type="MaterialIcons"
-                                    size={20}
-                                    color="#000"
-                                    style={styles.icon}
-                                />
-                            </TouchableOpacity> */}
             </View>
           )}
           keyExtractor={(item, index) => index.toString()}

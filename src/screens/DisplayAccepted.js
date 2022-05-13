@@ -16,6 +16,7 @@ const DisplayAccepted = () => {
         const q = query(
           collection(Collection, auth.currentUser?.email),
           where("Done", "==", false),
+          where("Accepted", "==", true)
         );
         const docSnap = await getDocs(q);
         docSnap.forEach((document) => {
@@ -36,7 +37,7 @@ const DisplayAccepted = () => {
   return (
     <SafeAreaView style={styles.Area}>
       <View>
-        <Text style={styles.HeadTitlte}>Sent Contracts</Text>
+        <Text style={styles.HeadTitlte}>Accepted Contracts</Text>
       </View>
       <View style={styles.ListView}>
         <FlatList

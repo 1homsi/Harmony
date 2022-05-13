@@ -25,7 +25,11 @@ const BottomNav = (parm) => {
         <>
             {!loading ?
 
-                <View style={styles.container}>
+                <View style={route.name == "Notifications" ?
+                    [styles.container, { top: Platform.OS == "ios" ? 20 : 0 }] :
+                    route.name === "Option" ?
+                        [styles.container, { top: Platform.OS == "ios" ? -5 : "2%" }] :
+                        styles.container}>
                     <View style={styles.bottomNav}>
                         <TouchableOpacity style={styles.bottomNavItem}>
                             <Icon
@@ -152,8 +156,8 @@ export default BottomNav;
 
 const styles = StyleSheet.create({
     container: {
-        flex: Platform.OS === 'ios' ? 0.08 : 0.1,
-        // flex: 1,
+        flex: Platform.OS === 'ios' ? 0.08 : 0.08,
+        top: Platform.OS === 'ios' ? '8.5%' : '1%',
         justifyContent: "center",
         alignItems: "center",
     },

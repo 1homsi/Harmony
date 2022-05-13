@@ -168,23 +168,6 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
-      {/* <View style={styles.ListView}>
-        <FlatList
-          refreshControl={
-            <RefreshControl
-              style={styles.refresh}
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-            />
-          }
-          style={styles.list}
-          data={data}
-          renderItem={({ item }) => (
-            <Items id={item.Email} title={`${item.Name}-${item.SubService}`} img={item.Image} Bio={item.Bio} isNewPage={true} />
-          )}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      </View> */}
       <View style={styles.bottomNav}>
         <BottomNav />
       </View>

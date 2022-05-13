@@ -32,7 +32,7 @@ const WorkerProfile = ({ navigation, route }) => {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           setReviews((e) => [...e, doc.data()]);
-          setSum((e) => e + doc.data().Rating);
+          setSum((e) => e + 1);
         });
       });
 
@@ -64,7 +64,7 @@ const WorkerProfile = ({ navigation, route }) => {
         </Text>
         <Text style={styles.userBio}>{user?.Location}</Text>
         <View style={styles.followersAndFollowing}>
-          <Text style={styles.Finner}>Rate: {sum / 5}</Text>
+          <Text style={styles.Finner}>People Rated: {sum}</Text>
         </View>
         <View style={styles.Controlls}>
           <TouchableOpacity
@@ -205,9 +205,9 @@ const styles = StyleSheet.create({
   },
   postInfo: {
     flex: 1,
-    flexDirection: "column",
+    flexDirection: "row",
     paddingHorizontal: "5%",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#fff",
     borderRadius: 10,

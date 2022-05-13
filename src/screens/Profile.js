@@ -7,9 +7,10 @@ import {
   Image,
   Alert,
   TextInput,
+  Platform
 } from "react-native";
 import React from "react";
-import { auth, db } from "../../firebase";
+import { auth, db, storage, firebase } from "../../firebase";
 import { Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
@@ -20,8 +21,8 @@ const Profile = () => {
   const [editBio, setEditBio] = React.useState(false);
   const [changed, setChanged] = React.useState("");
   const [bio, setBio] = React.useState("");
-  const [ImageUrl, setImageUrl] = React.useState("");
   const [selectedImage, setSelectedImage] = React.useState("");
+  const [ImageUrl, setImageUrl] = React.useState("");
   const [uploadLoading, setUploadLoading] = React.useState(false);
 
   const navigation = useNavigation();
@@ -79,10 +80,9 @@ const Profile = () => {
     );
 
   let openImagePickerAsync = async () => {
-    let permissionResult =
-      await ImagePicker.requestMediaLibraryPermissionsAsync();
+    let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (permissionResult.granted === false) {
-      alert("Permission to access camera roll is required!");
+      alert('Permission to access camera roll is required!');
       return;
     }
     let pickerResult = await ImagePicker.launchImageLibraryAsync({
@@ -92,26 +92,20 @@ const Profile = () => {
       base64: true,
       quality: 1,
     });
-    const fileSize = pickerResult.base64.length * (3 / 4) - 2;
-    if (fileSize >= 1000000) {
-      Alert.alert("Choose a smaller sized image");
-    } else {
+    if (pickerResult.cancelled !== true) {
+      var url = Platform.OS === 'ios' ? pickerResult.uri.replace('file://', '')
+        : pickerResult.uri;
+      const filename = pickerResult.uri.substring(pickerResult.uri.lastIndexOf('/') + 1);
+      setSelectedImage({
+        uri: url,
+        name: filename,
+        type: 'image/jpg',
+      });
       return;
     }
-    var url =
-      Platform.OS === "ios"
-        ? pickerResult.uri.replace("file://", "")
-        : pickerResult.uri;
-    const filename = pickerResult.uri.substring(
-      pickerResult.uri.lastIndexOf("/") + 1
-    );
-    setSelectedImage({
-      uri: url,
-      name: filename,
-      type: "image/jpg",
-    });
-    onUpload();
+    return;
   };
+
 
   var checkToUpload = setInterval(Up, 30);
 
@@ -121,9 +115,9 @@ const Profile = () => {
     } else {
       if (ImageUrl != "" && uploadLoading === false) {
         db.collection("Users").doc(auth.currentUser?.email).update({
-          ImageUrl: ImageUrl,
+          Image: ImageUrl,
         });
-        navigation.replace("Option");
+        navigation.replace("Home");
         clearInterval(checkToUpload);
       }
     }
@@ -140,10 +134,10 @@ const Profile = () => {
       firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) => {
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        // console.log("Upload is " + progress + "% done");
+        console.log("Upload is " + progress + "% done");
         switch (snapshot.state) {
           case firebase.storage.TaskState.PAUSED:
-            // console.log("Upload is paused");
+            console.log("Upload is paused");
             break;
           case firebase.storage.TaskState.RUNNING:
             // console.log("Upload is running");
@@ -162,7 +156,7 @@ const Profile = () => {
       },
       () => {
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-          // console.log("File available at", downloadURL);
+          console.log("File available at", downloadURL);
           setImageUrl(downloadURL);
           setUploadLoading(false);
         });
@@ -300,12 +294,21 @@ const Profile = () => {
         >
           <Text style={styles.buttonText}>Delete Account</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.replace("Option")}
-          style={styles.buttonOutline}
-        >
-          <Text style={styles.buttonText}>Back</Text>
-        </TouchableOpacity>
+        {selectedImage != "" ?
+          <TouchableOpacity
+            onPress={onUpload}
+            style={styles.buttonOutline}
+          >
+            <Text style={styles.buttonText}>Save</Text>
+          </TouchableOpacity>
+          :
+          <TouchableOpacity
+            onPress={() => navigation.replace("Option")}
+            style={styles.buttonOutline}
+          >
+            <Text style={styles.buttonText}>Back</Text>
+          </TouchableOpacity>
+        }
       </View>
     </SafeAreaView >
   );
