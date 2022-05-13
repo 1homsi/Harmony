@@ -20,9 +20,8 @@ export default function Option() {
   React.useEffect(() => {
     db.collection("Users").doc(auth.currentUser?.email).get().then((doc) => {
       setUser(doc.data());
-      console.log(doc.data());
     }).catch((error) => {
-      console.log(error);
+      alert(error);
     });
     return () => {
       setUser([]);

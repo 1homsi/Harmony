@@ -48,7 +48,7 @@ const ViewWorker = ({ route }) => {
       User: myuserdata.Name,
       Userid: myuserdata.Email,
     }).catch((error) => {
-      console.log(error);
+      alert(error);
     });
     setIsReady(false);
   };
@@ -120,8 +120,10 @@ const ViewWorker = ({ route }) => {
           </View>
         </View>
       </View>
-
-      <Text style={styles.credit}>My Credit: {myuserdata?.Credit}</Text>
+      {!myuserdata.Worker ?
+        <Text style={styles.credit}>My Credit: {myuserdata?.Credit}</Text>
+        : <></>
+      }
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           onPress={() => {

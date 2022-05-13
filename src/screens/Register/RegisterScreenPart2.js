@@ -255,8 +255,6 @@ const RegisterScreenPart2 = ({ route }) => {
                                             onValueChange={(itemValue, itemIndex) => {
                                                 setSubService("");
                                                 setSubService(itemValue);
-                                                console.log(subService);
-                                                console.log(itemValue);
                                             }}
                                         >
                                             <Picker.Item label="electricians" value="electricians" />

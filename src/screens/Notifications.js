@@ -27,7 +27,6 @@ const Notifications = ({ navigation }) => {
                 docSnap.forEach((document) => {
                     let Userdata = Object.assign({ id: document.id }, document.data());
                     setData((e) => [...e, Userdata]);
-                    console.log(Userdata);
                 });
             });
         });
@@ -85,9 +84,7 @@ const Notifications = ({ navigation }) => {
                     style={styles.list}
                     data={data}
                     renderItem={({ item }) => (
-                        <View style={styles.containerItem} onPress={() => {
-                            console.log(item.id);
-                        }}>
+                        <View style={styles.containerItem}>
                             <View style={styles.innerContainer}>
                                 <Text style={styles.title}>{
                                     item?.Name.length > 19 ? item?.Name.substring(0, 19) + "..." : item.Name

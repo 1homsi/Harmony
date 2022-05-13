@@ -33,7 +33,6 @@ const WorkerProfile = ({ navigation, route }) => {
         querySnapshot.forEach((doc) => {
           setReviews((e) => [...e, doc.data()]);
           setSum((e) => e + doc.data().Rating);
-          setLen((e) => e + 1);
         });
       });
 

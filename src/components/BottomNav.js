@@ -35,7 +35,7 @@ const BottomNav = (parm) => {
                                     '#89CFF0'
                                 }
                                 reverseColor
-                                name="home"
+                                name={data?.Worker ? "user" : "home"}
                                 type="font-awesome-5"
                                 size={35}
                                 onPress={() => {
@@ -96,7 +96,7 @@ const BottomNav = (parm) => {
                                     }
                                     reverseColor
                                     name="home"
-                                    type="MaterialIcons"
+                                    type="font-awesome-5"
                                     size={35}
                                     onPress={() => {
                                         if (route.name != "Home") {

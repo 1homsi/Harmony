@@ -22,7 +22,6 @@ const MainServ = ({ route }) => {
         docSnap.forEach((doc) => {
             let Userdata = Object.assign({ id: doc.id }, doc.data());
             setData((e) => [...e, Userdata]);
-            console.log(Userdata);
         });
     };
 

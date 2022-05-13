@@ -21,7 +21,6 @@ const DisplayAccepted = () => {
         docSnap.forEach((document) => {
           let Userdata = Object.assign({ id: document.id }, document.data());
           setData((e) => [...e, Userdata]);
-          console.log(Userdata);
         });
       });
     });
@@ -45,11 +44,7 @@ const DisplayAccepted = () => {
           data={data}
           renderItem={({ item }) => (
             <View
-              style={styles.containerItem}
-              onPress={() => {
-                console.log(item.id);
-              }}
-            >
+              style={styles.containerItem}            >
               <View style={styles.innerContainer}>
                 <Text style={styles.title}>
                   {item?.Name.length > 19
