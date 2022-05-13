@@ -41,11 +41,10 @@ const Contract = ({ route }) => {
   }, []);
 
   const handleContract = () => {
-    db.collection("Contracts")
-      .doc(auth.currentUser?.email)
-      .collection(auth.currentUser?.email)
-      .doc(id)
-      .set({
+    if (notes === "" || price === "" || details === "") {
+      alert("Please fill all the fields");
+    } else {
+      db.collection("Contracts").doc(auth.currentUser?.email).collection(auth.currentUser?.email).doc(id).set({
         Name: data?.Name || "",
         Email: auth.currentUser.email,
         Notes: notes,
@@ -53,25 +52,9 @@ const Contract = ({ route }) => {
         Details: details,
         Accepted: false,
         Done: false,
+        Date: `${year} - ${month} - ${day}`,
       });
-
-    db.collection("Users")
-      .doc(auth.currentUser?.email)
-      .update({
-        Credit: data?.Credit + 1,
-      });
-
-    db.collection("Contracts").doc(auth.currentUser?.email).collection(auth.currentUser?.email).doc(id).set({
-      Name: data?.Name || "",
-      Email: auth.currentUser.email,
-      Notes: notes,
-      Price: price,
-      Details: details,
-      Accepted: false,
-      Done: false,
-      Date: `${year} - ${month} - ${day}`,
-    });
-
+    }
     db.collection("Users").doc(auth.currentUser?.email).update({
       Credit: data?.Credit + 1,
     });
@@ -120,7 +103,7 @@ const Contract = ({ route }) => {
               selectedYear={2022}
               selectedMonth={0}
               selectedDay={27}
-              yearsBack={50}
+              yearsBack={0}
               onYearValueChange={(year, i) => setYear(year)}
               onMonthValueChange={(month, i) => setMonth(month)}
               onDayValueChange={(day, i) => setDay(day)}
