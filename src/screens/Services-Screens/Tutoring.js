@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
 import { db } from "../../../firebase";
 import BottomNav from "../../components/BottomNav";
+import { FlatList, ScrollView } from "react-native-web";
 
 const Tutoring = () => {
   const navigation = useNavigation();
@@ -12,6 +13,8 @@ const Tutoring = () => {
       <View style={styles.topNav}>
         <Text style={styles.title}>Tutoring</Text>
       </View>
+      {/* <ScrollView> */}
+      {/* <FlatList> */}
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() =>
@@ -89,6 +92,8 @@ const Tutoring = () => {
           />
         </TouchableOpacity>
       </View>
+      {/* </FlatList> */}
+      {/* </ScrollView> */}
       <BottomNav />
     </SafeAreaView >
   );

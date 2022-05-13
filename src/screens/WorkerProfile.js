@@ -90,10 +90,11 @@ const WorkerProfile = ({ navigation, route }) => {
             data={Reviews}
             renderItem={({ item }) => (
               <View>
+                  <Text style={styles.postTitle}>Reviews: Rating and Comments</Text>
                 <View style={styles.postContainer}>
                   <View style={styles.postInfo}>
-                    <Text style={styles.postDescription}>{item.Rating}</Text>
-                    <Text style={styles.postDescription}>{item.Comment}</Text>
+                    <Text style={styles.postDescription}>Rating: {item.Rating}</Text>
+                    <Text style={styles.postDescription}>Comments: {item.Comment}</Text>
                   </View>
                 </View>
               </View>
@@ -208,11 +209,29 @@ const styles = StyleSheet.create({
     paddingHorizontal: "5%",
     justifyContent: "flex-start",
     alignItems: "center",
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    padding: "2%",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    
   },
   postDescription: {
     textAlign: "center",
     fontSize: 15,
     textAlignVertical: "center",
+  },
+  postTitle: {
+    fontSize: 15,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: "3%",
   },
   list: {
     flex: 1,

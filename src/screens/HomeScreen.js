@@ -128,7 +128,7 @@ const HomeScreen = () => {
         <View style={styles.CatContainer}>
           <TouchableOpacity
             style={styles.CatCard}
-            onPress={() => navigation.replace("Delivery")}
+            onPress={() => navigation.replace("Tutoring")}
           >
             <ImageBackground
               source={require("../images/tutor.png")}
