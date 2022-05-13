@@ -24,9 +24,9 @@ const Contract = ({ route }) => {
 
 
   //Date
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
+  const [day, setDay] = useState("1");
+  const [month, setMonth] = useState("1");
+  const [year, setYear] = useState("2022");
 
   React.useEffect(() => {
     db.collection("Users")
