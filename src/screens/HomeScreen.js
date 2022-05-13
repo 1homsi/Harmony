@@ -75,7 +75,7 @@ const HomeScreen = () => {
         <View style={styles.CatContainer}>
           <TouchableOpacity
             style={styles.CatCard}
-            onPress={() => navigation.replace("Maintenance")}
+            onPress={() => navigation.navigate("Maintenance")}
           >
             <ImageBackground
               source={require("../images/maintenance.png")}
@@ -87,7 +87,7 @@ const HomeScreen = () => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.CatCard}
-            onPress={() => navigation.replace("HomeCare")}
+            onPress={() => navigation.navigate("HomeCare")}
           >
             <ImageBackground
               source={require("../images/home-care.png")}
@@ -101,7 +101,7 @@ const HomeScreen = () => {
         <View style={styles.CatContainer}>
           <TouchableOpacity
             style={styles.CatCard}
-            onPress={() => navigation.replace("HomeDesign")}
+            onPress={() => navigation.navigate("HomeDesign")}
           >
             <ImageBackground
               source={require("../images/home-design.png")}
@@ -114,7 +114,7 @@ const HomeScreen = () => {
 
           <TouchableOpacity
             style={styles.CatCard}
-            onPress={() => navigation.replace("CareTaking")}
+            onPress={() => navigation.navigate("CareTaking")}
           >
             <ImageBackground
               source={require("../images/care-taking.png")}
@@ -128,7 +128,7 @@ const HomeScreen = () => {
         <View style={styles.CatContainer}>
           <TouchableOpacity
             style={styles.CatCard}
-            onPress={() => navigation.replace("Tutoring")}
+            onPress={() => navigation.navigate("Tutoring")}
           >
             <ImageBackground
               source={require("../images/tutor.png")}
@@ -154,8 +154,8 @@ const HomeScreen = () => {
         </View>
         <View style={styles.CatContainer}>
           <TouchableOpacity
-            style={styles.CatCard}
-            onPress={() => navigation.replace("CarService")}
+            style={styles.CatCard3}
+            onPress={() => navigation.navigate("CarService")}
             resizeMode="cover"
           >
             <ImageBackground
@@ -289,18 +289,19 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     marginLeft: "10%",
   },
-
-  // CatCardOne: {
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  //   width: "30%",
-  //   height: "30%",
-  //   backgroundColor: "#89CFF0",
-  //   borderRadius: 12,
-  //   marginTop: 40,
-  //   marginLeft: "1%",
-  //   marginRight: "1%",
-  // },
+  CatCard3: {
+    elevation: 10,
+    shadowColor: "#52006A",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "30%",
+    height: "60%",
+    backgroundColor: "white",
+    borderRadius: 12,
+    marginTop: 40,
+    marginBottom: 40,
+    marginLeft: "10%",
+  },
 
   Cat: {
     marginTop: 180,

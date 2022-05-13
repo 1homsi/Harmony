@@ -11,7 +11,6 @@ import React from "react";
 import { Icon } from "react-native-elements";
 import { auth, db } from "../../firebase";
 import BottomNav from "../components/BottomNav";
-import Review from "../components/Review";
 
 const WorkerProfile = ({ navigation, route }) => {
   const [user, setUser] = React.useState({});
@@ -90,7 +89,7 @@ const WorkerProfile = ({ navigation, route }) => {
             data={Reviews}
             renderItem={({ item }) => (
               <View>
-                  <Text style={styles.postTitle}>Reviews: Rating and Comments</Text>
+                <Text style={styles.postTitle}>Reviews: Rating and Comments</Text>
                 <View style={styles.postContainer}>
                   <View style={styles.postInfo}>
                     <Text style={styles.postDescription}>Rating: {item.Rating}</Text>
@@ -220,7 +219,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    
+
   },
   postDescription: {
     textAlign: "center",

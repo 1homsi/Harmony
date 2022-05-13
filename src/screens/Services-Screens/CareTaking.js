@@ -10,7 +10,7 @@ const CareTaking = () => {
   return (
     <SafeAreaView style={styles.bigMain}>
       <View style={styles.topNav}>
-        <Text style={styles.title}>Tutoring</Text>
+        <Text style={styles.title}>Care Taking</Text>
       </View>
       <View style={styles.container}>
         <TouchableOpacity
@@ -59,7 +59,6 @@ const CareTaking = () => {
           />
         </TouchableOpacity>
       </View>
-      <BottomNav />
     </SafeAreaView>
   );
 };
@@ -95,7 +94,7 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     marginTop: 10,
     marginBottom: 10,
-    
+
     height: 100,
   },
   buttonText: {

@@ -29,7 +29,7 @@ const BottomNav = (parm) => {
                     [styles.container, { top: Platform.OS == "ios" ? 20 : 0 }] :
                     route.name === "Option" ?
                         [styles.container, { top: Platform.OS == "ios" ? -5 : "2%" }] :
-                        styles.container}>
+                        styles.container} >
                     <View style={styles.bottomNav}>
                         <TouchableOpacity style={styles.bottomNavItem}>
                             <Icon

@@ -83,7 +83,6 @@ const Maintenance = () => {
           />
         </TouchableOpacity>
       </View>
-      <BottomNav />
     </SafeAreaView>
   );
 };
@@ -119,7 +118,7 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     marginTop: 10,
     marginBottom: 10,
-    
+
     height: 100,
   },
   buttonText: {
