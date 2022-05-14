@@ -183,6 +183,9 @@ const RegisterScreenPart2 = ({ route }) => {
                             placeholderTextColor="#003f5c"
                             placeholder="Email"
                             value={email}
+                            autoComplete="email"
+                            textContentType='emailAddress'
+                            keyboardType='email-address'
                             onChangeText={(text) => setEmail(text)}
                             style={styles.input}
                         />
@@ -190,6 +193,7 @@ const RegisterScreenPart2 = ({ route }) => {
                             placeholderTextColor="#003f5c"
                             placeholder="Phone number"
                             value={phone}
+                            keyboardType="numeric"
                             onChangeText={(text) => setPhone(text)}
                             style={styles.input}
                         />

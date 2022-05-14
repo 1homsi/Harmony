@@ -10,20 +10,16 @@ const DisplayAccepted = () => {
   const [data, setData] = React.useState([]);
 
   const fetchAll = async () => {
-    db.collection("Users").get().then((querySnapshot) => {
-      querySnapshot.forEach(async (document) => {
-        const Collection = db.collection("Contracts").doc(document.id);
-        const q = query(
-          collection(Collection, auth.currentUser?.email),
-          where("Done", "==", false),
-          where("Accepted", "==", true)
-        );
-        const docSnap = await getDocs(q);
-        docSnap.forEach((document) => {
-          let Userdata = Object.assign({ id: document.id }, document.data());
-          setData((e) => [...e, Userdata]);
-        });
-      });
+    const q = query(
+      collection(db, "Contracts"),
+      where("Done", "==", false),
+      where("Accepted", "==", true),
+      where("Email", "==", auth.currentUser?.email)
+    );
+    const docSnap = await getDocs(q);
+    docSnap.forEach((document) => {
+      let Userdata = Object.assign({ id: document.id }, document.data());
+      setData((e) => [...e, Userdata]);
     });
   };
 

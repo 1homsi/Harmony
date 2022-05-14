@@ -11,22 +11,16 @@ const Notifications = ({ navigation }) => {
   const [data, setData] = React.useState([]);
 
   const fetchAll = async () => {
-    db.collection("Users")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach(async (document) => {
-          const Collection = db.collection("Contracts").doc(document.id);
-          const q = query(
-            collection(Collection, document.id),
-            where("Done", "==", false)
-          );
-          const docSnap = await getDocs(q);
-          docSnap.forEach((document) => {
-            let Userdata = Object.assign({ id: document.id }, document.data());
-            setData((e) => [...e, Userdata]);
-          });
-        });
-      });
+    const q = query(
+      collection(db, "Contracts"),
+      where("Done", "==", false),
+      where("To", "==", auth.currentUser?.email)
+    );
+    const docSnap = await getDocs(q);
+    docSnap.forEach((document) => {
+      let Userdata = Object.assign({ id: document.id }, document.data());
+      setData((e) => [...e, Userdata]);
+    });
   };
 
   React.useEffect(() => {

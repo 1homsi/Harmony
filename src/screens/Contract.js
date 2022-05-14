@@ -44,9 +44,10 @@ const Contract = ({ route }) => {
     if (notes === "" || price === "" || details === "") {
       alert("Please fill all the fields");
     } else {
-      db.collection("Contracts").doc(auth.currentUser?.email).collection(auth.currentUser?.email).doc(id).set({
+      db.collection("Contracts").doc().set({
         Name: data?.Name || "",
         Email: auth.currentUser.email,
+        To: id,
         Notes: notes,
         Price: price,
         Details: details,
