@@ -41,7 +41,7 @@ const RegisterScreenPart2 = ({ route }) => {
         } else {
             if (name !== "" && username !== "" && location !== "" && email !== "" && password !== "") {
                 if (option === "Customer") {
-                    db.collection("Users").doc(email).set({
+                    db.collection("Users").doc(email.toLowerCase()).set({
                         Name: name,
                         Email: email.toLowerCase(),
                         Username: username,
