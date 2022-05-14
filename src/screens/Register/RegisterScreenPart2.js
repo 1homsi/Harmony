@@ -24,7 +24,7 @@ const RegisterScreenPart2 = ({ route }) => {
     const [phone, setPhone] = useState("");
     const [occupation, setOccupation] = useState("Maintenance");
     const navigation = useNavigation();
-    const [subService, setSubService] = useState("electricians");
+    const [subService, setSubService] = useState("");
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -41,9 +41,9 @@ const RegisterScreenPart2 = ({ route }) => {
         } else {
             if (name !== "" && username !== "" && location !== "" && email !== "" && password !== "") {
                 if (option === "Customer") {
-                    db.collection("Users").doc(email.toLowerCase()).set({
+                    db.collection("Users").doc(email).set({
                         Name: name,
-                        Email: email.toLowerCase(),
+                        Email: email,
                         Username: username,
                         Location: location,
                         Credit: 10,
@@ -55,6 +55,7 @@ const RegisterScreenPart2 = ({ route }) => {
                         .createUserWithEmailAndPassword(email, password)
                         .then((userCredentials) => {
                             const user = userCredentials.user;
+
                             auth.signOut()
                                 .then(() => {
                                     navigation.replace("Login");
@@ -64,31 +65,35 @@ const RegisterScreenPart2 = ({ route }) => {
                 }
                 else {
                     if (phone !== "" && occupation !== "") {
-                        db.collection("Users").doc(email).set({
-                            Name: name,
-                            Email: email.toLowerCase(),
-                            Location: location,
-                            Phone: phone,
-                            Occupation: occupation,
-                            SubService: subService,
-                            Worker: true,
-                            Bio: "",
-                            Rating: 0,
-                            Busy: false,
-                            Image: "",
-                            status: "free",
-                        });
+                        if (subService !== "") {
+                            db.collection("Users").doc(email).set({
+                                Name: name,
+                                Email: email,
+                                Location: location,
+                                Phone: phone,
+                                Occupation: occupation,
+                                SubService: subService,
+                                Worker: true,
+                                Bio: "",
+                                Rating: 0,
+                                Busy: false,
+                                Image: "",
+                                status: "free",
+                            });
 
-                        auth
-                            .createUserWithEmailAndPassword(email, password)
-                            .then((userCredentials) => {
-                                const user = userCredentials.user;
-                                auth.signOut()
-                                    .then(() => {
-                                        navigation.replace("Login");
-                                    });
-                            })
-                            .catch((error) => alert(error.message));
+                            auth
+                                .createUserWithEmailAndPassword(email, password)
+                                .then((userCredentials) => {
+                                    const user = userCredentials.user;
+                                    auth.signOut()
+                                        .then(() => {
+                                            navigation.replace("Login");
+                                        });
+                                })
+                                .catch((error) => alert(error.message));
+                        }
+                    } else {
+                        alert("Please choose a sub service");
                     }
                 }
             }
@@ -122,7 +127,7 @@ const RegisterScreenPart2 = ({ route }) => {
                             placeholderTextColor="#003f5c"
                             placeholder="Email"
                             value={email}
-                            onChangeText={(text) => setEmail(text)}
+                            onChangeText={(text) => setEmail(text.toString().toLowerCase())}
                             style={styles.input}
                         />
                         <View style={[styles.PickerContainer, styles.input]}>
@@ -186,7 +191,7 @@ const RegisterScreenPart2 = ({ route }) => {
                             autoComplete="email"
                             textContentType='emailAddress'
                             keyboardType='email-address'
-                            onChangeText={(text) => setEmail(text)}
+                            onChangeText={(text) => setEmail(text.toString().toLowerCase())}
                             style={styles.input}
                         />
                         <TextInput

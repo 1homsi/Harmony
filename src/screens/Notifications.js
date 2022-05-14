@@ -32,14 +32,26 @@ const Notifications = ({ navigation }) => {
   }, []);
 
   const handleAccepted = async (id) => {
-    db.collection("Contracts").doc(id).collection(id).doc(id).update({
-      Accepted: true,
+    db.collection("Contracts").where("To", "==", auth.currentUser?.email).get().then((querySnapshot) => {
+      querySnapshot.forEach(function (doc) {
+        if (doc.id === id) {
+          db.collection("Contracts").doc(id).update({
+            Accepted: true,
+          });
+        }
+      });
     });
   };
 
   const handleRejected = async (id) => {
-    db.collection("Contracts").doc(id).collection(id).doc(id).update({
-      Done: true,
+    db.collection("Contracts").where("To", "==", auth.currentUser?.email).get().then((querySnapshot) => {
+      querySnapshot.forEach(function (doc) {
+        if (doc.id === id) {
+          db.collection("Contracts").doc(id).update({
+            Done: true,
+          });
+        }
+      });
     });
     setData((e) => e.filter((item) => item.id !== id));
   };
@@ -70,7 +82,7 @@ const Notifications = ({ navigation }) => {
                   !item?.Accepted ?
                     <TouchableOpacity
                       style={styles.button}
-                      onPress={() => handleAccepted(item.Email)}
+                      onPress={() => handleAccepted(item.id)}
                     >
                       <Icon name="check" type="font-awesome" color="green" />
                     </TouchableOpacity>
@@ -79,7 +91,7 @@ const Notifications = ({ navigation }) => {
                 }
                 <TouchableOpacity
                   style={styles.button}
-                  onPress={() => handleRejected(item.Email)}
+                  onPress={() => handleRejected(item.id)}
                 >
                   <Icon name="close" type="font-awesome" color="red" />
                 </TouchableOpacity>
