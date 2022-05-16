@@ -14,6 +14,7 @@ import React, { useEffect, useState } from 'react';
 import { auth, db } from '../../../firebase';
 
 const RegisterScreenPart2 = ({ route }) => {
+    const [allUsers, setAllUsers] = useState([]);
     const { option } = route.params;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -25,6 +26,7 @@ const RegisterScreenPart2 = ({ route }) => {
     const [occupation, setOccupation] = useState("Maintenance");
     const navigation = useNavigation();
     const [subService, setSubService] = useState("");
+    const [sameUser, setSameUser] = useState(false);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -35,7 +37,29 @@ const RegisterScreenPart2 = ({ route }) => {
         return unsubscribe;
     }, []);
 
+    useEffect(() => {
+        db.collection("Users").where("Worker", "==", false).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                let Userdata = Object.assign({ id: doc.id }, doc.data());
+                setAllUsers((e) => [...e, Userdata]);
+            });
+        });
+
+    }, []);
+
     const handleSignUp = () => {
+        allUsers.forEach((user) => {
+            if (user.Username === username) {
+                setSameUser(true);
+            } else {
+                setSameUser(false);
+            }
+        });
+        if (sameUser) {
+            alert("Username already exists");
+            return;
+        }
+
         if (password !== Otherpassword) {
             alert("Passwords do not match");
         } else {
