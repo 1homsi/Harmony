@@ -94,6 +94,7 @@ const ViewWorker = ({ route }) => {
                   placeholder="Rate your worker"
                   onChangeText={(text) => setRating(text)}
                   numberOfLines={1}
+                  maxLength={1}
                 />
                 <TouchableOpacity
                   style={styles.reviewButton}
