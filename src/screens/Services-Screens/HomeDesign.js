@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
@@ -14,9 +20,7 @@ const HomeDesign = () => {
       </View>
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("MainServ", { id: "painters" })
-          }
+          onPress={() => navigation.navigate("MainServ", { id: "painters" })}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Painter</Text>
@@ -59,9 +63,7 @@ const HomeDesign = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("MainServ", { id: "gardeners" })
-          }
+          onPress={() => navigation.navigate("MainServ", { id: "gardeners" })}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Gardeners</Text>
@@ -105,8 +107,6 @@ const styles = StyleSheet.create({
     padding: 17,
     borderRadius: 10,
     width: "90%",
-    // justifyContent: "center",
-    // alignItems: "center",
     marginTop: 10,
     marginBottom: 10,
 
@@ -135,5 +135,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
-

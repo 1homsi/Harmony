@@ -22,7 +22,6 @@ const Contract = ({ route }) => {
   const [price, setPrice] = useState("");
   const [notes, setNotes] = useState("");
 
-
   //Date
   const [day, setDay] = useState("1");
   const [month, setMonth] = useState("1");
@@ -44,21 +43,25 @@ const Contract = ({ route }) => {
     if (notes === "" || price === "" || details === "") {
       alert("Please fill all the fields");
     } else {
-      db.collection("Contracts").doc().set({
-        Name: data?.Name || "",
-        Email: auth.currentUser.email,
-        To: id,
-        Notes: notes,
-        Price: price,
-        Details: details,
-        Accepted: false,
-        Done: false,
-        Date: `${year} - ${month} - ${day}`,
-      });
+      db.collection("Contracts")
+        .doc()
+        .set({
+          Name: data?.Name || "",
+          Email: auth.currentUser.email,
+          To: id,
+          Notes: notes,
+          Price: price,
+          Details: details,
+          Accepted: false,
+          Done: false,
+          Date: `${year} - ${month} - ${day}`,
+        });
     }
-    db.collection("Users").doc(auth.currentUser?.email).update({
-      Credit: data?.Credit + 1,
-    });
+    db.collection("Users")
+      .doc(auth.currentUser?.email)
+      .update({
+        Credit: data?.Credit + 1,
+      });
     navigation.replace("Home");
   };
 

@@ -188,15 +188,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "800",
     color: "#000",
-    // marginTop: 100,
   },
   Top: {
     flexDirection: "row",
     textAlign: "center",
-    marginBottom: 20,
-    marginTop: 30,
-    paddingBottom: 10,
-    paddingTop: 10,
+    marginTop: "10%",
   },
   ListView: {
     width: "100%",
@@ -304,13 +300,12 @@ const styles = StyleSheet.create({
   },
 
   Cat: {
-    marginTop: 180,
+    marginTop: "50%",
     width: "100%",
     height: "13%",
     justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
-    marginBottom: 500,
   },
 
   CatImage: {

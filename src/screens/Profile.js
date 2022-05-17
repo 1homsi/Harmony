@@ -7,7 +7,7 @@ import {
   Image,
   Alert,
   TextInput,
-  Platform
+  Platform,
 } from "react-native";
 import React from "react";
 import { auth, db, storage, firebase } from "../../firebase";
@@ -28,11 +28,14 @@ const Profile = () => {
   const navigation = useNavigation();
 
   const handleStatus = () => {
-    db.collection("Users").doc(auth.currentUser?.email).update({
-      Busy: !status,
-    }).then(() => {
-      setStatus(!status);
-    });
+    db.collection("Users")
+      .doc(auth.currentUser?.email)
+      .update({
+        Busy: !status,
+      })
+      .then(() => {
+        setStatus(!status);
+      });
   };
   const handleBio = () => {
     db.collection("Users").doc(auth.currentUser?.email).update({
@@ -80,9 +83,10 @@ const Profile = () => {
     );
 
   let openImagePickerAsync = async () => {
-    let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    let permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (permissionResult.granted === false) {
-      alert('Permission to access camera roll is required!');
+      alert("Permission to access camera roll is required!");
       return;
     }
     let pickerResult = await ImagePicker.launchImageLibraryAsync({
@@ -93,19 +97,22 @@ const Profile = () => {
       quality: 1,
     });
     if (pickerResult.cancelled !== true) {
-      var url = Platform.OS === 'ios' ? pickerResult.uri.replace('file://', '')
-        : pickerResult.uri;
-      const filename = pickerResult.uri.substring(pickerResult.uri.lastIndexOf('/') + 1);
+      var url =
+        Platform.OS === "ios"
+          ? pickerResult.uri.replace("file://", "")
+          : pickerResult.uri;
+      const filename = pickerResult.uri.substring(
+        pickerResult.uri.lastIndexOf("/") + 1
+      );
       setSelectedImage({
         uri: url,
         name: filename,
-        type: 'image/jpg',
+        type: "image/jpg",
       });
       return;
     }
     return;
   };
-
 
   var checkToUpload = setInterval(Up, 30);
 
@@ -227,66 +234,62 @@ const Profile = () => {
           <Text style={styles.dataAdress}>{user?.Location}</Text>
         </View>
       </View>
-      {
-        user?.Worker ? (
-          <View style={styles.ListView}>
-            <View style={styles.Inner}>
-              <Text style={styles.title}>Phone</Text>
-              <Text style={styles.dataAdress}>{user?.Phone}</Text>
-            </View>
+      {user?.Worker ? (
+        <View style={styles.ListView}>
+          <View style={styles.Inner}>
+            <Text style={styles.title}>Phone</Text>
+            <Text style={styles.dataAdress}>{user?.Phone}</Text>
           </View>
-        ) : (
-          <></>
-        )
-      }
-      {
-        user?.Worker ? (
-          <View style={styles.ListView}>
-            <View style={styles.InnerBio}>
-              <Text style={styles.title}>Bio </Text>
+        </View>
+      ) : (
+        <></>
+      )}
+      {user?.Worker ? (
+        <View style={styles.ListView}>
+          <View style={styles.InnerBio}>
+            <Text style={styles.title}>Bio </Text>
 
-              {editBio ? (
-                <>
-                  {user?.Bio == "" ? (
-                    <Text style={styles.dataAdress}>No Bio</Text>
-                  ) : (
-                    <Text style={styles.dataAdress}>{bio}</Text>
-                  )}
-                </>
-              ) : (
-                <>
-                  <TextInput
-                    style={styles.input}
-                    placeholder={user?.Bio == "" ? "EditBio" : user?.bio}
-                    onChangeText={(text) => {
-                      setBio(text);
-                    }}
-                    value={bio}
-                  />
-                </>
-              )}
-            </View>
-            <View style={styles.icon}>
-              <Icon
-                name={editBio ? "edit" : "check"}
-                type="FontAwesome5"
-                color="gray"
-                size={25}
-                onPress={() => {
-                  if (editBio) {
-                    setEditBio(false);
-                  } else {
-                    handleBio();
-                    setEditBio(true);
-                  }
-                }}
-              />
-            </View>
+            {editBio ? (
+              <>
+                {user?.Bio == "" ? (
+                  <Text style={styles.dataAdress}>No Bio</Text>
+                ) : (
+                  <Text style={styles.dataAdress}>{bio}</Text>
+                )}
+              </>
+            ) : (
+              <>
+                <TextInput
+                  style={styles.input}
+                  placeholder={user?.Bio == "" ? "EditBio" : user?.bio}
+                  onChangeText={(text) => {
+                    setBio(text);
+                  }}
+                  value={bio}
+                />
+              </>
+            )}
           </View>
-        ) : (
-          <></>
-        )
-      }
+          <View style={styles.icon}>
+            <Icon
+              name={editBio ? "edit" : "check"}
+              type="FontAwesome5"
+              color="gray"
+              size={25}
+              onPress={() => {
+                if (editBio) {
+                  setEditBio(false);
+                } else {
+                  handleBio();
+                  setEditBio(true);
+                }
+              }}
+            />
+          </View>
+        </View>
+      ) : (
+        <></>
+      )}
       <View style={styles.DeleteContainer}>
         <TouchableOpacity
           onPress={handleDeleteUser}
@@ -294,23 +297,20 @@ const Profile = () => {
         >
           <Text style={styles.buttonText}>Delete Account</Text>
         </TouchableOpacity>
-        {selectedImage != "" ?
-          <TouchableOpacity
-            onPress={onUpload}
-            style={styles.buttonOutline}
-          >
+        {selectedImage != "" ? (
+          <TouchableOpacity onPress={onUpload} style={styles.buttonOutline}>
             <Text style={styles.buttonText}>Save</Text>
           </TouchableOpacity>
-          :
+        ) : (
           <TouchableOpacity
             onPress={() => navigation.replace("Option")}
             style={styles.buttonOutline}
           >
             <Text style={styles.buttonText}>Back</Text>
           </TouchableOpacity>
-        }
+        )}
       </View>
-    </SafeAreaView >
+    </SafeAreaView>
   );
 };
 

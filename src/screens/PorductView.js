@@ -1,9 +1,17 @@
-import { SafeAreaView, Text, Image, StyleSheet, View, TouchableOpacity, Platform, Linking } from "react-native";
+import {
+  SafeAreaView,
+  Text,
+  Image,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Platform,
+  Linking,
+} from "react-native";
 import React, { useEffect } from "react";
 import { db, auth } from "../../firebase";
 import { Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-
 
 const PorductView = ({ route }) => {
   const { id, IsFav } = route.params;
@@ -18,7 +26,6 @@ const PorductView = ({ route }) => {
         setData(doc.data());
       });
 
-
     return () => {
       setData({});
     };
@@ -27,11 +34,10 @@ const PorductView = ({ route }) => {
   const handleAdd = () => {
     if (auth.currentUser?.email === data.Email) {
       alert("You can't add your own product");
-    }
-    else {
+    } else {
       db.collection("Product").doc(id).update({
-        "FavoritedBy": auth.currentUser?.email,
-        "ProductTaken": true,
+        FavoritedBy: auth.currentUser?.email,
+        ProductTaken: true,
       });
       navigation.replace("Home");
     }
@@ -53,22 +59,21 @@ const PorductView = ({ route }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {
-        Platform.OS === "Ios" ? <Icon
+      {Platform.OS === "Ios" ? (
+        <Icon
           style={styles.icon}
           reverseColor
           name="home"
           type="font-awesome"
           size={40}
           onPress={() => navigation.replace("Home")}
-        /> : <></>
-      }
+        />
+      ) : (
+        <></>
+      )}
 
       <View style={styles.Image}>
-        <Image
-          style={styles.HeaderImage}
-          source={{ uri: data.Image }}
-        />
+        <Image style={styles.HeaderImage} source={{ uri: data.Image }} />
       </View>
       <View style={styles.description}>
         <Text style={styles.headTitle}>{data.title}</Text>
@@ -99,19 +104,24 @@ const PorductView = ({ route }) => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => {
-            IsFav ? handleAdd() : openMaps(
-              data.Location.coords.latitude,
-              data.Location.coords.longitude
-            );
-          }}>
-            {
-              IsFav ? <Text style={styles.buttonText} >Add</Text>
-                :
-                <>
-                  <Text style={styles.buttonText}>Open Location</Text>
-                </>
-            }
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              IsFav
+                ? handleAdd()
+                : openMaps(
+                    data.Location.coords.latitude,
+                    data.Location.coords.longitude
+                  );
+            }}
+          >
+            {IsFav ? (
+              <Text style={styles.buttonText}>Add</Text>
+            ) : (
+              <>
+                <Text style={styles.buttonText}>Open Location</Text>
+              </>
+            )}
           </TouchableOpacity>
         </View>
       </View>

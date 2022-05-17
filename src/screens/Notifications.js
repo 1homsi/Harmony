@@ -32,27 +32,33 @@ const Notifications = ({ navigation }) => {
   }, []);
 
   const handleAccepted = async (id) => {
-    db.collection("Contracts").where("To", "==", auth.currentUser?.email).get().then((querySnapshot) => {
-      querySnapshot.forEach(function (doc) {
-        if (doc.id === id) {
-          db.collection("Contracts").doc(id).update({
-            Accepted: true,
-          });
-        }
+    db.collection("Contracts")
+      .where("To", "==", auth.currentUser?.email)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach(function (doc) {
+          if (doc.id === id) {
+            db.collection("Contracts").doc(id).update({
+              Accepted: true,
+            });
+          }
+        });
       });
-    });
   };
 
   const handleRejected = async (id) => {
-    db.collection("Contracts").where("To", "==", auth.currentUser?.email).get().then((querySnapshot) => {
-      querySnapshot.forEach(function (doc) {
-        if (doc.id === id) {
-          db.collection("Contracts").doc(id).update({
-            Done: true,
-          });
-        }
+    db.collection("Contracts")
+      .where("To", "==", auth.currentUser?.email)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach(function (doc) {
+          if (doc.id === id) {
+            db.collection("Contracts").doc(id).update({
+              Done: true,
+            });
+          }
+        });
       });
-    });
     setData((e) => e.filter((item) => item.id !== id));
   };
 
@@ -78,17 +84,16 @@ const Notifications = ({ navigation }) => {
               </View>
 
               <View style={styles.buttons}>
-                {
-                  !item?.Accepted ?
-                    <TouchableOpacity
-                      style={styles.button}
-                      onPress={() => handleAccepted(item.id)}
-                    >
-                      <Icon name="check" type="font-awesome" color="green" />
-                    </TouchableOpacity>
-                    :
-                    <></>
-                }
+                {!item?.Accepted ? (
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => handleAccepted(item.id)}
+                  >
+                    <Icon name="check" type="font-awesome" color="green" />
+                  </TouchableOpacity>
+                ) : (
+                  <></>
+                )}
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() => handleRejected(item.id)}
@@ -212,7 +217,6 @@ const styles = StyleSheet.create({
     marginLeft: "3%",
   },
   button: {
-    // width: "20%",
     borderRadius: 10,
     backgroundColor: "#89CFF0",
     marginRight: "5%",

@@ -29,9 +29,12 @@ const ViewWorker = ({ route }) => {
         setUser(doc.data());
       });
 
-    db.collection("Users").doc(auth.currentUser?.email).get().then((doc) => {
-      setMyuserdata(doc.data());
-    });
+    db.collection("Users")
+      .doc(auth.currentUser?.email)
+      .get()
+      .then((doc) => {
+        setMyuserdata(doc.data());
+      });
 
     return () => {
       setUser("");
@@ -39,24 +42,28 @@ const ViewWorker = ({ route }) => {
     };
   }, []);
 
-
   const handleReview = () => {
-    db.collection("Reviews").doc().set({
-      Rating: parseInt(rating),
-      Comment: comment,
-      WorkerR: id,
-      User: myuserdata.Name,
-      Userid: myuserdata.Email,
-    }).catch((error) => {
-      alert(error);
-    });
+    db.collection("Reviews")
+      .doc()
+      .set({
+        Rating: parseInt(rating),
+        Comment: comment,
+        WorkerR: id,
+        User: myuserdata.Name,
+        Userid: myuserdata.Email,
+      })
+      .catch((error) => {
+        alert(error);
+      });
     setIsReady(false);
   };
 
   return (
     <SafeAreaView style={styles.Container}>
       <View style={styles.username}>
-        <Text style={styles.usernameText}>{user?.Name} {user?.Busy}</Text>
+        <Text style={styles.usernameText}>
+          {user?.Name} {user?.Busy}
+        </Text>
       </View>
       <View style={styles.profilePicture}>
         {user?.Image != "" ? (
@@ -79,40 +86,40 @@ const ViewWorker = ({ route }) => {
       </View>
       <View style={styles.review}>
         <View style={styles.reviewContainer}>
-          {
-            isReady ?
-              <>
-                <Text style={styles.title}>Add your Review:</Text>
-                <View style={styles.alignRow}>
-                <TextInput style={styles.textInput}
+          {isReady ? (
+            <>
+              <Text style={styles.title}>Add your Review:</Text>
+              <View style={styles.alignRow}>
+                <TextInput
+                  style={styles.textInput}
                   placeholder="Write your review here"
                   value={comment}
                   onChangeText={(text) => setComment(text)}
                   numberOfLines={1}
                 />
-                </View>
-                <View style={styles.alignRow}>
-                <TextInput style={styles.textInput}
+              </View>
+              <View style={styles.alignRow}>
+                <TextInput
+                  style={styles.textInput}
                   keyboardType="numeric"
-                  placeholder="Rate your worker"
+                  placeholder="Rate your worker from 0 to 5"
                   onChangeText={(text) => setRating(text)}
                   numberOfLines={1}
                   maxLength={1}
                 />
-                </View>
-                <TouchableOpacity
-                  style={styles.reviewButton}
-                  onPress={handleReview}
-                >
-                  <Text>Submit</Text>
-                </TouchableOpacity>
-              </>
-              :
-              <>
-                <Text style={styles.title}>Thank you for your review</Text>
-              </>
-          }
-
+              </View>
+              <TouchableOpacity
+                style={styles.reviewButton}
+                onPress={handleReview}
+              >
+                <Text>Submit</Text>
+              </TouchableOpacity>
+            </>
+          ) : (
+            <>
+              <Text style={styles.title}>Thank you for your review</Text>
+            </>
+          )}
 
           <View style={styles.ratingWrap}>
             <AirbnbRating
@@ -125,16 +132,17 @@ const ViewWorker = ({ route }) => {
           </View>
         </View>
       </View>
-      {!myuserdata.Worker ?
+      {!myuserdata.Worker ? (
         <Text style={styles.credit}>My Credit: {myuserdata?.Credit}</Text>
-        : <></>
-      }
+      ) : (
+        <></>
+      )}
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           onPress={() => {
-            myuserdata?.Credit == 0 ?
-              alert("You don't have enough credit to hire this worker") :
-              navigation.replace("Contract", { id: id });
+            myuserdata?.Credit == 0
+              ? alert("You don't have enough credit to hire this worker")
+              : navigation.replace("Contract", { id: id });
           }}
           style={styles.buttonOutlineOffer}
         >
@@ -154,7 +162,6 @@ const ViewWorker = ({ route }) => {
 export default ViewWorker;
 
 const styles = StyleSheet.create({
-
   credit: {
     marginBottom: 20,
     textAlign: "center",
@@ -197,6 +204,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 20,
+    marginTop: -30,
   },
   reviewContainer: {
     backgroundColor: "transparent",
@@ -231,7 +239,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   detailsContainer: {
-    marginTop: 40,
+    marginTop: "10%",
   },
   userDetails: {
     fontSize: 16,
@@ -308,6 +316,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-  }
-
+  },
 });

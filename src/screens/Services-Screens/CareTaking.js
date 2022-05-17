@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
@@ -29,9 +35,7 @@ const CareTaking = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("MainServ", { id: "nurses" })
-          }
+          onPress={() => navigation.navigate("MainServ", { id: "nurses" })}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Nurses</Text>
@@ -90,8 +94,6 @@ const styles = StyleSheet.create({
     padding: 17,
     borderRadius: 10,
     width: "90%",
-    // justifyContent: "center",
-    // alignItems: "center",
     marginTop: 10,
     marginBottom: 10,
 

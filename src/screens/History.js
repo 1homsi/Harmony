@@ -37,9 +37,7 @@ const History = () => {
           </View>
         </View>
       </View>
-      {/* <View style={styles.Nav}> */}
       <BottomNav />
-      {/* </View> */}
     </SafeAreaView>
   );
 };
@@ -115,31 +113,4 @@ const styles = StyleSheet.create({
     padding: "2%",
     borderRadius: 5,
   },
-  // Nav: {
-  //   position: "relative",
-  //   bottom: "0%",
-  //   width: "100%",
-  //   height: "-10%",
-  //   // backgroundColor: "#fff",
-  //   flexDirection: "row",
-  //   justifyContent: "space-between",
-  //   alignItems: "center",
-  //   padding: "15%",
-  //   shadowColor: "grey",
-  //   shadowOpacity: 0.5,
-  //   shadowOffset: {
-  //     width: 0,
-  //     height: 2,
-  //   },
-  //   shadowRadius: 5,
-  //   elevation: 5,
-  //   zIndex: 1,
-  //   borderTopWidth: 0,
-  //   borderBottomWidth: 0,
-  //   borderLeftWidth: 0,
-  //   borderRightWidth: 0,
-  //   borderColor: "white",
-  //   borderRadius: 0,
-  //   marginTop: "-10%",
-  // },
 });

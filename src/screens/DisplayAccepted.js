@@ -40,8 +40,7 @@ const DisplayAccepted = () => {
           style={styles.list}
           data={data}
           renderItem={({ item }) => (
-            <View
-              style={styles.containerItem}            >
+            <View style={styles.containerItem}>
               <View style={styles.innerContainer}>
                 <Text style={styles.title}>
                   {item?.Name.length > 19
@@ -52,7 +51,10 @@ const DisplayAccepted = () => {
                 <Text style={styles.des}>{item.Price}</Text>
                 <View style={styles.rating}>
                   <Text style={styles.rateText}>Rate from 0 to 5</Text>
-                  <TextInput keyboardType="numeric" style={styles.rateInput}></TextInput>
+                  <TextInput
+                    keyboardType="numeric"
+                    style={styles.rateInput}
+                  ></TextInput>
                 </View>
               </View>
             </View>
@@ -171,7 +173,6 @@ const styles = StyleSheet.create({
   },
   rating: {
     flexDirection: "row",
-    // justifyContent: "space-between",
     marginTop: "5%",
   },
   icon: {
@@ -181,13 +182,11 @@ const styles = StyleSheet.create({
   rateInput: {
     width: "25%",
     borderRadius: 10,
-    // marginBottom: "8%",
     marginLeft: "5%",
     borderWidth: 1,
     borderColor: "white",
     padding: "2%",
     fontSize: 15,
-    // fontWeight: "bold",
     textAlign: "center",
     backgroundColor: "white",
     height: 20,
@@ -196,8 +195,7 @@ const styles = StyleSheet.create({
   rateText: {
     fontSize: 15,
     fontWeight: "bold",
-    // marginLeft: "1%",
     marginTop: "5%",
     color: "#000",
-  }
+  },
 });

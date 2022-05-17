@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
@@ -13,8 +19,6 @@ const Tutoring = () => {
       <View style={styles.topNav}>
         <Text style={styles.title}>Tutoring</Text>
       </View>
-      {/* <ScrollView> */}
-      {/* <FlatList> */}
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() =>
@@ -92,7 +96,7 @@ const Tutoring = () => {
           />
         </TouchableOpacity>
       </View>
-    </SafeAreaView >
+    </SafeAreaView>
   );
 };
 
@@ -123,8 +127,6 @@ const styles = StyleSheet.create({
     padding: 17,
     borderRadius: 10,
     width: "90%",
-    // justifyContent: "center",
-    // alignItems: "center",
     marginTop: 10,
     marginBottom: 10,
 
@@ -153,4 +155,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-

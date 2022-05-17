@@ -38,9 +38,7 @@ const Maintenance = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("MainServ", { id: "plumbers" })
-          }
+          onPress={() => navigation.navigate("MainServ", { id: "plumbers" })}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Plumber</Text>
@@ -53,9 +51,7 @@ const Maintenance = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("MainServ", { id: "carpenters" })
-          }
+          onPress={() => navigation.navigate("MainServ", { id: "carpenters" })}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Carpenter</Text>
@@ -68,9 +64,7 @@ const Maintenance = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("MainServ", { id: "handymen" })
-          }
+          onPress={() => navigation.navigate("MainServ", { id: "handymen" })}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Handy Men</Text>
@@ -114,8 +108,6 @@ const styles = StyleSheet.create({
     padding: 17,
     borderRadius: 10,
     width: "90%",
-    // justifyContent: "center",
-    // alignItems: "center",
     marginTop: 10,
     marginBottom: 10,
 
@@ -139,8 +131,6 @@ const styles = StyleSheet.create({
     color: "gray",
     fontSize: 35,
     fontWeight: "700",
-    // alignItems: "center",
-    // justifyContent: "center",
   },
   itemStyle: {
     padding: 10,
@@ -151,15 +141,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     margin: 3,
     borderRadius: 10,
-    borderColor: '#89CFF0',
-    backgroundColor: '#fff',
+    borderColor: "#89CFF0",
+    backgroundColor: "#fff",
   },
-  // searchIcon: {
-  //   position: 'absolute',
-  //   top: 10,
-  //   left: 10,
-  //   color: 'black',
-  //   fontSize: 30,
-  //   fontWeight: '700',
-  // },
 });

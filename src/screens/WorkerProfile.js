@@ -35,7 +35,6 @@ const WorkerProfile = ({ navigation, route }) => {
         });
       });
 
-
     return () => {
       setUser({});
     };
@@ -89,15 +88,20 @@ const WorkerProfile = ({ navigation, route }) => {
             data={Reviews}
             renderItem={({ item }) => (
               <View>
-                <Text style={styles.postTitle}>Reviews: Rating and Comments</Text>
+                <Text style={styles.postTitle}>
+                  Reviews: Rating and Comments
+                </Text>
                 <View style={styles.postContainer}>
                   <View style={styles.postInfo}>
-                    <Text style={styles.postDescription}>Rating: {item.Rating}</Text>
-                    <Text style={styles.postDescription}>Comments: {item.Comment}</Text>
+                    <Text style={styles.postDescription}>
+                      Rating: {item.Rating}
+                    </Text>
+                    <Text style={styles.postDescription}>
+                      Comments: {item.Comment}
+                    </Text>
                   </View>
                 </View>
               </View>
-
             )}
             keyExtractor={(item, index) => index.toString()}
           />
@@ -106,7 +110,7 @@ const WorkerProfile = ({ navigation, route }) => {
       <View style={styles.bottomNav}>
         <BottomNav />
       </View>
-    </View >
+    </View>
   );
 };
 
@@ -219,7 +223,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-
   },
   postDescription: {
     textAlign: "center",
@@ -243,5 +246,4 @@ const styles = StyleSheet.create({
     position: "absolute",
     marginTop: "120%",
   },
-
 });

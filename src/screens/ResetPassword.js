@@ -48,7 +48,7 @@ const ResetPassword = ({ route }) => {
           </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView >
+    </SafeAreaView>
   );
 };
 
