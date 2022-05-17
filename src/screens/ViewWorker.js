@@ -83,12 +83,15 @@ const ViewWorker = ({ route }) => {
             isReady ?
               <>
                 <Text style={styles.title}>Add your Review:</Text>
+                <View style={styles.alignRow}>
                 <TextInput style={styles.textInput}
                   placeholder="Write your review here"
                   value={comment}
                   onChangeText={(text) => setComment(text)}
                   numberOfLines={1}
                 />
+                </View>
+                <View style={styles.alignRow}>
                 <TextInput style={styles.textInput}
                   keyboardType="numeric"
                   placeholder="Rate your worker"
@@ -96,6 +99,7 @@ const ViewWorker = ({ route }) => {
                   numberOfLines={1}
                   maxLength={1}
                 />
+                </View>
                 <TouchableOpacity
                   style={styles.reviewButton}
                   onPress={handleReview}
@@ -157,13 +161,10 @@ const styles = StyleSheet.create({
   },
   Container: {
     flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center",
   },
   profilePicture: {
     width: "100%",
     height: 200,
-    // borderRadius: 100,
     overflow: "hidden",
     marginTop: -5,
     marginBottom: -27,
@@ -181,8 +182,6 @@ const styles = StyleSheet.create({
   },
   username: {
     width: "100%",
-    // alignItems: "center",
-    // justifyContent: "center",
     marginTop: 30,
   },
   usernameText: {
@@ -192,14 +191,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: "center",
   },
-  //   Image: {
-  //     width: 110,
-  //     height: 110,
-  //     borderRadius: 150 / 2,
-  //     overflow: "hidden",
-  //     borderWidth: 0,
-  //     marginBottom: 20,
-  //   },
   review: {
     flex: 1,
     backgroundColor: "transparent",
@@ -209,26 +200,13 @@ const styles = StyleSheet.create({
   },
   reviewContainer: {
     backgroundColor: "transparent",
-    // borderRadius: 10,
     paddingHorizontal: 30,
     paddingVertical: 40,
     minWidth: "100%",
     marginTop: 60,
     alignItems: "center",
     justifyContent: "center",
-    // shadowOffset: { width: 0, height: 5 },
-    // shadowOpacity: 1.0,
-    // shadowRadius: 2,
-    // shadowColor: "rgba(193, 211, 251, 0.5)",
-    // elevation: 5,
   },
-  // title1: {
-  //   fontWeight: "bold",
-  //   fontSize: 20,
-  //   color: "#323357",
-  //   textAlign: "center",
-  //   marginBottom: 20,
-  // },
   title: {
     fontWeight: "bold",
     fontSize: 20,
@@ -262,12 +240,9 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   buttonsContainer: {
-    // flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    // marginLeft: 100,
-    // flexDirection: "row",
-    // width: "100%",
+    marginTop: -10,
   },
   buttonOutline: {
     backgroundColor: "gray",
@@ -290,7 +265,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: -20,
-    // height: 60,
   },
   buttonText: {
     color: "white",
@@ -301,8 +275,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#E6E6E6",
     borderRadius: 10,
-    // paddingHorizontal: 5,
-    // paddingVertical: 5,
     marginBottom: 5,
     width: "100%",
     height: 50,
@@ -321,18 +293,21 @@ const styles = StyleSheet.create({
     padding: 17,
     borderRadius: 10,
     alignItems: "center",
-    width: "70%",
+    width: "90%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 10,
     marginBottom: 20,
-    // height: 60,
   },
   reviewButtonText: {
     color: "white",
     fontWeight: "700",
     fontSize: 17,
   },
-
+  alignRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  }
 
 });
