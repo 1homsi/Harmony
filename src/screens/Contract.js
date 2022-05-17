@@ -66,170 +66,111 @@ const Contract = ({ route }) => {
   };
 
   return (
-    <SafeAreaView style={styles.bigMain}>
+    <View style={styles.container}>
       <View style={styles.topNav}>
         <Text style={styles.title}>Service Form</Text>
       </View>
       <View>
-        <View style={styles.form}>
-          <View style={styles.input}>
-            <Text style={styles.text}>Service Details</Text>
-            <TextInput
-              style={{ height: 40 }}
-              placeholder="Enter service details"
-              value={details}
-              onChangeText={(text) => setDetails(text)}
-            />
-          </View>
-          <View style={styles.input}>
-            <Text style={styles.text}>Price</Text>
-            <TextInput
-              style={{ height: 40 }}
-              keyboardType="numeric"
-              placeholder="Enter suggested price"
-              value={price}
-              onChangeText={(text) => setPrice(text)}
-            />
-          </View>
-          <View style={styles.input}>
-            <Text style={styles.text}>Notes</Text>
-            <TextInput
-              style={{ height: 40 }}
-              placeholder="Enter Extra Notes"
-              value={notes}
-              onChangeText={(text) => setNotes(text)}
-            />
-          </View>
-          <View style={styles.DateContainer}>
-            <Text style={styles.text}>Date</Text>
-            <BirthdayPicker
-              style={styles.DatePicker}
-              selectedYear={2022}
-              selectedMonth={0}
-              selectedDay={27}
-              yearsBack={0}
-              onYearValueChange={(year, i) => setYear(year)}
-              onMonthValueChange={(month, i) => setMonth(month)}
-              onDayValueChange={(day, i) => setDay(day)}
-            />
+        <Text style={styles.text}>Service Details</Text>
+        <TextInput
+          style={styles.inputText}
+          placeholder="Enter service details"
+          value={details}
+          onChangeText={(text) => setDetails(text)}
+        />
+        <Text style={styles.text}>Price</Text>
+        <TextInput
+          style={styles.inputText}
+          keyboardType="numeric"
+          placeholder="Enter suggested price"
+          value={price}
+          onChangeText={(text) => setPrice(text)}
+        />
+        <Text style={styles.text}>Notes</Text>
+        <TextInput
+          style={styles.inputText}
+          placeholder="Enter Extra Notes"
+          value={notes}
+          onChangeText={(text) => setNotes(text)}
+        />
+        <View style={styles.DateContainer}>
+          <Text style={styles.text}>Date</Text>
+          <BirthdayPicker
+            style={styles.DatePicker}
+            selectedYear={2022}
+            selectedMonth={0}
+            selectedDay={27}
+            yearsBack={0}
+            onYearValueChange={(year, i) => setYear(year)}
+            onMonthValueChange={(month, i) => setMonth(month)}
+            onDayValueChange={(day, i) => setDay(day)}
+          />
+        </View>
+        <View>
+          <View style={styles.buttonsContainer}>
+            <TouchableOpacity
+              style={styles.buttonOutlineOffer}
+              onPress={handleContract}
+            >
+              <Text style={styles.buttonText}>Send</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.replace("Home")}
+              style={styles.buttonOutline}
+            >
+              <Text style={styles.buttonText}>Back</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
-      <View>
-        <View style={styles.buttonsContainer}>
-          <TouchableOpacity
-            onPress={() => navigation.replace("Home")}
-            style={styles.buttonOutline}
-          >
-            <Text style={styles.buttonText}>Back</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonOutlineOffer}
-            onPress={handleContract}
-          >
-            <Text style={styles.buttonText}>Send</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
 export default Contract;
 
 const styles = StyleSheet.create({
-  DateContainer: {
-    width: "100%",
-    marginTop: 10,
-    marginBottom: 30,
-    marginLeft: 20,
-    marginRight: 10,
-    borderColor: "gray",
-    borderWidth: 1,
-    borderRadius: 10,
-    padding: 20,
-    backgroundColor: "white",
-    height: "30%",
-    width: "90%",
-    borderBottomColor: "gray",
-    borderBottomWidth: 1.5,
-  },
-  bigMain: {
+  container: {
     flex: 1,
-  },
-  topNav: {
-    flexDirection: "row",
-    textAlign: "center",
-    marginBottom: 30,
-    marginTop: 5,
-    paddingBottom: 10,
-    paddingTop: 10,
+    backgroundColor: "#fff",
   },
   title: {
-    marginTop: 20,
-    marginBottom: 10,
-    marginLeft: 10,
-    fontSize: 40,
-    fontWeight: "800",
-    color: "#000",
+    fontSize: 30,
+    fontWeight: "bold",
+    marginTop: "15%",
+    textAlign: "center",
+    marginBottom: "5%",
   },
-  form: {
-    flex: 1,
-  },
-  datePickerStyle: {
-    width: 250,
-    position: "relative",
-  },
-  container: {
-    padding: 5,
-    backgroundColor: "transparent",
-    width: "100%",
-  },
-  timePickerStyle: {
-    width: "100%",
-    padding: 0,
-    margin: 0,
-  },
-  input: {
-    marginTop: 10,
-    marginBottom: 30,
-    marginLeft: 20,
-    marginRight: 10,
-    borderColor: "gray",
+  inputText: {
     borderWidth: 1,
+    borderColor: "#000",
+    margin: "5%",
+    padding: "2%",
+    paddingLeft: "5%",
     borderRadius: 10,
-    padding: "10%",
-    backgroundColor: "white",
-    height: "30%",
-    width: "90%",
-    borderBottomColor: "gray",
-    borderBottomWidth: 1.5,
+  },
+  DateContainer: {
+    marginHorizontal: "5%",
   },
   text: {
-    fontSize: 20,
-    fontWeight: "700",
-    color: "#89CFF0",
-    marginLeft: -15,
-    marginTop: -40,
-    marginBottom: 0,
-    marginRight: 0,
+    fontSize: 15,
+    marginLeft: "5%",
   },
   buttonsContainer: {
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    bottom: -480,
   },
   buttonOutlineOffer: {
     backgroundColor: "#89CFF0",
     padding: 17,
     borderRadius: 10,
     alignItems: "center",
-    width: "40%",
+    width: "70%",
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: 15,
-    marginBottom: 45,
+    marginBottom: 15,
+    marginTop: 60,
     height: 60,
   },
   buttonOutline: {
@@ -243,7 +184,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     height: 60,
     marginBottom: 65,
-    marginRight: 15,
   },
   buttonText: {
     color: "white",
