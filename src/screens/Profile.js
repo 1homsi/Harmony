@@ -177,29 +177,35 @@ const Profile = () => {
         <Text style={styles.HeadTitlte}>Profile</Text>
       </View>
       <View style={styles.ListView}>
-        {user.image ? (
-          <TouchableOpacity nPress={openImagePickerAsync}>
-            <Image
-              source={{ uri: user?.image }}
-              style={
-                user?.Worker
-                  ? [styles.image, { marginTop: 10 }]
-                  : [styles.image]
-              }
-            ></Image>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={openImagePickerAsync}>
-            <Image
-              source={require("../images/Profile.png")}
-              style={
-                user?.Worker
-                  ? [styles.image, { marginTop: 10 }]
-                  : [styles.image]
-              }
-            ></Image>
-          </TouchableOpacity>
-        )}
+        {user &&
+          <>
+            {
+              user?.image ? (
+                <TouchableOpacity nPress={openImagePickerAsync}>
+                  <Image
+                    source={{ uri: user?.image }}
+                    style={
+                      user?.Worker
+                        ? [styles.image, { marginTop: 10 }]
+                        : [styles.image]
+                    }
+                  ></Image>
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity onPress={openImagePickerAsync}>
+                  <Image
+                    source={require("../images/Profile.png")}
+                    style={
+                      user?.Worker
+                        ? [styles.image, { marginTop: 10 }]
+                        : [styles.image]
+                    }
+                  ></Image>
+                </TouchableOpacity>
+              )
+            }
+          </>
+        }
         <View>
           <Text style={[styles.dataName, styles.title]}>{user?.Name}</Text>
           <Text style={styles.dataEmail}>{auth.currentUser?.email}</Text>
