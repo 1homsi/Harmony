@@ -132,11 +132,6 @@ const ViewWorker = ({ route }) => {
           </View>
         </View>
       </View>
-      {!myuserdata.Worker ? (
-        <Text style={styles.credit}>My Credit: {myuserdata?.Credit}</Text>
-      ) : (
-        <></>
-      )}
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           onPress={() => {
@@ -292,7 +287,7 @@ const styles = StyleSheet.create({
   },
   ratingWrap: {
     marginTop: -50,
-    marginBottom: 20,
+    marginBottom: "12%",
     alignItems: "center",
     justifyContent: "center",
   },

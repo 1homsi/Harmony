@@ -62,11 +62,6 @@ const DisplayAccepted = () => {
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
-      <View>
-        <TouchableOpacity>
-          <Text style={styles.ClearBtn}>Clear All</Text>
-        </TouchableOpacity>
-      </View>
       <BottomNav />
     </SafeAreaView>
   );
