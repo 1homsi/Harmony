@@ -7,7 +7,6 @@ import LoginScreen from './src/screens/LoginScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import RegisterScreen from './src/screens/Register/RegisterScreen';
 import RegisterScreenPart2 from './src/screens/Register/RegisterScreenPart2';
-import PorductView from './src/screens/PorductView';
 import ResetPassword from './src/screens/ResetPassword';
 import Options from './src/screens/Options';
 import Profile from './src/screens/Profile';
@@ -52,7 +51,6 @@ export default function App() {
             headerShown: false,
           }}>
             <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="ViewProduct" component={PorductView} />
             <Stack.Screen name="ResetPassword" component={ResetPassword} />
             <Stack.Screen name="Option" component={Options} />
             <Stack.Screen name="Login" component={LoginScreen} />
