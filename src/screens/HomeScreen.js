@@ -22,41 +22,11 @@ const wait = (timeout) => {
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const [data, setData] = React.useState([]);
-  const [refreshing, setRefreshing] = React.useState(false);
 
   React.useEffect(() => {
     if (!auth.currentUser) {
       navigation.replace("Login");
     }
-  }, []);
-
-  const fetchAll = async () => {
-    const q = query(
-      collection(db, "Users"),
-      where("status", "==", "free"),
-      where("Worker", "==", true)
-    );
-
-    const docSnap = await getDocs(q);
-    docSnap.forEach((doc) => {
-      let Userdata = Object.assign({ id: doc.id }, doc.data());
-      setData((e) => [...e, Userdata]);
-    });
-  };
-
-  React.useEffect(() => {
-    fetchAll();
-    return () => {
-      setData({});
-    };
-  }, []);
-
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    setData([]);
-    fetchAll();
-    wait(1000).then(() => setRefreshing(false));
   }, []);
 
   return (
